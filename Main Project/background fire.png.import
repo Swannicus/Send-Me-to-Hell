@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/background fire.png-5b6a04c10401a71b42b5b0c603298772.stex"
+
+[deps]
+
+source_file="res://background fire.png"
+source_md5="3f5b2ccb2c2e2ce627542a405d73a0f6"
+
+dest_files=[ "res://.import/background fire.png-5b6a04c10401a71b42b5b0c603298772.stex" ]
+dest_md5="80bd015ced9d3af7c6ea263a22c670e0"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
