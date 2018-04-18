@@ -1,7 +1,7 @@
 extends Sprite
 
-var image1 = preload("res://Rogue1.png")
-var image2 = preload("res://Rogue2.png")
+var image1 = preload("res://Sprites/Rogue1.png")
+var image2 = preload("res://Sprites/Rogue2.png")
 export var speed = 100
 var vel = Vector2()
 
@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_released("ui_cancel"):
-		get_tree().change_scene("res://CharacterSelect.tscn")
+		get_tree().change_scene("res://Scenes/CharacterSelect.tscn")
 	if Input.is_action_just_pressed("ui_right"):
 		vel += Vector2(speed, 0)
 	if Input.is_action_just_released("ui_left"):
