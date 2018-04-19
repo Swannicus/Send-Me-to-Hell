@@ -24,5 +24,9 @@ func animswitch(animation):
 	var newanim = str(animation,spritedir)
 	if $Sprite/anim.current_animation != newanim:
 		$Sprite/anim.play(newanim)
-	
+
+func animswitch2(animation):
+	var newanim = str(animation)
+	if $Sprite/anim.current_animation != newanim:
+		$Sprite/anim.play(newanim)
 	

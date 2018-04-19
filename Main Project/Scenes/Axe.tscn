@@ -3,12 +3,12 @@
 [ext_resource path="res://Scripts/weapons.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/weapons.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.544, 2.1357 )
+extents = Vector2( 6.5, 6 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 length = 0.01
 loop = false
@@ -93,7 +93,7 @@ tracks/4/keys = {
 }
 
 [node name="WeaponParent" type="Node2D" groups=[
-"Sword",
+"Axe",
 ]]
 
 [node name="weapon" type="Area2D" parent="." index="0" groups=[
@@ -105,6 +105,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
@@ -113,8 +114,8 @@ damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon" index="0"]
 
-position = Vector2( 13, 0 )
-shape = SubResource( 4 )
+position = Vector2( 17.5, 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="weapon/CollisionShape2D" index="0"]
@@ -122,10 +123,11 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -13, -2.38419e-07 )
 rotation = 1.49012e-08
 texture = ExtResource( 2 )
-offset = Vector2( 12, 0.5 )
+offset = Vector2( 9, -1.5 )
 flip_h = true
 vframes = 8
 hframes = 4
+frame = 4
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="anim" type="AnimationPlayer" parent="weapon/CollisionShape2D/Sprite" index="0"]
@@ -135,7 +137,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/_setup = SubResource( 5 )
+anims/_setup = SubResource( 2 )
 anims/attack = SubResource( 3 )
 blend_times = [  ]
 

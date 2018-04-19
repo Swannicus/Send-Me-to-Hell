@@ -38,9 +38,7 @@ shape = SubResource( 1 )
 
 position = Vector2( 830.123, 217.284 )
 
-[node name="sword" parent="Control" index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 0.303406, 2.03624 )
+[node name="WeaponParent" parent="Control" index="4" instance=ExtResource( 3 )]
 
 [node name="TileMap" type="TileMap" parent="." index="2"]
 
@@ -70,13 +68,16 @@ __meta__ = {
 [node name="Gelatinouscube" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 758.947, 189.21 )
+health = 4
 
 [node name="Gelatinouscube2" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 884.043, 250.816 )
+health = 4
 
 [node name="Gelatinouscube3" parent="." index="5" instance=ExtResource( 5 )]
 
 position = Vector2( 885.297, 138.76 )
+health = 4
 
 

@@ -2,7 +2,7 @@ extends Area2D
 
 signal attack_finished
 
-onready var anim = $Sprite/anim
+onready var anim = $CollisionShape2D/Sprite/anim
 
 enum STATES {idle, attack}
 var current_state = idle
@@ -22,6 +22,7 @@ func _change_state(new_state):
 		idle:
 			set_physics_process(false)
 			set_process(true)
+			anim.play("idle")
 		attack:
 			set_physics_process(true)
 			set_process(false)
@@ -40,9 +41,10 @@ func _physics_process(delta):
 		
 
 func _process(delta):
-	look_at(get_global_mouse_position())
+	$"..".look_at(get_global_mouse_position())
 
 func _on_anim_animation_finished(anim_name):
-	if name == "attack":
-		_change_state(idle)
-		emit_signal("attack_finished")
+	if anim_name == "idle":
+		return
+	_change_state(idle)
+	emit_signal("attack_finished")

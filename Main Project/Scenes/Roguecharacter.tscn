@@ -168,6 +168,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+health = 20
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -200,7 +201,7 @@ editor_draw_drag_margin = false
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 4
-frame = 30
+frame = 28
 region_rect = Rect2( 311.25, 43.5, 0, 0 )
 _sections_unfolded = [ "Animation" ]
 
