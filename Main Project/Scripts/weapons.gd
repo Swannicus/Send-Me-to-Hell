@@ -42,6 +42,12 @@ func _physics_process(delta):
 
 func _process(delta):
 	$"..".look_at(get_global_mouse_position())
+	if get_global_mouse_position().x-self.global_position.x < 0 :
+		if self.scale != Vector2(1,-1):
+			self.apply_scale(Vector2(1,-1))
+	if get_global_mouse_position().x-self.global_position.x > 0 :
+		if self.scale != Vector2(1,1):
+			self.apply_scale(Vector2(1,-1))
 
 func _on_anim_animation_finished(anim_name):
 	if anim_name == "idle":

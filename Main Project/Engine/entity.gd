@@ -4,6 +4,8 @@ const speed = 100
 var movedir = Vector2()
 var lookdir = Vector2()
 var spritedir = "down"
+var dead = false
+var health = 1
 
 func movement_loop():
 	var motion = movedir.normalized() * speed
@@ -19,6 +21,19 @@ func spritedir_loop():
 			spritedir = "up"
 		Vector2(0,1):
 			spritedir = "down"
+
+func _Death():
+	if dead == false:
+		animswitch2("death")
+		dead = true
+
+func _Death2():
+	if dead == true:
+		#animswitch2("dead")
+		set_physics_process(false)
+		set_process(false)
+		self.remove_from_group("enemy")
+		self.add_to_group("corpse",false)
 
 func animswitch(animation):
 	var newanim = str(animation,spritedir)

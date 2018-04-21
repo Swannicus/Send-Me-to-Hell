@@ -2,7 +2,6 @@ extends "res://engine/entity.gd"
 var weaponinstance0
 var weaponinstance1
 var mousepos = Vector2()
-export var health = 20
 #var weapon = load("res://scripts/weapons.gd")
 
 func _ready():
@@ -10,6 +9,7 @@ func _ready():
 #	RayNode = get_node("RayCast2D")
 	weaponinstance0 = load("res://Scenes/sword.tscn").instance()
 	weaponinstance1 = load("res://Scenes/Axe.tscn").instance()
+	health = 20
 
 func _physics_process(delta):
 	controls_loop()
