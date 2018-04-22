@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background fire.png-4555b13be9895e2d298ba3faad22a2fb.stex"
+path="res://.import/PLACEHOLDERFIRE.png-7006ddafc947b260babed909380f4357.stex"
 
 [deps]
 
-source_file="res://Sprites/background fire.png"
-source_md5="3f5b2ccb2c2e2ce627542a405d73a0f6"
+source_file="res://Sprites/PLACEHOLDERFIRE.png"
+source_md5="621f3cbb50d4d6d7f5157c7d2741c6f5"
 
-dest_files=[ "res://.import/background fire.png-4555b13be9895e2d298ba3faad22a2fb.stex" ]
-dest_md5="80bd015ced9d3af7c6ea263a22c670e0"
+dest_files=[ "res://.import/PLACEHOLDERFIRE.png-7006ddafc947b260babed909380f4357.stex" ]
+dest_md5="127667dce4172d4f7322deffd63857f6"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

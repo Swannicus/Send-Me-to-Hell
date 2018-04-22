@@ -101,6 +101,8 @@ tracks/0/keys = {
 "weapon",
 ]]
 
+position = Vector2( 15, 0 )
+rotation = 1.39626
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

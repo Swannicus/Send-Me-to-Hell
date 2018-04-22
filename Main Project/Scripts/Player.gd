@@ -15,10 +15,17 @@ func _physics_process(delta):
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
+	health_loop()
 	if movedir != Vector2(0,0):
 		animswitch("walk")
 	else:
-		animswitch("idle")	
+		animswitch("idle")
+
+func health_loop():
+	#update health ui here?
+	if health <= 0:
+		_Death()
+	return
 
 func takedamage(damage):
 	health = health-damage
