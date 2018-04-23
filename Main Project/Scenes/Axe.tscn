@@ -92,7 +92,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="WeaponParent" type="Node2D" index="0" groups=[
+[node name="WeaponParent" type="Node2D" groups=[
 "Axe",
 ]]
 

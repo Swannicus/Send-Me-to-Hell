@@ -6,28 +6,34 @@ onready var anim = $CollisionShape2D/Sprite/anim
 
 enum STATES {idle, attack}
 var current_state = idle
+var attackspriteref
 
 export(int) var damage = 1
 
 func _ready():
 	set_physics_process(false)
+	attackspriteref = load("res://Scenes/attacksprite.tscn").instance()
 	
 func attack():
 	#not called here
 	_change_state(attack)
 
 func _change_state(new_state):
-	current_state = new_state
-	match current_state:
-		idle:
-			set_physics_process(false)
-			set_process(true)
-			anim.play("idle")
-		attack:
-			set_physics_process(true)
-			set_process(false)
-			anim.play("attack")
-	print(current_state)
+	if current_state != new_state:
+		current_state = new_state
+		match current_state:
+			idle:
+				set_physics_process(false)
+				set_process(true)
+				anim.play("idle")
+			attack:
+				set_physics_process(true)
+				set_process(false)
+				anim.play("attack")
+				get_parent().get_parent().add_child(attackspriteref)
+				$".."/".."/attacksprite/Sprite/anim.play("attack")
+				$".."/".."/attacksprite/Sprite.position = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
+				$".."/".."/attacksprite.look_at(get_global_mouse_position())
 		
 
 func _physics_process(delta):
@@ -38,6 +44,7 @@ func _physics_process(delta):
 		if not body.is_in_group("enemy"):
 			return
 		body.takedamage(damage)
+		#body.knockback(VECTOR)
 		
 
 func _process(delta):
