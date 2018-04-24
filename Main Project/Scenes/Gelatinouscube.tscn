@@ -108,7 +108,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 
 resource_name = "idle"
 length = 0.1
@@ -151,7 +151,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 length = 1.0
 loop = true
@@ -181,7 +181,7 @@ tracks/1/keys = {
 "values": [ false, false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
 length = 1.0
 loop = true
@@ -211,7 +211,7 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -249,9 +249,9 @@ playback_speed = 1.0
 anims/attack = SubResource( 1 )
 anims/damaged = SubResource( 2 )
 anims/death = SubResource( 3 )
-anims/idle = SubResource( 7 )
-anims/walkleft = SubResource( 4 )
-anims/walkright = SubResource( 5 )
+anims/idle = SubResource( 4 )
+anims/walkleft = SubResource( 5 )
+anims/walkright = SubResource( 6 )
 blend_times = [  ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" groups=[
@@ -261,7 +261,7 @@ blend_times = [  ]
 visible = false
 position = Vector2( 0, 3 )
 scale = Vector2( 1, 0.8 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]

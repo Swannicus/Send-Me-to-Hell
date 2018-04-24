@@ -53,7 +53,7 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Control" parent="Walls" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 205.032, 193.982 )
+position = Vector2( 119.09, 108.04 )
 
 [node name="WeaponParent" parent="Walls/Control" index="4" instance=ExtResource( 4 )]
 

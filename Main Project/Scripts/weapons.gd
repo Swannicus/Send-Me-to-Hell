@@ -9,6 +9,7 @@ var current_state = idle
 var attackspriteref
 
 export(int) var damage = 1
+export(int) var knockback = 100
 
 func _ready():
 	set_physics_process(false)
@@ -43,7 +44,7 @@ func _physics_process(delta):
 	for body in overlappingbodies:
 		if not body.is_in_group("enemy"):
 			return
-		body.takedamage(damage)
+		body.takedamage(damage,knockback,global_position)
 		#body.knockback(VECTOR)
 		
 

@@ -11,10 +11,12 @@ func _ready():
 	movedir = dir.rand()
 	lookdir = movedir
 	animswitch("walk")
-	health = 4
+	health = 99999
 
-func takedamage(damage):
-	health = health-damage
+func takedamage(damaget,knockbackt,source):
+	health = health-damaget
+	var directionkb = position - source
+	move_and_slide(knockbackt*directionkb.normalized(), Vector2(0,0))
 	if health <= 0:
 		_Death()
 		set_physics_process(false)
