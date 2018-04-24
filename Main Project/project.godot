@@ -13,6 +13,7 @@ config_version=3
 config/name="Send Me to Hell"
 run/main_scene="res://Scenes/MainMenu.tscn"
 boot_splash/image="res://Sprites/symbol.png"
+boot_splash/fullsize=false
 config/icon="res://Sprites/symbol.png"
 
 [autoload]

@@ -15,5 +15,5 @@ func _ready():
 #	pass
 
 func _pressed():
-	get_tree().change_scene("res://Scenes/Game.tscn")
+	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
 	pass
