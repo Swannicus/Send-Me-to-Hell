@@ -53,7 +53,7 @@ func controls_loop():
 	else:
 		lookdir.x = 0
 	if attack:
-		$WeaponParent/weapon.attack()
+		$WeaponParent2/weapon.attack()
 	if swap:
 		if $WeaponParent.is_in_group("Sword"):
 			.remove_child($WeaponParent)
