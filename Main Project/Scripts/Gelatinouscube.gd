@@ -1,17 +1,18 @@
 extends "res://engine/entity.gd"
 
-const speed = 20
+const speed = 30
 
 var movetimer_length = 60
 var movetimer = 0
 export var damage = 1
+const ammoscene = preload("res://Scenes/ammo.tscn")
 
 func _ready():
 #	$anim.play("default")
 	movedir = dir.rand()
 	lookdir = movedir
 	animswitch("walk")
-	health = 99999
+	health = 4
 
 func takedamage(damaget,knockbackt,source):
 	health = health-damaget
@@ -53,3 +54,10 @@ func attack_loop():
 
 func _on_anim_animation_finished(anim_name):
 	_Death2()
+	#if randi(1,10) > 5:
+	var drop = ammoscene.instance()
+	get_parent().add_child(drop)
+	drop.global_position = self.global_position
+	drop.settype(randi(4,7))
+	print("Drop")
+	

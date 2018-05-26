@@ -53,13 +53,13 @@ func room():
 		while oddcell.y > roomorigin.y:
 			$Walls.set_cell(oddcell.x,oddcell.y,-1)
 			$Floor.set_cell(oddcell.x,oddcell.y,1)
-			oddcell.y = oddcell.y-1
 			if randf() > (slimecurrent / slimemax):
 				slimeref.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
 				slimeref = load("res://Scenes/Gelatinouscube.tscn").instance()
 				$Walls.add_child(slimeref)
 				slimecurrent += 1
 				print(str(slimeref))
+			oddcell.y = oddcell.y-1
 		oddcell.y = roomheight+roomorigin.y
 		oddcell.x = oddcell.x-1
 	match startroom:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
@@ -160,6 +160,11 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
+[sub_resource type="CircleShape2D" id=10]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
 [node name="Control" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -236,5 +241,19 @@ position = Vector2( 0, 5 )
 scale = Vector2( 0.55, 0.5 )
 shape = SubResource( 9 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="pickuparea" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickuparea" index="0"]
+
+shape = SubResource( 10 )
 
 
