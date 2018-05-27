@@ -21,13 +21,15 @@ var slimemin = 1
 var slimecurrent = 1
 var slimemax = 5
 var slimeref
-
+var gobref
 
 func _ready():
 	var basex = 100
 	var basey = 100
 	slimeref = load("res://Scenes/Gelatinouscube.tscn").instance()
+	gobref = load("res://Scenes/Gelatinouscube.tscn").instance()
 	$Walls.add_child(slimeref)
+	$Walls.add_child(gobref)
 	while basex > -15:
 		while basey > -15:
 			$Walls.set_cell(basex,basey,0)
@@ -59,6 +61,12 @@ func room():
 				$Walls.add_child(slimeref)
 				slimecurrent += 1
 				print(str(slimeref))
+			if randf() > (slimecurrent / slimemax):
+				gobref.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
+				gobref = load("res://Scenes/goblin.tscn").instance()
+				$Walls.add_child(gobref)
+				slimecurrent += 1
+				print(str(gobref))
 			oddcell.y = oddcell.y-1
 		oddcell.y = roomheight+roomorigin.y
 		oddcell.x = oddcell.x-1

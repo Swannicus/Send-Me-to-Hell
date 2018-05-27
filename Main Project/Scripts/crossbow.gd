@@ -21,5 +21,4 @@ func attack():
 	bolt.setup(angle.normalized())
 	get_parent().get_parent().get_parent().add_child(bolt)
 	bolt.global_position = $Sprite/muzzle.global_position
-	print("attack")
 

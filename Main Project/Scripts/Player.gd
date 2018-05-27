@@ -1,7 +1,11 @@
 extends "res://engine/entity.gd"
 var weaponinstance0
 var weaponinstance1
-var HUDinstance
+var hudinstance
+var ammo1 = 0
+var ammo2 = 0
+var ammo3 = 0
+var ammo4 = 0
 var mousepos = Vector2()
 var overlaplist =[]
 onready var area = $pickuparea
@@ -12,8 +16,8 @@ func _ready():
 #	RayNode = get_node("RayCast2D")
 	weaponinstance0 = load("res://Scenes/sword.tscn").instance()
 	weaponinstance1 = load("res://Scenes/Axe.tscn").instance()
-	HUDinstance = load("res://Engine/HUD.tscn").instance()
-	.add_child(HUDinstance)
+	hudinstance = load("res://Engine/HUD.tscn").instance()
+	.add_child(hudinstance)
 	health = 20
 
 func _physics_process(delta):
@@ -28,15 +32,19 @@ func _physics_process(delta):
 		animswitch("idle")
 
 func overlap_loop():
-	var overlappingbodies = area.get_overlapping_bodies()
+	var overlappingbodies = area.get_overlapping_areas()
 	if not overlappingbodies:
 		return
 	for body in overlappingbodies:
 		if body.is_in_group("ammo"):
 			#increase ammo
 			#play pick up noise
+			$ammonoise.play()
+			#match d :
+			ammo1 += 10
+			$HUD/tempammo.set_value(ammo1)
 			#display increased ammo amount
-			body.free
+			body.get_parent().queue_free()
 
 func health_loop():
 	#update health ui here?

@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Node2D" type="Node2D" groups=[
+[node name="Node2D" type="Node2D" index="0" groups=[
 "ammo",
 ]]
 
@@ -24,7 +24,9 @@ frame = 4
 region_rect = Rect2( 58.5, 20.5, 1, 4 )
 _sections_unfolded = [ "Animation" ]
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="Area2D" type="Area2D" parent="." index="1" groups=[
+"ammo",
+]]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

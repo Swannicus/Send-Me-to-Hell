@@ -56,9 +56,8 @@ func _on_anim_animation_finished(anim_name):
 	_Death2()
 	#if randi(1,10) > 5:
 	var drop = ammoscene.instance()
-	var type = randi()%4+4
 	get_parent().add_child(drop)
 	drop.global_position = self.global_position
-	drop.settype(randi()%4+4)
+	drop.settype(randi(4,7))
 	print("Drop")
 	

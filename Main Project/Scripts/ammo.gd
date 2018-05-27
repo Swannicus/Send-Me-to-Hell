@@ -1,5 +1,5 @@
 extends Node2D
-var reagent = 4
+var reagent = 1
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -13,5 +13,6 @@ func _ready():
 
 func settype(type):
 	var sprite = $Sprite
+	print(str(type)+"type")
 	sprite.set_frame(type)
-	reagent = type
+	reagent = type-3
