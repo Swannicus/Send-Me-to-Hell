@@ -35,10 +35,14 @@ func _physics_process(delta):
 	if not overlappingbodies:
 		return
 	for body in overlappingbodies:
+		print (str(body.get_groups()))
+		if body.is_in_group("wall"):
+			moving = false
 		if not body.is_in_group("enemy"):
 			return
 		moving = false
-		body.takedamage(damage,knockback,global_position)
+		if body.is_in_group("enemy"):
+			body.takedamage(damage,knockback,global_position)
 		#self.get_parent().remove_child(self)
 		body.add_child(self)
 		set_physics_process(false)

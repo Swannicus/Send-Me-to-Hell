@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/knightplay_1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/crossbow.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -30,7 +30,9 @@ format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell" ]
 
-[node name="Walls" type="TileMap" parent="." index="1"]
+[node name="Walls" type="TileMap" parent="." index="1" groups=[
+"wall",
+]]
 
 mode = 0
 tile_set = ExtResource( 2 )
@@ -56,5 +58,7 @@ _sections_unfolded = [ "Cell" ]
 position = Vector2( 119.09, 108.04 )
 
 [node name="WeaponParent2" parent="Walls/Control" index="4" instance=ExtResource( 4 )]
+
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 
