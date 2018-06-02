@@ -1,17 +1,14 @@
 extends KinematicBody2D
-
 const speed = 100
-var movedir = Vector2()
-var lookdir = Vector2()
 var spritedir = "down"
 var dead = false
 var health = 1
 
-func movement_loop():
+func movement_loop(movedir):
 	var motion = movedir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))
 	
-func spritedir_loop():
+func spritedir_loop(lookdir):
 	match lookdir:
 		Vector2(-1,0):
 			spritedir = "left"

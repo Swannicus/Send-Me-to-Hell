@@ -27,7 +27,7 @@ func takedamage(damaget,knockbackt,source):
 	animswitch2("damaged")
 
 func _physics_process(delta):
-	movement_loop()
+	movement_loop(movedir)
 	attack_loop()
 	direction_loop()
 

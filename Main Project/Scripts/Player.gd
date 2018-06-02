@@ -11,6 +11,8 @@ var mousepos = Vector2()
 var overlaplist =[]
 var controlBoolean = false
 var id = null
+var movedir = Vector2(0,0)
+var lookdir = Vector2(0,0)
 onready var area = $pickuparea
 #var weapon = load("res://scripts/weapons.gd")
 
@@ -26,8 +28,8 @@ func _ready():
 func _physics_process(delta):
 	if controlBoolean:
 		controls_loop()
-	movement_loop()
-	spritedir_loop()
+	movement_loop(movedir)
+	spritedir_loop(lookdir)
 	health_loop()
 	overlap_loop()
 	if movedir != Vector2(0,0):
@@ -96,13 +98,9 @@ func controls_loop():
 	#if grab:
 	#	if overlaplist.bsearch_custom(
 	#		t
-	rpc_unreliable("emove",movedir,player_id)
-	rpc_unreliable("elook",lookdir,player_id)
+	rpc_unreliable("sync",movedir,lookdir,player_id)
 	
 
-remote func emove(moved):
+remote func sync(moved,lookd,id):
 	movedir = moved
-	
-
-remote func elook(lookd):
 	lookdir = lookd

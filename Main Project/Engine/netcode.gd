@@ -26,9 +26,9 @@ func start_server():
 	var host = NetworkedMultiplayerENet.new()
 	
 	var err = host.create_server(serverPort,maxPeers)
-#	if (err!=OK):
-#		join_server()
-#		return
+	if (err!=OK):
+		join_server()
+		return
 	get_tree().set_network_peer(host)
 	spawn_player(1)
 
