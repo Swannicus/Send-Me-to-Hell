@@ -1,4 +1,5 @@
 extends "res://engine/entity.gd"
+var player_id = 0
 var weaponinstance0
 var weaponinstance1
 var hudinstance
@@ -8,6 +9,8 @@ var ammo3 = 0
 var ammo4 = 0
 var mousepos = Vector2()
 var overlaplist =[]
+var controlBoolean = false
+var id = null
 onready var area = $pickuparea
 #var weapon = load("res://scripts/weapons.gd")
 
@@ -21,7 +24,8 @@ func _ready():
 	health = 20
 
 func _physics_process(delta):
-	controls_loop()
+	if controlBoolean:
+		controls_loop()
 	movement_loop()
 	spritedir_loop()
 	health_loop()
@@ -92,6 +96,13 @@ func controls_loop():
 	#if grab:
 	#	if overlaplist.bsearch_custom(
 	#		t
-	
+	rpc_unreliable("emove",movedir,player_id)
+	rpc_unreliable("elook",lookdir,player_id)
 	
 
+remote func emove(moved):
+	movedir = moved
+	
+
+remote func elook(lookd):
+	lookdir = lookd
