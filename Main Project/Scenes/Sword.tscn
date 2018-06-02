@@ -113,6 +113,7 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 damage = 1
+knockback = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon" index="0"]
 

@@ -2,6 +2,7 @@ extends "res://engine/entity.gd"
 var player_id = 0
 var weaponinstance0
 var weaponinstance1
+var crossbowinstance
 var hudinstance
 var ammo1 = 0
 var ammo2 = 0
@@ -19,8 +20,10 @@ onready var area = $pickuparea
 func _ready():
 #	set_process(true)
 #	RayNode = get_node("RayCast2D")
-	weaponinstance0 = load("res://Scenes/sword.tscn").instance()
+	weaponinstance0 = load("res://Scenes/Sword.tscn").instance()
 	weaponinstance1 = load("res://Scenes/Axe.tscn").instance()
+	crossbowinstance = load("res://Scenes/crossbow.tscn").instance()
+	add_child(crossbowinstance)
 	hudinstance = load("res://Engine/HUD.tscn").instance()
 	.add_child(hudinstance)
 	health = 20
@@ -87,7 +90,7 @@ func controls_loop():
 	else:
 		lookdir.x = 0
 	if attack:
-		$WeaponParent2/weapon.attack()
+		$WeaponParent/weapon.attack()
 	if swap:
 		if $WeaponParent.is_in_group("Sword"):
 			.remove_child($WeaponParent)
@@ -99,6 +102,7 @@ func controls_loop():
 	#	if overlaplist.bsearch_custom(
 	#		t
 	rpc_unreliable("sync",movedir,lookdir,player_id)
+	$Camera2D.current = true
 	
 
 remote func sync(moved,lookd,id):
