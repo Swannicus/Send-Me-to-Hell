@@ -2,7 +2,6 @@ extends Node
 
 var serverPort = 6112
 var maxPeers = 4
-var players ={}
 var playerName
 
 
@@ -30,7 +29,8 @@ func start_server():
 		join_server()
 		return
 	get_tree().set_network_peer(host)
-	spawn_player(1)
+	register_new_player(get_tree().get_network_unique_id(),playerName)
+	#spawn_player(1)
 
 func join_server(ip):
 	playerName = "client"
@@ -42,7 +42,6 @@ func join_server(ip):
 
 func _player_connected(id):
 	pass
-
 
 func _player_disconnected(id):
 	unregister_player(id)
@@ -65,33 +64,33 @@ func _server_disconnected():
 remote func register_new_player(id,name):
 	if get_tree().is_network_server():
 		rpc_id(id,"register_new_player",1,playerName)
-		for peer_id in players:
-			rpc_id(id, "register_new_player",peer_id,players[peer_id])
+		for peer_id in Globals.playersdict:
+			rpc_id(id, "register_new_player",peer_id,Globals.playersdict[peer_id])
 			rpc_id(peer_id, "register_player", id, name)
-	players[id] = name
-	spawn_player(id)
+	Globals.playersdict[id] = name
+	#spawn_player(id)
 	
 remote func unregister_player(id):
 	get_node("/root/"+str(id)).queue_free()
-	players.erase(id)
+	Globals.playersdict.erase(id)
 	
 func quit_game():
 	get_tree().set_network_peer(null)
-	players.clear()
+	Globals.playersdict.clear()
 	
-func spawn_player(id):
-	var playerScene = load("res://Scenes/knightplay_1.tscn")
-	var player 		= playerScene.instance()
-	print ("Spawn player")
-	print (str(id))
-	print (str(get_tree().get_network_unique_id()))
-	
-	player.set_name(str(id))
-	if id == get_tree().get_network_unique_id():
-		player.set_network_master(id)
-		player.player_id = id
-		player.controlBoolean = true
-	get_parent().add_child(player)
+#func spawn_player(id):
+#	var playerScene = load("res://Scenes/knightplay_1.tscn")
+#	var player 		= playerScene.instance()
+#	print ("Spawn player")
+#	print (str(id))
+#	print (str(get_tree().get_network_unique_id()))
+#
+#	player.set_name(str(id))
+#	if id == get_tree().get_network_unique_id():
+#		player.set_network_master(id)
+#		player.player_id = id
+#		player.controlBoolean = true
+#	get_parent().add_child(player)
 
 func _set_status(text,isok):
 	var label = $Panel/Status

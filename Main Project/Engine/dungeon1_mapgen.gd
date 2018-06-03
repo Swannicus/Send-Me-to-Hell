@@ -30,6 +30,9 @@ func _ready():
 	gobref = load("res://Scenes/Gelatinouscube.tscn").instance()
 	$Walls.add_child(slimeref)
 	$Walls.add_child(gobref)
+	for i in Globals.playersdict.keys():
+		spawn_player(i)
+	print(str(Globals.playersdict.keys()))
 	while basex > -15:
 		while basey > -15:
 			$Walls.set_cell(basex,basey,0)
@@ -48,8 +51,6 @@ func room():
 	var roomwrange =  room_width_max - room_width_min
 	var roomheight = randi()%roomhrange + room_height_min
 	var roomwidth = randi()%roomwrange + room_width_min
-	print(roomheight)
-	print(roomwidth)
 	oddcell = Vector2(roomwidth+roomorigin.x,roomheight+roomorigin.y)
 	while oddcell.x > roomorigin.x:
 		while oddcell.y > roomorigin.y:
@@ -60,13 +61,11 @@ func room():
 				slimeref = load("res://Scenes/Gelatinouscube.tscn").instance()
 				$Walls.add_child(slimeref)
 				slimecurrent += 1
-				print(str(slimeref))
 			if randf() > (slimecurrent / slimemax):
 				gobref.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
 				gobref = load("res://Scenes/goblin.tscn").instance()
 				$Walls.add_child(gobref)
 				slimecurrent += 1
-				print(str(gobref))
 			oddcell.y = oddcell.y-1
 		oddcell.y = roomheight+roomorigin.y
 		oddcell.x = oddcell.x-1
@@ -93,3 +92,22 @@ func path(SP,EP):
 		$Floor.set_cell(oddcell.x,oddcell.y,1)
 		oddcell.y += 1
 	
+
+func initializePlayers():
+	for i in Globals.playersdict.keys():
+		spawn_player(i)
+
+func spawn_player(id):
+	var playerScene = load("res://Scenes/knightplay_1.tscn")
+	var player 		= playerScene.instance()
+	print ("Spawn player")
+	print (str(id))
+	print (str(get_tree().get_network_unique_id()))
+	
+	player.set_name(str(id))
+	if id == get_tree().get_network_unique_id():
+		player.set_network_master(id)
+		player.player_id = id
+		player.controlBoolean = true
+	$Walls.add_child(player)
+	player.set_position(Vector2(120,120))

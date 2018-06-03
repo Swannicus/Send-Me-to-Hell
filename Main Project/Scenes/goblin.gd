@@ -1,7 +1,8 @@
 extends "res://engine/entity.gd"
 
 const speed = 30
-
+var movedir = Vector2(0,0)
+var lookdir = Vector2(0,0)
 var movetimer_length = 60
 var movetimer = 0
 export var damage = 1

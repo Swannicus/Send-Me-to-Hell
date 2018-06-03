@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Engine/dungeon1_mapgen.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tiles/dungeontilewall2.tres" type="TileSet" id=2]
-[ext_resource path="res://Scenes/knightplay_1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/crossbow.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -52,13 +50,5 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell" ]
-
-[node name="Control" parent="Walls" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 119.09, 108.04 )
-
-[node name="WeaponParent2" parent="Walls/Control" index="4" instance=ExtResource( 4 )]
-
-_sections_unfolded = [ "Transform", "Z Index" ]
 
 
