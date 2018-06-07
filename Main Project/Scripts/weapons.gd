@@ -49,6 +49,9 @@ func _physics_process(delta):
 		
 
 func _process(delta):
+	pass
+
+func lookLoop():
 	$"..".look_at(get_global_mouse_position())
 	if get_global_mouse_position().x-self.global_position.x < 0 :
 		if self.scale != Vector2(1,-1):

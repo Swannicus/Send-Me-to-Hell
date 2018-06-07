@@ -2,8 +2,10 @@
 
 [ext_resource path="res://Sprites/Tiles/dungeontilewall2.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/knightplay_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Sword.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/weapons/sword.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Gelatinouscube.tscn" type="PackedScene" id=4]
+
+
 
 [node name="Control" type="Node2D"]
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/knight1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/wiz1.png" type="Texture" id=3]
 [ext_resource path="res://Pump Shotgun-SoundBible.com-1653268682.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 3 ]
+"values": [ 0, 0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -39,8 +39,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 16, 19 ]
+"update": 1,
+"values": [ 3, 3 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -59,7 +59,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 8, 11 ]
+"values": [ 1, 1 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -78,7 +78,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 24, 27 ]
+"values": [ 2, 2 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 4, 7 ]
+"values": [ 0, 0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -114,8 +114,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 20, 23 ]
+"update": 1,
+"values": [ 3, 3 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -134,7 +134,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 12, 15 ]
+"values": [ 1, 1 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -153,7 +153,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 28, 31 ]
+"values": [ 2, 2 ]
 }
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -166,7 +166,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Control" type="KinematicBody2D" index="0" groups=[
+[node name="Control" type="KinematicBody2D" groups=[
 "player",
 ]]
 
@@ -210,11 +210,11 @@ transform = Transform2D( 1, 0, 0, 1, -170, -170 )
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 3 )
-vframes = 8
-hframes = 4
-frame = 28
+vframes = 2
+hframes = 2
+frame = 3
 region_rect = Rect2( 311.25, 43.5, 0, 0 )
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Animation", "Region" ]
 
 [node name="anim" type="AnimationPlayer" parent="Sprite" index="0"]
 

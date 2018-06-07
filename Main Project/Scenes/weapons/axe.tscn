@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/weapons.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/weapons.png" type="Texture" id=2]
@@ -92,6 +92,12 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 6.82149
+
 [node name="WeaponParent" type="Node2D" groups=[
 "Axe",
 ]]
@@ -144,6 +150,24 @@ playback_speed = 1.0
 anims/attack = SubResource( 2 )
 anims/idle = SubResource( 3 )
 blend_times = [  ]
+
+[node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
+"axe",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickUpRadius" index="0"]
+
+position = Vector2( 26.782, 1.13916 )
+scale = Vector2( 2.12732, 1 )
+shape = SubResource( 4 )
 
 [connection signal="animation_finished" from="weapon/CollisionShape2D/Sprite/anim" to="weapon" method="_on_anim_animation_finished"]
 

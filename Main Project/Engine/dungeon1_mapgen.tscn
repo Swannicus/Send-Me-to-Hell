@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Engine/dungeon1_mapgen.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tiles/dungeontilewall2.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/weapons/axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/weapons/crossbow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/weapons/sword.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -50,5 +53,17 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell" ]
+
+[node name="WeaponParent" parent="Walls" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 134.986, 112.505 )
+
+[node name="WeaponParent2" parent="Walls" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 115.629, 160.68 )
+
+[node name="WeaponParent3" parent="Walls" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 189.368, 149.336 )
 
 

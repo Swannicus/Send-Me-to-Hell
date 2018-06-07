@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/crossbow.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/rangedweapons.png" type="Texture" id=2]
@@ -21,13 +21,20 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="WeaponParent" type="Node2D" index="0" groups=[
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="WeaponParent" type="Node2D" groups=[
 "Axe",
 ]]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="weapon" type="Node2D" parent="." index="0"]
+[node name="weapon" type="Node2D" parent="." index="0" groups=[
+"crossbow",
+]]
 
 script = ExtResource( 1 )
 
@@ -55,5 +62,23 @@ blend_times = [  ]
 [node name="muzzle" type="Position2D" parent="weapon/Sprite" index="1"]
 
 position = Vector2( 6.835, -1.13917 )
+
+[node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
+"weapon",
+"crossbow",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickUpRadius" index="0"]
+
+position = Vector2( 21.7866, 2.56313 )
+shape = SubResource( 2 )
 
 

@@ -12,14 +12,14 @@ var moving = true
 var decaytime = 0
 
 func setup(direction,spd=boltspeed,dam=damage,kb=knockback):
-	look_at(get_global_mouse_position())
+#	look_at(get_global_mouse_position())
 	boltspeed = spd ; damage = dam ; knockback = kb
 	angle = direction
-	self.look_at(angle)
-	set_process(false)
+	look_at(angle)
 	
 
 func _ready():
+	set_process(false)
 	return
 
 func _process(delta):
@@ -38,6 +38,8 @@ func _physics_process(delta):
 		print (str(body.get_groups()))
 		if body.is_in_group("wall"):
 			moving = false
+			set_physics_process(false)
+			set_process(true)
 		if not body.is_in_group("enemy"):
 			return
 		moving = false
