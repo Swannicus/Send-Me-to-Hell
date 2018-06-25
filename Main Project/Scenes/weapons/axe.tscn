@@ -119,6 +119,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+shakeValue = 1
+cooldownValue = 5
 damage = 1
 knockback = 100
 

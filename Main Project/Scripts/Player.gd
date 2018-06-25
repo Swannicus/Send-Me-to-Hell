@@ -17,6 +17,10 @@ var controlBoolean = false
 var id = null
 var movedir = Vector2(0,0)
 var lookdir = Vector2(0,0)
+var camOffset = 4.5
+var shakeDur = 0.0
+var shakeOffset = 0.0
+var shakeBool = false
 onready var area = $pickuparea
 #var weapon = load("res://scripts/weapons.gd")
 
@@ -37,6 +41,7 @@ func _physics_process(delta):
 	spritedir_loop(lookdir)
 	health_loop()
 	overlap_loop()
+	camLoop()
 	if movedir != Vector2(0,0):
 		animswitch("walk")
 	else:
@@ -110,13 +115,19 @@ func controls_loop():
 				match g:
 					"axe":
 						grabWeapon(i)
-						weapon1 = load("res://Scenes/weapons/"+g+".tscn")
+						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
+						.remove_child($WeaponParent)
+						.add_child(weapon0.instance())
 					"sword":
 						grabWeapon(i)
-						weapon1 = load("res://Scenes/weapons/"+g+".tscn")
+						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
+						.remove_child($WeaponParent)
+						.add_child(weapon0.instance())
 					"crossbow":
 						grabWeapon(i)
-						weapon1 = load("res://Scenes/weapons/"+g+".tscn")
+						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
+						.remove_child($WeaponParent)
+						.add_child(weapon0.instance())
 	rpc_unreliable("sync",movedir,lookdir,player_id,swapBool,pickUpBool)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
@@ -125,10 +136,29 @@ func grabWeapon(i):
 	var lastDropped
 	i.get_parent().queue_free()
 	print("parent"+str(i.get_parent()))
-	lastDropped = weapon1.instance()
+	lastDropped = weapon0.instance()
 	lastDropped.global_position = self.global_position
 	get_parent().add_child(lastDropped)
 	pickUpBool = true
+
+func camLoop():
+	var ranX
+	var ranY
+	if shakeBool == false:
+		$Camera2D.position = mousepos/camOffset
+		return
+	while shakeDur >= 0:
+		shakeDur = (shakeDur - 0.1)
+		ranX = randf()*shakeOffset+1
+		ranY = randf()*shakeOffset+1
+		$Camera2D.position = mousepos/camOffset+Vector2(ranX,ranY)
+		shakeOffset = shakeOffset*0.9
+	shakeBool = false
+
+func camShake(offset,duration):
+	shakeBool = true
+	shakeOffset += offset
+	shakeDur += duration
 
 remote func sync(moved,lookd,id,swapped,pickup):
 	movedir = moved

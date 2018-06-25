@@ -6,50 +6,54 @@ onready var anim = $CollisionShape2D/Sprite/anim
 
 enum STATES {idle, attack}
 var current_state = idle
+var attackSpriteLoad
 var attackspriteref
+var cooldown = 0
 
+export(float) var shakeValue = 20
+export(float) var shakeDur = 5
+export(float) var cooldownValue = 5
 export(int) var damage = 1
 export(int) var knockback = 100
 
 func _ready():
-	set_physics_process(false)
-	attackspriteref = load("res://Scenes/attacksprite.tscn").instance()
+	set_physics_process(true)
+	set_process(true)
+	attackSpriteLoad = load("res://Scenes/weapons/attacksprite.tscn")
 	
 func attack():
 	#not called here
-	_change_state(attack)
+	if cooldown == 0:
+		_change_state(attack)
+		cooldown = cooldownValue
 
 func _change_state(new_state):
 	if current_state != new_state:
 		current_state = new_state
 		match current_state:
 			idle:
-				set_physics_process(false)
-				set_process(true)
+#				set_process(true)
 				anim.play("idle")
 			attack:
-				set_physics_process(true)
-				set_process(false)
+#				set_process(false)
 				anim.play("attack")
-				get_parent().get_parent().add_child(attackspriteref)
+				attackspriteref = get_parent().get_parent().add_child(attackSpriteLoad.instance())
 				$".."/".."/attacksprite/Sprite/anim.play("attack")
 				$".."/".."/attacksprite/Sprite.position = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
 				$".."/".."/attacksprite.look_at(get_global_mouse_position())
+				$".."/".."/attacksprite.damage(damage,knockback)
+				#attackspriteref.damage(damage,knockback)
+				get_parent().get_parent().camShake(shakeValue,shakeDur)
 		
 
 func _physics_process(delta):
-	var overlappingbodies = get_overlapping_bodies()
-	if not overlappingbodies:
-		return
-	for body in overlappingbodies:
-		if not body.is_in_group("enemy"):
-			return
-		body.takedamage(damage,knockback,global_position)
-		#body.knockback(VECTOR)
-		
+	print("process")
+	if cooldown > 0:
+		cooldown -= 1
+		print(str(cooldown))
 
 func _process(delta):
-	pass
+	return
 
 func lookLoop():
 	$"..".look_at(get_global_mouse_position())
