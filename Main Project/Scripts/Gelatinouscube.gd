@@ -15,6 +15,7 @@ func _ready():
 	lookdir = movedir
 	animswitch("walk")
 	health = 4
+	
 
 func takedamage(damaget,knockbackt,source):
 	health = health-damaget
@@ -44,13 +45,14 @@ func direction_loop():
 #		animswitch("walk")
 
 func attack_loop():
-	var overlappingbodies = $Area2D.get_overlapping_bodies()
-	if not overlappingbodies:
-		return
-	for body in overlappingbodies:
-		if not body.is_in_group("player"):
-			return
-		body.takedamage(damage)
+	#var overlappingbodies =
+	#if not overlappingbodies:
+	#	return
+#	for body in overlappingbodies:
+#		if not body.is_in_group("player"):
+#			return
+#		body.takedamage(damage)
+	return
 
 
 func _on_anim_animation_finished(anim_name):

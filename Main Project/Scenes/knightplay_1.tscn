@@ -166,7 +166,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Control" type="KinematicBody2D" index="0" groups=[
+[node name="Control" type="KinematicBody2D" groups=[
 "player",
 ]]
 
@@ -238,8 +238,8 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
-position = Vector2( 0, 5 )
-scale = Vector2( 0.55, 0.5 )
+position = Vector2( 0.146645, -0.0472393 )
+scale = Vector2( 0.605163, 0.888249 )
 shape = SubResource( 9 )
 _sections_unfolded = [ "Transform" ]
 
