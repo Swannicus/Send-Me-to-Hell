@@ -3,6 +3,8 @@ extends Node
 var serverPort = 6112
 var maxPeers = 4
 var playerName
+#this dropdown shit is temporary until I art up a good looking character select.  I imagine a tavern.
+onready var dropdownBox
 
 
 #local info
@@ -10,7 +12,7 @@ var playerInfo = {}
 
 
 func _ready():
-	print("Netcode start")
+	dropdownBox = $characterSelectPanel/characterDropdown
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_diwconnected")
 	get_tree().connect("connected_to_server", self, "_connected_ok")
@@ -18,10 +20,15 @@ func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	#menu = get_node("/root/MenuLayer")
-	
+	dropdownBox.add_item("Knight")
+	dropdownBox.add_item("Wizard")
 
 func start_server():
-	playerName = "server"
+	playerName = $characterSelectPanel/nameBar.get_text()
+	$characterSelectPanel/nameBar.readonly = true
+	dropdownBox.disabled = true
+	$Panel/hostbutton.disabled = true
+	$Panel/joinbutton.disabled = true
 	var host = NetworkedMultiplayerENet.new()
 	
 	var err = host.create_server(serverPort,maxPeers)
@@ -29,15 +36,18 @@ func start_server():
 		join_server()
 		return
 	get_tree().set_network_peer(host)
-	register_new_player(get_tree().get_network_unique_id(),playerName)
+	register_new_player(get_tree().get_network_unique_id(),playerName,dropdownBox.selected)
+	Globals.localPlayer = 0
 	#spawn_player(1)
 
 func join_server(ip):
-	playerName = "client"
+	playerName = $characterSelectPanel/nameBar.get_text()
 	var host = NetworkedMultiplayerENet.new()
 	
 	host.create_client(ip,serverPort)
 	get_tree().set_network_peer(host)
+	#hardcoded player number to 1, later on should rpc from host a command that tells the client wihch player number they are
+	Globals.localPlayer = 1
 	
 
 func _player_connected(id):
@@ -61,13 +71,14 @@ remote func register_in_game():
 func _server_disconnected():
 	quit_game()
 	
-remote func register_new_player(id,name):
+remote func register_new_player(id,name,charS):
 	if get_tree().is_network_server():
 		rpc_id(id,"register_new_player",1,playerName)
 		for peer_id in Globals.playersdict:
-			rpc_id(id, "register_new_player",peer_id,Globals.playersdict[peer_id])
+			rpc_id(id, "register_new_player",peer_id,Globals.playersdict[peer_id],dropdownBox.selected)
 			rpc_id(peer_id, "register_player", id, name)
 	Globals.playersdict[id] = name
+	Globals.charDict[id] = charS
 	#spawn_player(id)
 	
 remote func unregister_player(id):

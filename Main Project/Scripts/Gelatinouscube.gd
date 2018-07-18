@@ -51,7 +51,6 @@ func attack_loop():
 		if not body.is_in_group("player"):
 			return
 		body.takedamage(damage)
-		print("taking damage")
 
 
 func _on_anim_animation_finished(anim_name):

@@ -28,6 +28,7 @@ func attack():
 		cooldown = cooldownValue
 
 func _change_state(new_state):
+	var positionthing =Vector2(0,0)
 	if current_state != new_state:
 		current_state = new_state
 		match current_state:
@@ -37,20 +38,22 @@ func _change_state(new_state):
 			attack:
 #				set_process(false)
 				anim.play("attack")
-				attackspriteref = get_parent().get_parent().add_child(attackSpriteLoad.instance())
-				$".."/".."/attacksprite/Sprite/anim.play("attack")
-				$".."/".."/attacksprite/Sprite.position = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
-				$".."/".."/attacksprite.look_at(get_global_mouse_position())
-				$".."/".."/attacksprite.damage(damage,knockback)
+				attackspriteref = attackSpriteLoad.instance()
+				get_parent().get_parent().add_child(attackspriteref)
+				attackspriteref.look_at(get_global_mouse_position())
+				positionthing = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
+				attackspriteref.damage(damage,knockback,positionthing)
+	#			$".."/".."/attacksprite/Sprite/anim.play("attack")
+	#			$".."/".."/attacksprite/Sprite.position = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
+	#			$".."/".."/attacksprite.look_at(get_global_mouse_position())
+	#			$".."/".."/attacksprite.damage(damage,knockback)
 				#attackspriteref.damage(damage,knockback)
 				get_parent().get_parent().camShake(shakeValue,shakeDur)
 		
 
 func _physics_process(delta):
-	print("process")
 	if cooldown > 0:
 		cooldown -= 1
-		print(str(cooldown))
 
 func _process(delta):
 	return

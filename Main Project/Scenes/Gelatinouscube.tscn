@@ -214,14 +214,14 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 13.143, 18.6141 )
 
 [sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Gelatinouscube" type="KinematicBody2D" groups=[
+[node name="Gelatinouscube" type="KinematicBody2D" index="0" groups=[
 "enemy",
 ]]
 
@@ -254,18 +254,16 @@ anims/walkleft = SubResource( 5 )
 anims/walkright = SubResource( 6 )
 blend_times = [  ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" groups=[
-"enemy",
-]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
-position = Vector2( 0, 3 )
-scale = Vector2( 1, 0.8 )
+position = Vector2( 0, 1.55378 )
+scale = Vector2( 1, 0.733089 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

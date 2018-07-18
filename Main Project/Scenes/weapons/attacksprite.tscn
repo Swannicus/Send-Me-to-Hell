@@ -47,7 +47,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[node name="attacksprite" type="Node2D" index="0"]
+[node name="attacksprite" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -83,7 +83,8 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damageArea" index="0"]
 
-position = Vector2( 7, 0 )
+position = Vector2( 7.14271, 0 )
+scale = Vector2( 1.42518, 1 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 

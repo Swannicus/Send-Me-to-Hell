@@ -98,9 +98,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 6.82149
 
-[node name="WeaponParent" type="Node2D" groups=[
-"Axe",
-]]
+[node name="WeaponParent" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -119,7 +117,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-shakeValue = 1
+shakeValue = 20
+shakeDur = 5
 cooldownValue = 5
 damage = 1
 knockback = 100

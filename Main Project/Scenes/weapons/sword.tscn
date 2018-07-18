@@ -99,9 +99,7 @@ custom_solver_bias = 0.0
 radius = 6.00059
 height = 20.0
 
-[node name="WeaponParent" type="Node2D" groups=[
-"Sword",
-]]
+[node name="WeaponParent" type="Node2D"]
 
 [node name="weapon" type="Area2D" parent="." index="0" groups=[
 "weapon",
@@ -118,6 +116,9 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+shakeValue = 20
+shakeDur = 5
+cooldownValue = 5
 damage = 1
 knockback = 100
 

@@ -30,6 +30,7 @@ func _ready():
 	weapon0 = load("res://Scenes/weapons/crossbow.tscn")
 	weapon1 = load("res://Scenes/weapons/sword.tscn")
 	add_child(weapon0.instance())
+	$WeaponParent/pickUpRadius.queue_free()
 	hud = load("res://Engine/HUD.tscn")
 	.add_child(hud.instance())
 	health = 20
@@ -102,6 +103,7 @@ func controls_loop():
 	if swap:
 		.remove_child($WeaponParent)
 		.add_child(weapon1.instance())
+		$WeaponParent/pickUpRadius.queue_free()
 		weaponswapbuffer = weapon1
 		weapon1 = weapon0
 		weapon0 = weaponswapbuffer
@@ -109,37 +111,29 @@ func controls_loop():
 	pickUpBool = false
 	if grab:
 		for i in overLappingAreas:
-			print(str(i))
-			print(str(i.get_groups()))
 			for g in i.get_groups():
 				match g:
 					"axe":
-						grabWeapon(i)
-						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
-						.remove_child($WeaponParent)
-						.add_child(weapon0.instance())
+						grabWeapon(i,g)
 					"sword":
-						grabWeapon(i)
-						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
-						.remove_child($WeaponParent)
-						.add_child(weapon0.instance())
+						grabWeapon(i,g)
 					"crossbow":
-						grabWeapon(i)
-						weapon0 = load("res://Scenes/weapons/"+g+".tscn")
-						.remove_child($WeaponParent)
-						.add_child(weapon0.instance())
+						grabWeapon(i,g)
 	rpc_unreliable("sync",movedir,lookdir,player_id,swapBool,pickUpBool)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
 
-func grabWeapon(i):
+func grabWeapon(i,g):
 	var lastDropped
 	i.get_parent().queue_free()
-	print("parent"+str(i.get_parent()))
 	lastDropped = weapon0.instance()
 	lastDropped.global_position = self.global_position
 	get_parent().add_child(lastDropped)
 	pickUpBool = true
+	weapon0 = load("res://Scenes/weapons/"+g+".tscn")
+	.remove_child($WeaponParent)
+	.add_child(weapon0.instance())
+	$WeaponParent/pickUpRadius.queue_free()
 
 func camLoop():
 	var ranX

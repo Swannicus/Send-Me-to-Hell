@@ -31,7 +31,7 @@ func _ready():
 	$Walls.add_child(slimeref)
 	$Walls.add_child(gobref)
 	for i in Globals.playersdict.keys():
-		spawn_player(i,1)
+		spawn_player(i)
 	print(str(Globals.playersdict.keys()))
 	while basex > -15:
 		while basey > -15:
@@ -95,16 +95,17 @@ func path(SP,EP):
 
 func initializePlayers():
 	for i in Globals.playersdict.keys():
-		spawn_player(i,1)
+		spawn_player(i)
 
-func spawn_player(id,CS):
+func spawn_player(id):
 	var playerScene = load("res://Scenes/knightplay_1.tscn")
-	if CS == 1:
-		playerScene = load("res://Scenes/wizplay_1.tscn")
+	match Globals.charDict[id]:
+		0:
+			playerScene = load("res://Scenes/knightplay_1.tscn")
+		1:
+			playerScene = load("res://Scenes/wizplay_1.tscn")
 	var player 		= playerScene.instance()
-	print ("Spawn player")
-	print (str(id))
-	print (str(get_tree().get_network_unique_id()))
+	print ("Spawn player "+str(id)+" "+str(get_tree().get_network_unique_id()))
 	
 	player.set_name(str(id))
 	if id == get_tree().get_network_unique_id():
