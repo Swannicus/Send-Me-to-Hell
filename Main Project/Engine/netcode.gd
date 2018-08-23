@@ -1,6 +1,5 @@
 extends Node
 
-var serverPort = 6112
 var maxPeers = 4
 var playerName
 #this dropdown shit is temporary until I art up a good looking character select.  I imagine a tavern.
@@ -23,24 +22,24 @@ func _ready():
 	dropdownBox.add_item("Knight")
 	dropdownBox.add_item("Wizard")
 
-func start_server():
+func start_server(serverPort):
 	playerName = $characterSelectPanel/nameBar.get_text()
 	$characterSelectPanel/nameBar.readonly = true
 	dropdownBox.disabled = true
 	$Panel/hostbutton.disabled = true
 	$Panel/joinbutton.disabled = true
 	var host = NetworkedMultiplayerENet.new()
-	
 	var err = host.create_server(serverPort,maxPeers)
 	if (err!=OK):
-		join_server()
+		#join_server()
+		print("err!=OK")
 		return
 	get_tree().set_network_peer(host)
 	register_new_player(get_tree().get_network_unique_id(),playerName,dropdownBox.selected)
 	Globals.localPlayer = 0
 	#spawn_player(1)
 
-func join_server(ip):
+func join_server(ip,serverPort):
 	playerName = $characterSelectPanel/nameBar.get_text()
 	var host = NetworkedMultiplayerENet.new()
 	
@@ -66,7 +65,7 @@ remote func user_ready(id,playerName):
 
 remote func register_in_game():
 	rpc("register_new_player",get_tree().get_network_unique_id(),playerName)
-	register_new_player(get_tree().get_network_unique_id(),playerName)
+	register_new_player(get_tree().get_network_unique_id(),$characterSelectPanel/nameBar.get_text(),dropdownBox.selected)
 	
 func _server_disconnected():
 	quit_game()
@@ -114,8 +113,7 @@ func _set_status(text,isok):
 		#make it red
 
 func _on_hostbutton_pressed():
-	serverPort = int($Panel/portbar.get_text())
-	start_server()
+	start_server(int($Panel/portbar.get_text()))
 	pass # replace with function body
 
 
@@ -124,6 +122,15 @@ func _on_joinbutton_pressed():
 	if (not ip.is_valid_ip_address()):
 		_set_status("IP address is invalid",false)
 		return
-	serverPort = int($Panel/portbar.get_text())
-	join_server(ip)
+	join_server(ip,int($Panel/portbar.get_text()))
+	pass # replace with function body
+
+func _on_exitButton_pressed():
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	pass # replace with function body
+
+
+func _on_startButton_pressed():
+	start_server(int($Panel/portbar.get_text()))
+	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
 	pass # replace with function body

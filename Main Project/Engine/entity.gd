@@ -1,10 +1,9 @@
 extends KinematicBody2D
-const speed = 100
 var spritedir = "down"
 var dead = false
 var health = 1
 
-func movement_loop(movedir):
+func movement_loop(movedir,speed):
 	var motion = movedir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))
 	

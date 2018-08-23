@@ -7,10 +7,7 @@ path="res://.import/GelatinousCube.png-6beb1f6ffe61d1eef7fd82a96c6324da.stex"
 [deps]
 
 source_file="res://Sprites/GelatinousCube.png"
-source_md5="a2bef53bb3776020fd08ac8192099a13"
-
 dest_files=[ "res://.import/GelatinousCube.png-6beb1f6ffe61d1eef7fd82a96c6324da.stex" ]
-dest_md5="3f8238731ccc0f8d750bb47aa5e5ba8c"
 
 [params]
 

@@ -14,7 +14,7 @@ export(float) var shakeValue = 20
 export(float) var shakeDur = 5
 export(float) var cooldownValue = 5
 export(int) var damage = 1
-export(int) var knockback = 100
+export(int) var knockback = 750
 
 func _ready():
 	set_physics_process(true)
@@ -37,12 +37,15 @@ func _change_state(new_state):
 				anim.play("idle")
 			attack:
 #				set_process(false)
+				$sound.play(0)
 				anim.play("attack")
 				attackspriteref = attackSpriteLoad.instance()
 				get_parent().get_parent().add_child(attackspriteref)
 				attackspriteref.look_at(get_global_mouse_position())
-				positionthing = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
+				positionthing = (get_global_mouse_position()-self.global_position).normalized()*23
 				attackspriteref.damage(damage,knockback,positionthing)
+				attackspriteref.position = positionthing
+				print(str(positionthing))
 	#			$".."/".."/attacksprite/Sprite/anim.play("attack")
 	#			$".."/".."/attacksprite/Sprite.position = Vector2($"..".position - self.position).normalized() * Vector2(-23,-23)
 	#			$".."/".."/attacksprite.look_at(get_global_mouse_position())

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dream Evil - The Book Of Heavy Metal (Instrumental Cover).ogg-a0527cc2bed857d60e304fc632336315.oggstr"
+
+[deps]
+
+source_file="res://music/Dream Evil - The Book Of Heavy Metal (Instrumental Cover).ogg"
+dest_files=[ "res://.import/Dream Evil - The Book Of Heavy Metal (Instrumental Cover).ogg-a0527cc2bed857d60e304fc632336315.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Engine/netcode.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/piq_62320_400x400.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/EXIT2.png" type="Texture" id=3]
-[ext_resource path="res://Back.gd" type="Script" id=4]
-[ext_resource path="res://startgamebutton.gd" type="Script" id=5]
 
-[node name="Control" type="Control" index="0"]
+[node name="Control" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -27,7 +25,7 @@ script = ExtResource( 1 )
 position = Vector2( 343.873, 434.239 )
 texture = ExtResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="." index="1"]
+[node name="exitButton" type="TextureButton" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -51,18 +49,17 @@ group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 3 )
-script = ExtResource( 4 )
 _sections_unfolded = [ "Textures" ]
 
-[node name="Button" type="Button" parent="." index="2"]
+[node name="startButton" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 512.0
+margin_left = 510.0
 margin_top = 640.0
-margin_right = 719.0
+margin_right = 717.0
 margin_bottom = 721.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -78,7 +75,6 @@ group = null
 text = "Start"
 flat = false
 align = 1
-script = ExtResource( 5 )
 
 [node name="Panel" type="Panel" parent="." index="3"]
 
@@ -624,6 +620,10 @@ text = "Character:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
+
+[connection signal="pressed" from="startButton" to="." method="_on_startButton_pressed"]
 
 [connection signal="pressed" from="Panel/hostbutton" to="." method="_on_hostbutton_pressed"]
 

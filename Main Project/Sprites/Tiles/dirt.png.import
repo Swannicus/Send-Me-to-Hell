@@ -7,10 +7,7 @@ path="res://.import/dirt.png-043124bf317bc08f29909936276bbfb2.stex"
 [deps]
 
 source_file="res://Sprites/Tiles/dirt.png"
-source_md5="c339a7c8a15eb10f204de3f78c9188b5"
-
 dest_files=[ "res://.import/dirt.png-043124bf317bc08f29909936276bbfb2.stex" ]
-dest_md5="73c6e46520da2723da6f33ad07712a06"
 
 [params]
 

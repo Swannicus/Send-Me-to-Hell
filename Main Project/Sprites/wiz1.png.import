@@ -7,10 +7,7 @@ path="res://.import/wiz1.png-65ec344a7ab9bf0c96ddd35eb5349660.stex"
 [deps]
 
 source_file="res://Sprites/wiz1.png"
-source_md5="2fffd4096c86ea27ca3dfbad543d42c5"
-
 dest_files=[ "res://.import/wiz1.png-65ec344a7ab9bf0c96ddd35eb5349660.stex" ]
-dest_md5="5a053138af30e75b5264f8ac2d39e158"
 
 [params]
 

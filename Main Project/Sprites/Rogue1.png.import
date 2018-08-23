@@ -7,10 +7,7 @@ path="res://.import/Rogue1.png-6b630c39c18cbc97f697738352286ee2.stex"
 [deps]
 
 source_file="res://Sprites/Rogue1.png"
-source_md5="8722e3d6d5a762658981d298ccabe6af"
-
 dest_files=[ "res://.import/Rogue1.png-6b630c39c18cbc97f697738352286ee2.stex" ]
-dest_md5="780928c7e9d2c7bb17e0563f9829eb65"
 
 [params]
 

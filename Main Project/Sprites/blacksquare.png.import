@@ -7,10 +7,7 @@ path="res://.import/blacksquare.png-24268ac1975434b5658df7602e62bdca.stex"
 [deps]
 
 source_file="res://Sprites/blacksquare.png"
-source_md5="276f7112af28e7465918acc732d4f171"
-
 dest_files=[ "res://.import/blacksquare.png-24268ac1975434b5658df7602e62bdca.stex" ]
-dest_md5="6def0d8b5c0ab664a6507c478c474624"
 
 [params]
 

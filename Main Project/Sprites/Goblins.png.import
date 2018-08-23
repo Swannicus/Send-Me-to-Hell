@@ -7,10 +7,7 @@ path="res://.import/Goblins.png-4d35102f93804cc05b5b0700dcc47ced.stex"
 [deps]
 
 source_file="res://Sprites/Goblins.png"
-source_md5="86aa86810aa4c4eeda057a1ec2177382"
-
 dest_files=[ "res://.import/Goblins.png-4d35102f93804cc05b5b0700dcc47ced.stex" ]
-dest_md5="5098f2004f565e8a4b35ddfeb7eb8547"
 
 [params]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/weapons.gd" type="Script" id=1]
+[ext_resource path="res://scripts/weapons.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/weapons.png" type="Texture" id=2]
+[ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -120,7 +121,7 @@ shakeValue = 20
 shakeDur = 5
 cooldownValue = 5
 damage = 1
-knockback = 100
+knockback = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon" index="0"]
 
@@ -130,8 +131,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="weapon/CollisionShape2D" index="0"]
 
-position = Vector2( -13, -2.38419e-07 )
-rotation = 1.49012e-08
+position = Vector2( -13, -2.38419e-007 )
+rotation = 1.49012e-008
 texture = ExtResource( 2 )
 offset = Vector2( 12, 0.5 )
 flip_h = true
@@ -149,6 +150,17 @@ playback_speed = 1.0
 anims/attack = SubResource( 2 )
 anims/idle = SubResource( 3 )
 blend_times = [  ]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="weapon" index="1"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
 "sword",

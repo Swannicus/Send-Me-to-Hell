@@ -7,10 +7,7 @@ path="res://.import/tile_dungeonwall1.png-41645c330d86688c10890c2624eb1807.stex"
 [deps]
 
 source_file="res://Sprites/Tiles/tile_dungeonwall1.png"
-source_md5="3fb6a69e738d53f055db3c6322ae9b31"
-
 dest_files=[ "res://.import/tile_dungeonwall1.png-41645c330d86688c10890c2624eb1807.stex" ]
-dest_md5="b3c53a09dcb32766f07f1cc8686aef50"
 
 [params]
 

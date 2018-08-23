@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/384647__morganpurkis__sludge-footstep-3.wav-d0594ce2c903e3a941bcd7dd774e86dc.sample"
+
+[deps]
+
+source_file="res://sound/384647__morganpurkis__sludge-footstep-3.wav"
+dest_files=[ "res://.import/384647__morganpurkis__sludge-footstep-3.wav-d0594ce2c903e3a941bcd7dd774e86dc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

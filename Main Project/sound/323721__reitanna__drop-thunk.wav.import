@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/323721__reitanna__drop-thunk.wav-69bf95c310eed526e6029e63b9e23323.sample"
+
+[deps]
+
+source_file="res://sound/323721__reitanna__drop-thunk.wav"
+dest_files=[ "res://.import/323721__reitanna__drop-thunk.wav-69bf95c310eed526e6029e63b9e23323.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

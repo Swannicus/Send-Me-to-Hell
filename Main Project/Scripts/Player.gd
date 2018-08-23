@@ -1,4 +1,4 @@
-extends "res://engine/entity.gd"
+extends "res://Engine/entity.gd"
 var player_id = 0
 var weapon0
 var weapon1
@@ -21,6 +21,8 @@ var camOffset = 4.5
 var shakeDur = 0.0
 var shakeOffset = 0.0
 var shakeBool = false
+var speed = 200
+var gold = 0
 onready var area = $pickuparea
 #var weapon = load("res://scripts/weapons.gd")
 
@@ -38,9 +40,9 @@ func _ready():
 func _physics_process(delta):
 	if controlBoolean:
 		controls_loop()
-	movement_loop(movedir)
+	movement_loop(movedir,speed)
 	spritedir_loop(lookdir)
-	health_loop()
+	HUD_loop()
 	overlap_loop()
 	camLoop()
 	if movedir != Vector2(0,0):
@@ -49,26 +51,24 @@ func _physics_process(delta):
 		animswitch("idle")
 
 func overlap_loop():
-	var overlappingbodies = area.get_overlapping_areas()
+	var overlappingbodies = $Vacuum.get_overlapping_bodies()
 	if not overlappingbodies:
 		return
 	for body in overlappingbodies:
-		if body.is_in_group("ammo"):
-			#increase ammo
-			#play pick up noise
-			$ammonoise.play()
-			#match d :
-			ammo1 += 10
-			$HUD/tempammo.set_value(ammo1)
-			#display increased ammo amount
-			body.get_parent().queue_free()
+		if body.is_in_group("pickup"):
+			body.apply_impulse(Vector2(0,0),(self.global_position-body.global_position))
 
-func health_loop():
+
+func HUD_loop():
 	#update health ui here?
 	$HUD/Temphealthbar.set_value(health)
 	$HUD/Temphealthbar/number.set_bbcode("[center]"+str(health)+"/20")
 	if health <= 0:
 		_Death()
+	$HUD/tempgoldbar.set_value(gold)
+	if gold > $HUD/tempgoldbar.max_value:
+		gold = gold-$HUD/tempgoldbar.max_value
+		$HUD/tempgoldbar/number.bbcode_text = "2"
 	return
 
 func takedamage(damage):
@@ -165,3 +165,23 @@ remote func sync(moved,lookd,id,swapped,pickup):
 		weapon0 = weaponswapbuffer
 #	if pickup:
 #		pickup some garbage
+
+
+func _on_pickuparea_area_entered(area):
+	var overlaps = $pickuparea.get_overlapping_areas()
+	for a in overlaps:
+		if area.is_in_group("ammo"):
+			#increase ammo
+			#play pick up noise
+			$ammonoise.play()
+			#match d :
+			ammo1 += 10
+			$HUD/tempammo.set_value(ammo1)
+			#display increased ammo amount
+			area.get_parent().queue_free()
+		if area.is_in_group("chest"):
+			area.get_parent().open()
+		if area.is_in_group("gold"):
+			$coinnoise.play()
+			gold += 1
+			area.get_parent().queue_free()

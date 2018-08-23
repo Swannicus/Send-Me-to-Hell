@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pump Shotgun-SoundBible.com-1653268682.wav-09c4f9465b2d82970f7aba7666f597d2.sample"
+
+[deps]
+
+source_file="res://sound/Pump Shotgun-SoundBible.com-1653268682.wav"
+dest_files=[ "res://.import/Pump Shotgun-SoundBible.com-1653268682.wav-09c4f9465b2d82970f7aba7666f597d2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

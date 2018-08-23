@@ -20,16 +20,17 @@ var targetroomnumber = 10
 var slimemin = 1
 var slimecurrent = 1
 var slimemax = 5
-var slimeref
-var gobref
+var slime = load("res://Scenes/Gelatinouscube.tscn")
+var gob = load("res://Scenes/Gelatinouscube.tscn")
 
 func _ready():
 	var basex = 100
 	var basey = 100
-	slimeref = load("res://Scenes/Gelatinouscube.tscn").instance()
-	gobref = load("res://Scenes/Gelatinouscube.tscn").instance()
-	$Walls.add_child(slimeref)
-	$Walls.add_child(gobref)
+	var music = get_node("/root/Globals/audio")
+	slime = load("res://Scenes/Gelatinouscube.tscn")
+	gob = load("res://Scenes/Gelatinouscube.tscn")
+	music.stream = load("res://music/Seb Song.wav")
+	music.play(0)
 	for i in Globals.playersdict.keys():
 		spawn_player(i)
 	print(str(Globals.playersdict.keys()))
@@ -47,6 +48,8 @@ func _ready():
 	pass
 
 func room():
+	var gobRef
+	var slimeRef
 	var roomhrange = room_height_max - room_height_min
 	var roomwrange =  room_width_max - room_width_min
 	var roomheight = randi()%roomhrange + room_height_min
@@ -57,14 +60,14 @@ func room():
 			$Walls.set_cell(oddcell.x,oddcell.y,-1)
 			$Floor.set_cell(oddcell.x,oddcell.y,1)
 			if randf() > (slimecurrent / slimemax):
-				slimeref.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
-				slimeref = load("res://Scenes/Gelatinouscube.tscn").instance()
-				$Walls.add_child(slimeref)
+				slimeRef = slime.instance()
+				slimeRef.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
+				$Walls.add_child(slimeRef)
 				slimecurrent += 1
 			if randf() > (slimecurrent / slimemax):
-				gobref.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
-				gobref = load("res://Scenes/goblin.tscn").instance()
-				$Walls.add_child(gobref)
+				gobRef = gob.instance()
+				gobRef.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
+				$Walls.add_child(gobRef)
 				slimecurrent += 1
 			oddcell.y = oddcell.y-1
 		oddcell.y = roomheight+roomorigin.y
@@ -104,7 +107,7 @@ func spawn_player(id):
 			playerScene = load("res://Scenes/knightplay_1.tscn")
 		1:
 			playerScene = load("res://Scenes/wizplay_1.tscn")
-	var player 		= playerScene.instance()
+	var player 			= playerScene.instance()
 	print ("Spawn player "+str(id)+" "+str(get_tree().get_network_unique_id()))
 	
 	player.set_name(str(id))

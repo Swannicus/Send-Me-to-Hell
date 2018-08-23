@@ -7,10 +7,7 @@ path="res://.import/EXIT2.png-8889e48bd96430bac8a76e647dc5eb59.stex"
 [deps]
 
 source_file="res://Sprites/EXIT2.png"
-source_md5="8be753af0b737072be2ec935f098c586"
-
 dest_files=[ "res://.import/EXIT2.png-8889e48bd96430bac8a76e647dc5eb59.stex" ]
-dest_md5="79e731b6d3f4c348ea378c562e0cb3f0"
 
 [params]
 

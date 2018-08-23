@@ -7,10 +7,7 @@ path="res://.import/Rogue2.png-cf248795fadfaa8c090ae46e897d0f3f.stex"
 [deps]
 
 source_file="res://Sprites/Rogue2.png"
-source_md5="80e3c2723043822e1f01dda45f3c5c67"
-
 dest_files=[ "res://.import/Rogue2.png-cf248795fadfaa8c090ae46e897d0f3f.stex" ]
-dest_md5="468c1f1dd5a5f83bc1b8001e6ec3ba1c"
 
 [params]
 

@@ -7,10 +7,7 @@ path="res://.import/rangedweapons.png-ce7492f5f85a5e7307217e33607d1f26.stex"
 [deps]
 
 source_file="res://Sprites/rangedweapons.png"
-source_md5="c4a8062f86476e5b0863a8bb0318484e"
-
 dest_files=[ "res://.import/rangedweapons.png-ce7492f5f85a5e7307217e33607d1f26.stex" ]
-dest_md5="a746451d8977a167dee30e89b4bcb589"
 
 [params]
 

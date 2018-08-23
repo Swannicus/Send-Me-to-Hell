@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Gelatinouscube.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GelatinousCube.png" type="Texture" id=2]
+[ext_resource path="res://sound/384647__morganpurkis__sludge-footstep-3.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -84,19 +85,19 @@ length = 0.5
 loop = false
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath("../CollisionShape2D:disabled")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.5, 0.1 ) ]
+"update": 1,
+"values": [ false, true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -104,8 +105,20 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"update": 0,
+"values": [ 10, 14 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -219,9 +232,9 @@ extents = Vector2( 13.143, 18.6141 )
 [sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 11.5784, 10 )
 
-[node name="Gelatinouscube" type="KinematicBody2D" index="0" groups=[
+[node name="Gelatinouscube" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 
@@ -237,7 +250,8 @@ damage = 1
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 4
-_sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
+frame = 14
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="anim" type="AnimationPlayer" parent="Sprite" index="0"]
 
@@ -256,8 +270,8 @@ blend_times = [  ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 1.55378 )
-scale = Vector2( 1, 0.733089 )
+position = Vector2( -0.25029, 0.876245 )
+scale = Vector2( 0.783148, 0.613868 )
 shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
@@ -273,10 +287,21 @@ audio_bus_name = "Master"
 
 [node name="damagebox" type="CollisionShape2D" parent="Area2D" index="0"]
 
-position = Vector2( 0, 3 )
-scale = Vector2( 1.2, 1.1 )
+position = Vector2( 5.36442e-005, 0.451266 )
+scale = Vector2( 1.03892, 1.29606 )
 shape = SubResource( 8 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="soundDeath" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="animation_finished" from="Sprite/anim" to="." method="_on_anim_animation_finished"]
 

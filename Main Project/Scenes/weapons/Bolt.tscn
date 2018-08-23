@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Bolt.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/rangedweapons.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/trail.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound/323721__reitanna__drop-thunk.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4, 1 )
+
+[node name="Bolt" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+boltspeed = 450
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 45, 37, 19, 7 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="trail" parent="Sprite" index="0" instance=ExtResource( 3 )]
+
+points = PoolVector2Array( -0.0568504, -0.0285511 )
+texture_mode = 1065353216
+_sections_unfolded = [ "Capping", "Fill", "Transform" ]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="2"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+

@@ -7,10 +7,7 @@ path="res://.import/PLACEHOLDERFIRE.png-7006ddafc947b260babed909380f4357.stex"
 [deps]
 
 source_file="res://Sprites/PLACEHOLDERFIRE.png"
-source_md5="621f3cbb50d4d6d7f5157c7d2741c6f5"
-
 dest_files=[ "res://.import/PLACEHOLDERFIRE.png-7006ddafc947b260babed909380f4357.stex" ]
-dest_md5="127667dce4172d4f7322deffd63857f6"
 
 [params]
 

@@ -1,0 +1,30 @@
+Adobe After Effects v9.0 (Windows) render log for project “send me to hell music.aep”
+
+Rendering started on 2018-08-13 at 02:17:27
+
+
+  2018-08-13 02:17:27: Starting composition “Seb Song”.
+
+
+  Output To: C:\Users\Insan\Documents\Send Me to Hell\Seb Song.mp4
+  
+  2018-08-13 02:18:16: Finished composition “Seb Song”.
+
+
+
+  2018-08-13 02:18:16: Starting composition “Seb Song 2”.
+
+
+  Output To: C:\Users\Insan\Documents\Send Me to Hell\Seb Song 2.mp4
+  
+  
+  Render stopped by user.
+  
+  2018-08-13 02:18:38: Finished composition “Seb Song 2”.
+
+
+
+  Total Time Elapsed: 1 Min, 10 Sec
+
+Log closed on 2018-08-13 at 02:18:38
+

@@ -28,7 +28,7 @@ func takedamage(damaget,knockbackt,source):
 	animswitch2("damaged")
 
 func _physics_process(delta):
-	movement_loop(movedir)
+	movement_loop(movedir,110)
 	attack_loop()
 	direction_loop()
 
@@ -44,7 +44,7 @@ func direction_loop():
 
 func attack_loop():
 	var overlappingbodies = $Area2D.get_overlapping_bodies()
-	if not overlappingbodies:
+	if not overlappingbodies: 
 		return
 	for body in overlappingbodies:
 		if not body.is_in_group("player"):

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/384906__ali-6868__crossbow-fire-1.wav-4e90d2b4cf57b72263c58432f50f99b2.sample"
+
+[deps]
+
+source_file="res://sound/384906__ali-6868__crossbow-fire-1.wav"
+dest_files=[ "res://.import/384906__ali-6868__crossbow-fire-1.wav-4e90d2b4cf57b72263c58432f50f99b2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

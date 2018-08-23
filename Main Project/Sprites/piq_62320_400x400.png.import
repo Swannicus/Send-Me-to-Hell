@@ -7,10 +7,7 @@ path="res://.import/piq_62320_400x400.png-db2723162e8b4eeb2a8b7e0a2614c728.stex"
 [deps]
 
 source_file="res://Sprites/piq_62320_400x400.png"
-source_md5="5d995920c5bb82402925906eff62349c"
-
 dest_files=[ "res://.import/piq_62320_400x400.png-db2723162e8b4eeb2a8b7e0a2614c728.stex" ]
-dest_md5="702468fc23f84c45aa86ebe1942ae88f"
 
 [params]
 
