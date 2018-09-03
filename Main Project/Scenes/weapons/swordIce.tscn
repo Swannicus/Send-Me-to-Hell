@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/sword.gd" type="Script" id=1]
 [ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=2]
@@ -7,7 +7,57 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 6.5, 6 )
+extents = Vector2( 12.544, 2.1357 )
+
+[sub_resource type="Gradient" id=5]
+
+offsets = PoolRealArray( 0, 0.52071, 1 )
+colors = PoolColorArray( 0.0238037, 0.325578, 0.40625, 1, 0.257202, 0.65838, 0.765625, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+
+flags = 4
+gradient = SubResource( 5 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 10, 0 )
+initial_velocity = 0.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.04
+orbit_velocity_random = 0.5
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 6.0
+radial_accel_random = 1.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 10.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 6 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Radial Accel" ]
 
 [sub_resource type="Animation" id=2]
 
@@ -77,6 +127,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=3]
 
+resource_name = "idle"
 length = 0.01
 loop = false
 step = 0.1
@@ -96,12 +147,10 @@ tracks/0/keys = {
 [sub_resource type="CapsuleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 10.0
-height = 6.82149
+radius = 6.00059
+height = 20.0
 
 [node name="WeaponParent" type="Node2D"]
-
-_sections_unfolded = [ "Transform" ]
 
 [node name="weapon" type="Area2D" parent="." index="0" groups=[
 "weapon",
@@ -121,7 +170,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon" index="0"]
 
-position = Vector2( 17.5, 2 )
+position = Vector2( 13, 0 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -136,16 +185,41 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="Sprite" type="Sprite" parent="weapon" index="2"]
+[node name="Particles2D" type="Particles2D" parent="weapon" index="2"]
 
-position = Vector2( 4.5, 2 )
+show_behind_parent = true
+position = Vector2( 22.8682, -1.84018 )
+scale = Vector2( 1.19994, 1.05751 )
+emitting = true
+amount = 6
+lifetime = 4.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="weapon" index="3"]
+
+position = Vector2( 0, -2.38419e-007 )
 rotation = 1.49012e-008
 texture = ExtResource( 3 )
-offset = Vector2( 9, -1.5 )
+offset = Vector2( 12, 0.5 )
 flip_h = true
 vframes = 8
 hframes = 4
-frame = 2
+frame = 1
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="anim" type="AnimationPlayer" parent="weapon/Sprite" index="0"]
@@ -160,9 +234,10 @@ anims/idle = SubResource( 3 )
 blend_times = [  ]
 
 [node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
-"axe",
+"swordIce",
 ]]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -173,8 +248,8 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickUpRadius" index="0"]
 
-position = Vector2( 26.782, 1.13916 )
-scale = Vector2( 2.12732, 1 )
+position = Vector2( 25.1992, -0.355692 )
+scale = Vector2( 3.48331, 0.535841 )
 shape = SubResource( 4 )
 
 [connection signal="animation_finished" from="weapon/Sprite/anim" to="weapon" method="_on_anim_animation_finished"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/weapons.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/weapons.png" type="Texture" id=2]
-[ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=3]
+[ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/weapons.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -129,18 +129,29 @@ position = Vector2( 13, 0 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="weapon/CollisionShape2D" index="0"]
+[node name="sound" type="AudioStreamPlayer2D" parent="weapon" index="1"]
 
-position = Vector2( -13, -2.38419e-007 )
+stream = ExtResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Sprite" type="Sprite" parent="weapon" index="2"]
+
+position = Vector2( 0, -2.38419e-007 )
 rotation = 1.49012e-008
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 offset = Vector2( 12, 0.5 )
 flip_h = true
 vframes = 8
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="anim" type="AnimationPlayer" parent="weapon/CollisionShape2D/Sprite" index="0"]
+[node name="anim" type="AnimationPlayer" parent="weapon/Sprite" index="0"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -150,17 +161,6 @@ playback_speed = 1.0
 anims/attack = SubResource( 2 )
 anims/idle = SubResource( 3 )
 blend_times = [  ]
-
-[node name="sound" type="AudioStreamPlayer2D" parent="weapon" index="1"]
-
-stream = ExtResource( 3 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
 
 [node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
 "sword",
@@ -180,6 +180,6 @@ position = Vector2( 25.1992, -0.355692 )
 scale = Vector2( 3.48331, 0.535841 )
 shape = SubResource( 4 )
 
-[connection signal="animation_finished" from="weapon/CollisionShape2D/Sprite/anim" to="weapon" method="_on_anim_animation_finished"]
+[connection signal="animation_finished" from="weapon/Sprite/anim" to="weapon" method="_on_anim_animation_finished"]
 
 

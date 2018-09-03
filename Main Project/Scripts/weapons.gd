@@ -1,8 +1,8 @@
-extends Area2D
+extends Node2D
 
 signal attack_finished
 
-onready var anim = $CollisionShape2D/Sprite/anim
+onready var anim = $Sprite/anim
 
 enum STATES {idle, attack}
 var current_state = idle

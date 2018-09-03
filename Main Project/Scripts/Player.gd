@@ -123,6 +123,10 @@ func controls_loop():
 						grabWeapon(i,g)
 					"crossbow":
 						grabWeapon(i,g)
+					"swordIce":
+						grabWeapon(i,g)
+					"crossbowLightning":
+						grabWeapon(i,g)
 	rpc_unreliable("sync",movedir,lookdir,player_id,swapBool,pickUpBool)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()

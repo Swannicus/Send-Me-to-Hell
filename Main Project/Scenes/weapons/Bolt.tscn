@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 1 )
 
-[node name="Bolt" type="Area2D"]
+[node name="Bolt" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -26,6 +26,8 @@ traillength = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
+position = Vector2( 2.26364, -0.488712 )
+scale = Vector2( 1.32338, 0.877822 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
@@ -33,7 +35,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 flip_h = true
 region_enabled = true
-region_rect = Rect2( 45, 37, 19, 7 )
+region_rect = Rect2( 13, 45, 17, 5 )
 _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="trail" parent="Sprite" index="0" instance=ExtResource( 3 )]

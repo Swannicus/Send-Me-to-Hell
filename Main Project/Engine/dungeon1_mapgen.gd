@@ -145,7 +145,6 @@ func placeWall(xCell,yCell):
 		Corners.set_cell(xCell*2+1,yCell*2,-1)
 		var surround2 = getS2(xCell,yCell)
 		var surround = getS1(xCell,yCell)
-		var sprite
 		if Floor.get_cell(surround2[0][0],surround2[0][1]) in [19,20,21,22] and Floor.get_cell(surround[0][0],surround[0][1]) == -1 and Floor.get_cell(surround[1][0],surround[1][1]) == -1:
 			Corners.set_cell(xCell*2,yCell*2-1,13)
 		if Floor.get_cell(surround2[1][0],surround2[1][1]) in [19,20,21,22] and Floor.get_cell(surround[0][0],surround[0][1]) == -1 and Floor.get_cell(surround[2][0],surround[2][1]) == -1:

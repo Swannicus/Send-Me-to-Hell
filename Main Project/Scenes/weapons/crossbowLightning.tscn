@@ -44,7 +44,7 @@ offset = Vector2( 9, -1.5 )
 flip_h = true
 vframes = 8
 hframes = 4
-frame = 1
+frame = 2
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="anim" type="AnimationPlayer" parent="weapon/Sprite" index="0"]
@@ -74,7 +74,7 @@ area_mask = 1
 
 [node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
 "weapon",
-"crossbow",
+"crossbowLightning",
 ]]
 
 input_pickable = true
