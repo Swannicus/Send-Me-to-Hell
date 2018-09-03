@@ -17,9 +17,12 @@ func _ready():
 	movedir = dir.rand()
 	lookdir = movedir
 	animswitch("walk")
-	health = 4
+	health = 2
 	damager = $Area2D
-	
+
+func movement_loop(movedir,speed):
+	var motion = movedir.normalized() * speed
+	move_and_slide(motion, Vector2(0,0))
 
 func takedamage(damaget,knockbackt,source):
 	health = health-damaget
@@ -28,6 +31,7 @@ func takedamage(damaget,knockbackt,source):
 	print(str(directionkb))
 	move_and_slide(knockbackt*directionkb.normalized(), Vector2(0,0))
 	if health <= 0:
+		$CollisionShape2D.disabled = true
 		_Death()
 		var drop = ammoscene.instance()
 		var type = randi()%4+4

@@ -2,10 +2,6 @@ extends KinematicBody2D
 var spritedir = "down"
 var dead = false
 var health = 1
-
-func movement_loop(movedir,speed):
-	var motion = movedir.normalized() * speed
-	move_and_slide(motion, Vector2(0,0))
 	
 func spritedir_loop(lookdir):
 	match lookdir:
@@ -21,6 +17,10 @@ func spritedir_loop(lookdir):
 func _Death():
 	if dead == false:
 		animswitch2("death")
+		if is_in_group("enemy"):
+			remove_from_group("enemy")
+			$CollisionShape2D.disabled = true
+			add_to_group("corpse")
 		dead = true
 
 func _Death2():

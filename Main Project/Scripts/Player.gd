@@ -37,6 +37,10 @@ func _ready():
 	.add_child(hud.instance())
 	health = 20
 
+func movement_loop(movedir,speed):
+	var motion = movedir.normalized() * speed
+	move_and_slide(motion, Vector2(0,0))
+
 func _physics_process(delta):
 	if controlBoolean:
 		controls_loop()

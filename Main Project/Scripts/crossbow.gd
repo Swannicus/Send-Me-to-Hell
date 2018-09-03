@@ -29,8 +29,8 @@ func attack():
 	if cooldown == 0:
 		$Sound.play(0)
 		bolt.setup(angle.normalized())
-		get_parent().get_parent().get_parent().add_child(bolt)
 		bolt.global_position = $Sprite/muzzle.global_position
+		get_parent().get_parent().get_parent().add_child(bolt)
 		rpc("remote_attack",get_parent().get_parent().player_id,get_global_mouse_position())
 		cooldown = 30
 

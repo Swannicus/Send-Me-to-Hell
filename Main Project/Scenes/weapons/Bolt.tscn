@@ -22,6 +22,7 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 boltspeed = 450
+traillength = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -37,9 +38,12 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="trail" parent="Sprite" index="0" instance=ExtResource( 3 )]
 
+show_behind_parent = true
 points = PoolVector2Array( -0.0568504, -0.0285511 )
 texture_mode = 1065353216
-_sections_unfolded = [ "Capping", "Fill", "Transform" ]
+begin_cap_mode = 2
+script = null
+_sections_unfolded = [ "Capping", "Fill", "Material", "Pause", "Transform", "Visibility" ]
 
 [node name="sound" type="AudioStreamPlayer2D" parent="." index="2"]
 

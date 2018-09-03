@@ -85,7 +85,7 @@ length = 0.5
 loop = false
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("../CollisionShape2D:disabled")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -93,28 +93,16 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"update": 0,
+"values": [ 10, 14 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 10, 14 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -243,6 +231,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "collision" ]
 damage = 1
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -250,7 +239,7 @@ damage = 1
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 4
-frame = 14
+frame = 10
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="anim" type="AnimationPlayer" parent="Sprite" index="0"]

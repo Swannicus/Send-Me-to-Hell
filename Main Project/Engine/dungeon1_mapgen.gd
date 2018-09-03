@@ -22,11 +22,16 @@ var slimecurrent = 1
 var slimemax = 5
 var slime = load("res://Scenes/Gelatinouscube.tscn")
 var gob = load("res://Scenes/Gelatinouscube.tscn")
+var Walls
+var Floor
+var Corners
+var cornerGrid = []
 
 func _ready():
-	var basex = 100
-	var basey = 100
 	var music = get_node("/root/Globals/audio")
+	Walls = $Walls
+	Floor = $Floor
+	Corners = $Walls/Corners
 	slime = load("res://Scenes/Gelatinouscube.tscn")
 	gob = load("res://Scenes/Gelatinouscube.tscn")
 	music.stream = load("res://music/Seb Song.wav")
@@ -34,67 +39,149 @@ func _ready():
 	for i in Globals.playersdict.keys():
 		spawn_player(i)
 	print(str(Globals.playersdict.keys()))
-	while basex > -15:
-		while basey > -15:
-			$Walls.set_cell(basex,basey,0)
-			basey = basey-1
-		basey = 100
-		basex = basex-1
 	while roomnumber < targetroomnumber:
-		room()
-		if roomnumber != 1: path(endpoint,startpoint)
-		room()
-		path(startpoint,endpoint)
+		room(roomorigin)
+		roomnumber += 1
 	pass
+	
 
-func room():
+func getS1(xCell,yCell):
+	var surround
+	surround = [		[0,-1],
+				[-1,0],			[1,0],
+						[0,1]		]
+	for i in range(0,surround.size()):
+		surround[i][0]+=xCell
+		surround[i][1]+=yCell
+	return surround
+
+func getS2(xCell,yCell):
+	var surround2
+	surround2 = [[-1,-1]		,	[1,-1],
+				[-1,1]		,	[1,1]]
+	for i in range(0,surround2.size()):
+		surround2[i][0]+=xCell
+		surround2[i][1]+=yCell
+	return surround2
+
+func roomWalker(xCell,yCell):
+	var i = 0
+	var direction = Vector2(0,0)
+	var walkerTiles = [Vector2(0,0)]
+	placeFloor(xCell,yCell)
+	walkerTiles[0] = Vector2(xCell,yCell)
+	while i < 40:
+		direction = dir.rand()
+		xCell += direction.x
+		yCell += direction.y
+		placeFloor(xCell,yCell)
+		walkerTiles.append(Vector2(xCell,yCell))
+		i += 1
+	return walkerTiles
+
+
+func room(origin):
 	var gobRef
 	var slimeRef
 	var roomhrange = room_height_max - room_height_min
 	var roomwrange =  room_width_max - room_width_min
 	var roomheight = randi()%roomhrange + room_height_min
 	var roomwidth = randi()%roomwrange + room_width_min
-	oddcell = Vector2(roomwidth+roomorigin.x,roomheight+roomorigin.y)
-	while oddcell.x > roomorigin.x:
-		while oddcell.y > roomorigin.y:
-			$Walls.set_cell(oddcell.x,oddcell.y,-1)
-			$Floor.set_cell(oddcell.x,oddcell.y,1)
-			if randf() > (slimecurrent / slimemax):
-				slimeRef = slime.instance()
-				slimeRef.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
-				$Walls.add_child(slimeRef)
-				slimecurrent += 1
-			if randf() > (slimecurrent / slimemax):
-				gobRef = gob.instance()
-				gobRef.set_position($Floor.map_to_world(oddcell)+Vector2(0,1))
-				$Walls.add_child(gobRef)
-				slimecurrent += 1
-			oddcell.y = oddcell.y-1
-		oddcell.y = roomheight+roomorigin.y
-		oddcell.x = oddcell.x-1
-	match startroom:
-		true:
-			startpoint = Vector2(roomwidth+roomorigin.x,roomheight/2+roomorigin.y)
-			startroom = false
-		false:
-			endpoint = Vector2(1+roomorigin.x,roomheight/2+roomorigin.y)
-			startroom = true
-	roomorigin.x += randi()%room_distance_max + room_distance_min + roomwidth
-	roomorigin.y += room_distance_min + roomheight
-	roomnumber += 1
-	slimecurrent = 0
+	var roomTiles = []
+	var g = 0
+	roomTiles = roomWalker(origin.x,origin.y)
+	roomTiles += roomWalker(origin.x,origin.y)
+	roomTiles += roomWalker(origin.x,origin.y)
+	while g < 5:
+		var randomTile =randi()%roomTiles.size()
+		slimeRef = slime.instance()
+		slimeRef.global_position = Walls.map_to_world(roomTiles[randomTile])
+		Walls.add_child(slimeRef)
+		g += 1
+	endpoint = origin
+	path(startpoint,endpoint)
+	startpoint = endpoint
+	roomorigin = origin +Vector2(randi()%20+20,randi()%40-20)
+
 
 func path(SP,EP):
 	oddcell = SP
 	while oddcell.x < EP.x:
-		$Walls.set_cell(oddcell.x,oddcell.y,-1)
-		$Floor.set_cell(oddcell.x,oddcell.y,1)
+		placeFloor(oddcell.x,oddcell.y)
 		oddcell.x += 1
 	while oddcell.y < EP.y:
-		$Walls.set_cell(oddcell.x,oddcell.y,-1)
-		$Floor.set_cell(oddcell.x,oddcell.y,1)
+		placeFloor(oddcell.x,oddcell.y)
 		oddcell.y += 1
-	
+
+func placeFloor(xCell,yCell):
+	Walls.set_cell(xCell,yCell,-1)
+	Corners.set_cell(xCell*2,yCell*2-1,-1)
+	Corners.set_cell(xCell*2+1,yCell*2-1,-1)
+	Corners.set_cell(xCell*2,yCell*2,-1)
+	Corners.set_cell(xCell*2,yCell*2+1,-1)
+	if randf() <=0.6:
+		Floor.set_cell(xCell,yCell,19)
+	else:
+		Floor.set_cell(xCell,yCell,20)
+	placeWall(xCell,yCell-1)
+	placeWall(xCell+1,yCell-1)
+	placeWall(xCell+1,yCell)
+	placeWall(xCell+1,yCell+1)
+	placeWall(xCell,yCell+1)
+	placeWall(xCell-1,yCell+1)
+	placeWall(xCell-1,yCell)
+	placeWall(xCell-1,yCell-1)
+
+func placeWall(xCell,yCell):
+	var wallstate = getWallState(xCell,yCell)
+	var cornerState = getCornerState(xCell,yCell)
+	var errorLabel
+	var corner
+	if Floor.get_cell(xCell,yCell) == -1:
+		Walls.set_cell(xCell,yCell,Globals.wallArray[getWallState(xCell,yCell)])
+		Corners.set_cell(xCell*2,yCell*2-1,-1)
+		Corners.set_cell(xCell*2+1,yCell*2-1,-1)
+		Corners.set_cell(xCell*2,yCell*2,-1)
+		Corners.set_cell(xCell*2+1,yCell*2,-1)
+		var surround2 = getS2(xCell,yCell)
+		var surround = getS1(xCell,yCell)
+		var sprite
+		if Floor.get_cell(surround2[0][0],surround2[0][1]) in [19,20,21,22] and Floor.get_cell(surround[0][0],surround[0][1]) == -1 and Floor.get_cell(surround[1][0],surround[1][1]) == -1:
+			Corners.set_cell(xCell*2,yCell*2-1,13)
+		if Floor.get_cell(surround2[1][0],surround2[1][1]) in [19,20,21,22] and Floor.get_cell(surround[0][0],surround[0][1]) == -1 and Floor.get_cell(surround[2][0],surround[2][1]) == -1:
+			Corners.set_cell(xCell*2+1,yCell*2-1,14)
+		if Floor.get_cell(surround2[2][0],surround2[2][1]) in [19,20,21,22] and Floor.get_cell(surround[1][0],surround[1][1]) == -1 and Floor.get_cell(surround[3][0],surround[3][1]) == -1:
+			Corners.set_cell(xCell*2,yCell*2,10)
+		if Floor.get_cell(surround2[3][0],surround2[3][1]) in [19,20,21,22] and Floor.get_cell(surround[2][0],surround[2][1]) == -1 and Floor.get_cell(surround[3][0],surround[3][1]) == -1:
+			Corners.set_cell(xCell*2+1,yCell*2,11)
+		
+
+func getWallState(xCell,yCell):
+	var type = 0
+	var surround = getS1(xCell,yCell)
+	var surround2 = getS2(xCell,yCell)
+	if Floor.get_cell(surround[0][0],surround[0][1]) in [19,20,21,22]:
+		type += Globals.N
+	if Floor.get_cell(surround[1][0],surround[1][1]) in [19,20,21,22]:
+		type += Globals.W
+	if Floor.get_cell(surround[2][0],surround[2][1]) in [19,20,21,22]:
+		type += Globals.E
+	if Floor.get_cell(surround[3][0],surround[3][1]) in [19,20,21,22]:
+		type += Globals.S
+	return type
+
+func getCornerState(xCell,yCell):
+	var type = 0
+	var surround2 = getS2(xCell,yCell)
+	if Floor.get_cell(surround2[0][0],surround2[0][1]) in [19,20,21,22]:
+		type += Globals.NW
+	if Floor.get_cell(surround2[1][0],surround2[1][1]) in [19,20,21,22]:
+		type += Globals.NE
+	if Floor.get_cell(surround2[2][0],surround2[2][1]) in [19,20,21,22]:
+		type += Globals.SW
+	if Floor.get_cell(surround2[3][0],surround2[3][1]) in [19,20,21,22]:
+		type += Globals.SE
+	return type
 
 func initializePlayers():
 	for i in Globals.playersdict.keys():
@@ -116,4 +203,4 @@ func spawn_player(id):
 		player.player_id = id
 		player.controlBoolean = true
 	$Walls.add_child(player)
-	player.set_position(Vector2(120,120))
+	player.set_position(Vector2(16,16))
