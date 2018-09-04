@@ -187,15 +187,9 @@ func initializePlayers():
 		spawn_player(i)
 
 func spawn_player(id):
-	var playerScene = load("res://Scenes/knightplay_1.tscn")
-	match Globals.charDict[id]:
-		0:
-			playerScene = load("res://Scenes/knightplay_1.tscn")
-		1:
-			playerScene = load("res://Scenes/wizplay_1.tscn")
-	var player 			= playerScene.instance()
+	var player = load("res://Scenes/playerRoot.tscn").instance()
 	print ("Spawn player "+str(id)+" "+str(get_tree().get_network_unique_id()))
-	
+	player.setCharacter("knight")
 	player.set_name(str(id))
 	if id == get_tree().get_network_unique_id():
 		player.set_network_master(id)

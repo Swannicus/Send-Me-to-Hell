@@ -27,7 +27,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="WeaponParent" type="Node2D" index="0"]
+[node name="WeaponParent" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 

@@ -37,6 +37,11 @@ func _ready():
 	.add_child(hud.instance())
 	health = 20
 
+func setCharacter(character):
+	var sprite = load("res://Scenes/"+character+"Sprite.tscn").instance()
+	add_child(sprite)
+	sprite.global_position = global_position
+
 func movement_loop(movedir,speed):
 	var motion = movedir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://scripts/sword.gd" type="Script" id=1]
+[ext_resource path="res://scripts/swordIce.gd" type="Script" id=1]
 [ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/weapons.png" type="Texture" id=3]
 
@@ -251,6 +251,11 @@ audio_bus_name = "Master"
 position = Vector2( 25.1992, -0.355692 )
 scale = Vector2( 3.48331, 0.535841 )
 shape = SubResource( 4 )
+
+[node name="muzzle" type="Position2D" parent="." index="2"]
+
+position = Vector2( 39.3247, 0 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="animation_finished" from="weapon/Sprite/anim" to="weapon" method="_on_anim_animation_finished"]
 

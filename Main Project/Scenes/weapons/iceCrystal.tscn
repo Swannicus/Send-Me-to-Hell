@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/weapons/iceCrystal.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/enchanted.png" type="Texture" id=2]
+[ext_resource path="res://sound/ice1_R.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/trail.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.13455, 1.90767 )
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "idle"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "impact"
+length = 0.8
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+
+[sub_resource type="Gradient" id=2]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0, 0.789063, 1, 1 )
+
+[node name="iceCrystal" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+boltspeed = 600
+traillength = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( -0.444328, 0.455629 )
+scale = Vector2( 1.71595, 1.11391 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 4
+frame = 1
+region_rect = Rect2( 13, 45, 17, 5 )
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="anim" type="AnimationPlayer" parent="Sprite" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/idle = SubResource( 3 )
+anims/impact = SubResource( 4 )
+blend_times = [  ]
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="2"]
+
+position = Vector2( 0.0852585, -0.0626717 )
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="trail" parent="." index="3" instance=ExtResource( 4 )]
+
+show_behind_parent = true
+points = PoolVector2Array( -0.0568504, -0.0285511 )
+default_color = Color( 0.492188, 0.86908, 1, 1 )
+gradient = SubResource( 2 )
+texture_mode = 1065353216
+begin_cap_mode = 2
+script = null
+_sections_unfolded = [ "Capping", "Fill", "Material", "Pause", "Transform", "Visibility" ]
+
+

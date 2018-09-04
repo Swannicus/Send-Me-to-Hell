@@ -2,6 +2,7 @@ extends "res://scripts/weaponMelee.gd"
 
 signal attack_finished
 
+const projScene = preload("res://Scenes/weapons/iceCrystal.tscn")
 onready var anim = $CollisionShape2D/Sprite/anim
 
 enum STATES {idle, attack}
@@ -41,10 +42,15 @@ func _change_state(new_state):
 			"idle":
 				animswitch("idle")
 			"attack":
+				var proj = projScene.instance()
+				var angle = get_global_mouse_position() - $".."/muzzle.global_position
 				$sound.play(0)
 				animswitch("attack")
 				attackAction()
 				get_parent().get_parent().camShake(shakeValue,shakeDur)
+				proj.setup(angle.normalized())
+				proj.global_position = $".."/muzzle.global_position
+				get_parent().get_parent().get_parent().add_child(proj)
 
 func attackAction():
 	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
