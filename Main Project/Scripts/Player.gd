@@ -1,4 +1,5 @@
-extends "res://Engine/entity.gd"
+#extends "res://Engine/entity.gd"
+extends Node2D
 var player_id = 0
 var weapon0
 var weapon1
@@ -23,6 +24,8 @@ var shakeOffset = 0.0
 var shakeBool = false
 var speed = 200
 var gold = 0
+var sprite
+var health
 onready var area = $pickuparea
 #var weapon = load("res://scripts/weapons.gd")
 
@@ -38,7 +41,7 @@ func _ready():
 	health = 20
 
 func setCharacter(character):
-	var sprite = load("res://Scenes/"+character+"Sprite.tscn").instance()
+	sprite = load("res://Scenes/"+character+"Sprite.tscn").instance()
 	add_child(sprite)
 	sprite.global_position = global_position
 
@@ -50,14 +53,13 @@ func _physics_process(delta):
 	if controlBoolean:
 		controls_loop()
 	movement_loop(movedir,speed)
-	spritedir_loop(lookdir)
 	HUD_loop()
 	overlap_loop()
 	camLoop()
-	if movedir != Vector2(0,0):
-		animswitch("walk")
-	else:
-		animswitch("idle")
+	#if movedir != Vector2(0,0):
+	#	animswitch("walk")
+	#else:
+	#	animswitch("idle")
 
 func overlap_loop():
 	var overlappingbodies = $Vacuum.get_overlapping_bodies()
@@ -73,7 +75,13 @@ func HUD_loop():
 	$HUD/Temphealthbar.set_value(health)
 	$HUD/Temphealthbar/number.set_bbcode("[center]"+str(health)+"/20")
 	if health <= 0:
-		_Death()
+		var deadSprite =load("res://Scenes/deadPlayer.tscn").instance()
+		get_parent().add_child(deadSprite)
+		deadSprite.global_position = global_position
+		$HUD/gameOverScreen.show()
+		set_process(false)
+		set_physics_process(false)
+		sprite.queue_free()
 	$HUD/tempgoldbar.set_value(gold)
 	if gold > $HUD/tempgoldbar.max_value:
 		gold = gold-$HUD/tempgoldbar.max_value
@@ -96,17 +104,10 @@ func controls_loop():
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 	if mousepos.x >= 0:
-		lookdir.x = 1
+		animswitch("idleright")
 	else:
 		lookdir.x = -1
-	if mousepos.y >=0:
-		lookdir.y = 1
-	else:
-		lookdir.y = -1
-	if abs(mousepos.x) > abs(mousepos.y):
-		lookdir.y = 0
-	else:
-		lookdir.x = 0
+		animswitch("idleright")
 	if attack:
 		$WeaponParent/weapon.attack()
 	if swap:
@@ -135,6 +136,11 @@ func controls_loop():
 	rpc_unreliable("sync",movedir,lookdir,player_id,swapBool,pickUpBool)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
+
+func animswitch(animation):
+	var newanim = str(animation)
+	if $Sprite/anim.current_animation != newanim:
+		$Sprite/anim.play(newanim)
 
 func grabWeapon(i,g):
 	var lastDropped
