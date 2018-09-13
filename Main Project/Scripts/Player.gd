@@ -139,6 +139,7 @@ func controls_loop():
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
 
+
 func animswitch(animation):
 	var newanim = str(animation)
 	if $Sprite/anim.current_animation != newanim:
