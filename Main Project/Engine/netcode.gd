@@ -64,7 +64,7 @@ remote func user_ready(id,playerName):
 		rpc_id(id,"register_in_game")
 
 remote func register_in_game():
-	rpc("register_new_player",get_tree().get_network_unique_id(),playerName)
+	rpc("register_new_player",get_tree().get_network_unique_id(),$characterSelectPanel/nameBar.get_text(),dropdownBox.selected)
 	register_new_player(get_tree().get_network_unique_id(),$characterSelectPanel/nameBar.get_text(),dropdownBox.selected)
 	
 func _server_disconnected():
@@ -72,9 +72,9 @@ func _server_disconnected():
 	
 remote func register_new_player(id,name,charS):
 	if get_tree().is_network_server():
-		rpc_id(id,"register_new_player",1,playerName)
+		rpc_id(id,"register_new_player",1,playerName,charS)
 		for peer_id in Globals.playersdict:
-			rpc_id(id, "register_new_player",peer_id,Globals.playersdict[peer_id],dropdownBox.selected)
+			rpc_id(id, "register_new_player",peer_id,Globals.playersdict[peer_id],charS)
 			rpc_id(peer_id, "register_player", id, name)
 	Globals.playersdict[id] = name
 	Globals.charDict[id] = charS
@@ -132,5 +132,20 @@ func _on_exitButton_pressed():
 
 func _on_startButton_pressed():
 	start_server(int($Panel/portbar.get_text()))
+	#randomize()
+	var currentSeed = randi()
+#	seed(currentSeed)
+	seed(1)
+	print("seed"+str(currentSeed))
+#	print("seeded seed"+str(seed(currentSeed)))
+	rpc("_remote_start",currentSeed)
 	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+
 	pass # replace with function body
+
+remote func _remote_start(passSeed):
+#	seed(passSeed)
+	seed(1)
+	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+	print("seed"+str(passSeed))
+#	print("seeded seed"+str(seed()))

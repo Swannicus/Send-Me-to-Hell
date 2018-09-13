@@ -10,7 +10,6 @@ var ammoType = 0
 var ammoCost = 0
 
 func _ready():
-	animswitch("idle")
 	pass
 
 func _physics_process(delta):
@@ -20,44 +19,37 @@ func _physics_process(delta):
 func _process(delta):
 	return
 
-func attack():
+func attack(point):
 	#not called here
 	if currentCooldown <= 0:
-		_change_state("attack")
+		attackAction(point)
 		currentCooldown = cooldown
 
-func _change_state(new_state):
-	var current_state
-	var positionthing =Vector2(0,0)
-	if current_state != new_state:
-		current_state = new_state
-		match current_state:
-			"idle":
-#				set_process(true)
-				animswitch("idle")
-			"attack":
-#				set_process(false)
-				$sound.play(0)
-				animswitch("attack")
-				attackAction()
-				get_parent().get_parent().camShake(shakeValue,shakeDur)
+func attackAction(point):
+	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
+	$sound.play()
+	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
+	get_parent().get_parent().camShake(shakeValue,shakeDur)
+	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
+	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
+	attackSpriteRef.look_at(point)
 
-func attackAction():
-	var attackSpriteRef = load("res://scripts/attacksprite.gd").instance()
-	get_parent().get_parent().add_child(attackSpriteRef)
-	attackSpriteRef.look_at(get_global_mouse_position())
-	attackSpriteRef.damage(damage,knockback,(get_global_mouse_position()-self.global_position).normalized()*23)
-	attackSpriteRef.position = (get_global_mouse_position()-self.global_position).normalized()*23
-
-func animswitch(animation):
-	if $Sprite/anim.current_animation != animation:
-		$Sprite/anim.play(animation)
-
-func lookLoop():
-	$"..".look_at(get_global_mouse_position())
-	if get_global_mouse_position().x-self.global_position.x < 0 :
+func lookLoop(mousePos=get_global_mouse_position()):
+#	var mousePos = get_global_mouse_position()
+	$"..".look_at(mousePos)
+	if mousePos.x-self.global_position.x < 0 :
 		if self.scale != Vector2(1,-1):
 			self.apply_scale(Vector2(1,-1))
-	if get_global_mouse_position().x-self.global_position.x > 0 :
+	if mousePos.x-self.global_position.x > 0 :
+		if self.scale != Vector2(1,1):
+			self.apply_scale(Vector2(1,-1))
+#	rpc_unreliable(get_tree().get_network_unique_id(),mousePos)
+
+remote func rlookLoop(id,point):
+	$"..".look_at(point)
+	if point.x-self.global_position.x < 0 :
+		if self.scale != Vector2(1,-1):
+			self.apply_scale(Vector2(1,-1))
+	if point.x-self.global_position.x > 0 :
 		if self.scale != Vector2(1,1):
 			self.apply_scale(Vector2(1,-1))

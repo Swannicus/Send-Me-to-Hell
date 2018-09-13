@@ -16,9 +16,6 @@ var SW = 4
 var S = 8
 var SE = 8
 func _ready():
-	randomize()
-	randomseed = randi()
-	print(str(randomseed))
 	music = load("res://music/Menu Music.wav")
 	$audio.set_stream(music)
 	$audio.play(0)

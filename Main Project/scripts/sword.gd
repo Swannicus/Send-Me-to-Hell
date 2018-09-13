@@ -1,11 +1,5 @@
 extends "res://scripts/weaponMelee.gd"
 
-signal attack_finished
-
-onready var anim = $CollisionShape2D/Sprite/anim
-
-enum STATES {idle, attack}
-var current_state = idle
 var attackSpriteLoad
 var attackspriteref
 
@@ -24,37 +18,21 @@ func _process(delta):
 	._process(delta)
 
 func _physics_process(delta):
+	if currentCooldown <= 0:
+		currentCooldown -= delta
 	._physics_process(delta)
 
-func attack():
+func attack(point):
 	#not called here
 	if currentCooldown <= 0:
-		_change_state("attack")
+		attackAction(point)
 		currentCooldown = cooldown
 
-func _change_state(new_state):
-	var current_state
-	var positionthing =Vector2(0,0)
-	if current_state != new_state:
-		current_state = new_state
-		match current_state:
-			"idle":
-				animswitch("idle")
-			"attack":
-				$sound.play(0)
-				animswitch("attack")
-				attackAction()
-				get_parent().get_parent().camShake(shakeValue,shakeDur)
-
-func attackAction():
+func attackAction(point):
 	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
-	get_parent().get_parent().add_child(attackSpriteRef)
-	attackSpriteRef.look_at(get_global_mouse_position())
-	attackSpriteRef.damage(damage,knockback,(get_global_mouse_position()-self.global_position).normalized()*23)
-	attackSpriteRef.position = (get_global_mouse_position()-self.global_position).normalized()*23
-
-func _on_anim_animation_finished(anim_name):
-	if anim_name == "idle":
-		return
-	_change_state(idle)
-	emit_signal("attack_finished")
+	$sound.play()
+	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
+	get_parent().get_parent().camShake(shakeValue,shakeDur)
+	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
+	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
+	attackSpriteRef.look_at(point)

@@ -15,7 +15,7 @@ var stun = 0
 func _ready():
 #	$anim.play("default")
 	movedir = dir.rand()
-	lookdir = movedir
+	lookdir.x = movedir.x
 	animswitch("walk")
 	health = 2
 	damager = $Area2D
@@ -28,7 +28,6 @@ func takedamage(damaget,knockbackt,source):
 	health = health-damaget
 	stun = 10
 	var directionkb = global_position - source
-	print(str(directionkb))
 	move_and_slide(knockbackt*directionkb.normalized(), Vector2(0,0))
 	if health <= 0:
 		$CollisionShape2D.disabled = true
@@ -37,10 +36,9 @@ func takedamage(damaget,knockbackt,source):
 		var type = randi()%4+4
 		var coindrop
 		var i = randi()%4
-		$"../../Floor".add_child(drop)
+		get_parent().add_child(drop)
 		drop.global_position = self.global_position
 		drop.settype(randi()%4+4)
-		print("Drop")
 		while i > 0:
 			i -= 1
 			coindrop = coinscene.instance()
@@ -51,7 +49,6 @@ func takedamage(damaget,knockbackt,source):
 		set_physics_process(false)
 		set_process(false)
 		return
-	print("Health",health)
 	animswitch2("damaged")
 
 func _physics_process(delta):
@@ -67,7 +64,7 @@ func direction_loop():
 		movetimer -= 1
 	if movetimer == 0 || is_on_wall():
 		movedir = dir.rand()
-		lookdir = movedir
+		lookdir.x = movedir.x
 		movetimer = movetimer_length
 		animswitch2("walkleft")
 #		animswitch("walk")
@@ -79,7 +76,6 @@ func attack_loop():
 	for body in overlappingbodies:
 		if not body.is_in_group("player"):
 			return
-		print("attackloop"+str(self))
 		body.takedamage(damage)
 	return
 

@@ -14,16 +14,14 @@ var point
 var trail
 export var traillength = 25
 
-func setup(direction,spd=boltspeed,dam=damage,kb=knockback):
+func setup(direction,pointSet,spd=boltspeed,dam=damage,kb=knockback):
 #	look_at(get_global_mouse_position())
-	boltspeed = spd ; damage = dam ; knockback = kb
-	angle = direction
-	look_at(angle)
-	moving = true
+	boltspeed = spd ; damage = dam ; knockback = kb ; angle = direction ; moving = true ; point = pointSet;
 
 
 func _ready():
 	set_process(false)
+	self.look_at(point)
 	trail = $Sprite/trail
 	trail.remove_point(0)
 	return
@@ -31,7 +29,8 @@ func _ready():
 func _process(delta):
 	decaytime += delta
 	if decaytime >= 1:
-		self.queue_free()
+		call_deferred("free")
+		#self.queue_free()
 
 func _physics_process(delta):
 	var overlappingbodies = get_overlapping_bodies()
@@ -46,7 +45,6 @@ func _physics_process(delta):
 	if not overlappingbodies:
 		return
 	for body in overlappingbodies:
-		print (str(body.get_groups()))
 		if body.is_in_group("wall"):
 			moving = false
 			set_physics_process(false)
@@ -58,7 +56,8 @@ func _physics_process(delta):
 		moving = false
 		$sound.play(0)
 		trail.queue_free()
-		body.add_child(self)
+		#get_parent().remove_child(self)
+		#body.add_child(self)
 		set_physics_process(false)
 		set_process(true)
 		if body.is_in_group("enemy"):

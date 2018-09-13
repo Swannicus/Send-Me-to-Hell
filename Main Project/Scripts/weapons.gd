@@ -55,8 +55,8 @@ func _change_state(new_state):
 		
 
 func _physics_process(delta):
-	if cooldown > 0:
-		cooldown -= 1
+	if cooldownValue > 0:
+		cooldownValue -= 1
 
 func _process(delta):
 	return

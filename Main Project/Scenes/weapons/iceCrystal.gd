@@ -14,17 +14,17 @@ var point
 var trail
 export var traillength = 25
 
-func setup(direction,spd=boltspeed,dam=damage,kb=knockback):
+func setup(direction,newPoint,spd=boltspeed,dam=damage,kb=knockback):
 #	look_at(get_global_mouse_position())
-	boltspeed = spd ; damage = dam ; knockback = kb
+	boltspeed = spd ; damage = dam ; knockback = kb; point = newPoint;
 	angle = direction
-	look_at(angle)
 	moving = true
 
 
 func _ready():
 	set_process(false)
 	trail = $trail
+	look_at(point)
 	trail.remove_point(0)
 	return
 

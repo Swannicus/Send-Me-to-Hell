@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/deathGore.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/deathPlay.gd" type="Script" id=2]
+[ext_resource path="res://scripts/deathPlay.gd" type="Script" id=2]
 [ext_resource path="res://sound/Water Balloon-SoundBible.com-1358039219.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -49,7 +49,6 @@ tracks/0/keys = {
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 4
-frame = 10
 script = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Region" ]
 

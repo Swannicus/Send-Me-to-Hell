@@ -32,6 +32,8 @@ onready var area = $pickuparea
 func _ready():
 #	set_process(true)
 #	RayNode = get_node("RayCast2D")
+	add_child(sprite)
+	sprite.global_position = global_position
 	weapon0 = load("res://Scenes/weapons/crossbow.tscn")
 	weapon1 = load("res://Scenes/weapons/sword.tscn")
 	add_child(weapon0.instance())
@@ -42,8 +44,6 @@ func _ready():
 
 func setCharacter(character):
 	sprite = load("res://Scenes/"+character+"Sprite.tscn").instance()
-	add_child(sprite)
-	sprite.global_position = global_position
 
 func movement_loop(movedir,speed):
 	var motion = movedir.normalized() * speed
@@ -109,7 +109,8 @@ func controls_loop():
 		lookdir.x = -1
 		animswitch("idleright")
 	if attack:
-		$WeaponParent/weapon.attack()
+		$WeaponParent/weapon.attack(get_global_mouse_position())
+		rpc("syncAttack",get_global_mouse_position())
 	if swap:
 		.remove_child($WeaponParent)
 		.add_child(weapon1.instance())
@@ -117,6 +118,7 @@ func controls_loop():
 		weaponswapbuffer = weapon1
 		weapon1 = weapon0
 		weapon0 = weaponswapbuffer
+		rpc("syncSwap")
 		swapBool = true
 	pickUpBool = false
 	if grab:
@@ -133,7 +135,7 @@ func controls_loop():
 						grabWeapon(i,g)
 					"crossbowLightning":
 						grabWeapon(i,g)
-	rpc_unreliable("sync",movedir,lookdir,player_id,swapBool,pickUpBool)
+	rpc_unreliable("syncP",movedir,lookdir,player_id,swapBool,pickUpBool,get_global_mouse_position(),global_position,health)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
 
@@ -173,18 +175,27 @@ func camShake(offset,duration):
 	shakeOffset += offset
 	shakeDur += duration
 
-remote func sync(moved,lookd,id,swapped,pickup):
+remote func syncP(moved,lookd,id,swapped,pickup,point,gPos,nHealth):
 	movedir = moved
 	lookdir = lookd
-	if swapped:
-		.remove_child($WeaponParent)
-		.add_child(weapon1.instance())
-		weaponswapbuffer = weapon1
-		weapon1 = weapon0
-		weapon0 = weaponswapbuffer
+	var mismatch = global_position-gPos
+	$WeaponParent/weapon.lookLoop(point)
+	if mismatch.length() > 10:
+		global_position = gPos
+	health = nHealth
 #	if pickup:
 #		pickup some garbage
 
+remote func syncSwap():
+	.remove_child($WeaponParent)
+	.add_child(weapon1.instance())
+	$WeaponParent/pickUpRadius.queue_free()
+	weaponswapbuffer = weapon1
+	weapon1 = weapon0
+	weapon0 = weaponswapbuffer
+
+remote func syncAttack(point):
+	$WeaponParent/weapon.attack(point)
 
 func _on_pickuparea_area_entered(area):
 	var overlaps = $pickuparea.get_overlapping_areas()

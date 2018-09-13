@@ -17,15 +17,15 @@ func _process(delta):
 func _physics_process(delta):
 	._physics_process(delta)
 
-func attack():
+func attack(point):
 	var bolt = boltscene.instance()
-	var angle = get_global_mouse_position() - $Sprite/muzzle.global_position
+	var angle = point - $Sprite/muzzle.global_position
 	if currentCooldown <= 0:
 		$Sound.play(0)
-		bolt.setup(angle.normalized())
+		bolt.setup(angle.normalized(),point)
 		bolt.global_position = $Sprite/muzzle.global_position
 		get_parent().get_parent().get_parent().add_child(bolt)
-		rpc("remote_attack",get_parent().get_parent().player_id,get_global_mouse_position())
+		rpc("remote_attack",get_parent().get_parent().player_id,point)
 		currentCooldown = cooldown
 
 func remote_attack(id,target):
