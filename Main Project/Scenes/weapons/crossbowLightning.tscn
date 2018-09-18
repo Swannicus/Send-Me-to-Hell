@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scripts/crossbow.gd" type="Script" id=1]
+[ext_resource path="res://scripts/crossbowLightning.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/rangedweapons.png" type="Texture" id=2]
 [ext_resource path="res://sound/384906__ali-6868__crossbow-fire-1.wav" type="AudioStream" id=3]
 
@@ -27,7 +27,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="WeaponParent" type="Node2D"]
+[node name="WeaponParent" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 

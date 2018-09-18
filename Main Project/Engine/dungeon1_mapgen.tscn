@@ -1,14 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Engine/dungeon1_mapgen.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tiles/d1ts.tres" type="TileSet" id=2]
-[ext_resource path="res://Scenes/weapons/axe.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/weapons/sword.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/weapons/swordIce.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/weapons/crossbowLightning.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/treasureChest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/weapons/sword.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/weapons/swordIce.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/weapons/crossbowLightning.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/treasureChest.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -56,16 +55,12 @@ format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell", "Transform" ]
 
-[node name="WeaponParent" parent="Walls" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 10.2518, 48.6101 )
-
-[node name="WeaponParent3" parent="Walls" index="1" instance=ExtResource( 4 )]
+[node name="WeaponParent3" parent="Walls" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 86.7279, 43.677 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Corners" type="TileMap" parent="Walls" index="2"]
+[node name="Corners" type="TileMap" parent="Walls" index="1"]
 
 mode = 0
 tile_set = ExtResource( 2 )
@@ -86,15 +81,15 @@ format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell" ]
 
-[node name="WeaponParent2" parent="Walls" index="3" instance=ExtResource( 5 )]
+[node name="WeaponParent2" parent="Walls" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 58.149, 54.1351 )
 
-[node name="WeaponParent4" parent="Walls" index="4" instance=ExtResource( 6 )]
+[node name="WeaponParent4" parent="Walls" index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 95.7518, 71.5078 )
 
-[node name="Node2D" parent="." index="2" instance=ExtResource( 7 )]
+[node name="Node2D" parent="." index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 57.4227, 102.317 )
 

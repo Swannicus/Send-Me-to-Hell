@@ -28,6 +28,9 @@ func attack(point):
 		attackAction(point)
 		currentCooldown = cooldown
 
+func pickUp():
+	return("res://Scenes/weapons/sword.tscn")
+
 func attackAction(point):
 	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
 	$sound.play()

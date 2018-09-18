@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 1 )
 
-[node name="Bolt" type="Area2D" index="0"]
+[node name="Bolt" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -21,7 +21,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-boltspeed = 450
+boltspeed = 700
 traillength = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]

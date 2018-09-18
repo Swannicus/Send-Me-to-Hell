@@ -16,9 +16,9 @@ var SW = 4
 var S = 8
 var SE = 8
 func _ready():
-	music = load("res://music/Menu Music.wav")
-	$audio.set_stream(music)
-	$audio.play(0)
+	music = $audio
+	music.set_stream(load("res://music/Menu Music.wav"))
+	music.play(0)
 	wallArraySetter()
 
 func wallArraySetter():

@@ -1,7 +1,7 @@
 #Bolt.gd
 extends Area2D
 
-export var boltspeed = 450
+export var boltspeed = 700
 var speedx = 1
 var speedy = 1
 var motion = Vector2()

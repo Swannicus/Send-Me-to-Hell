@@ -16,7 +16,7 @@ func _ready():
 #	$anim.play("default")
 	movedir = dir.rand()
 	lookdir.x = movedir.x
-	animswitch("walk")
+	animswitch2("walk")
 	health = 2
 	damager = $Area2D
 
@@ -55,8 +55,8 @@ func _physics_process(delta):
 	if stun > 0:
 		stun -= 1
 		return
-	movement_loop(movedir,60)
 	attack_loop()
+	movement_loop(movedir,60)
 	direction_loop()
 
 func direction_loop():

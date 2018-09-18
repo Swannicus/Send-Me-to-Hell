@@ -132,20 +132,20 @@ func _on_exitButton_pressed():
 
 func _on_startButton_pressed():
 	start_server(int($Panel/portbar.get_text()))
-	#randomize()
+	randomize()
 	var currentSeed = randi()
-#	seed(currentSeed)
+	seed(currentSeed)
 	seed(1)
 	print("seed"+str(currentSeed))
-#	print("seeded seed"+str(seed(currentSeed)))
+	print("seeded seed"+str(seed(currentSeed)))
 	rpc("_remote_start",currentSeed)
 	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
 
 	pass # replace with function body
 
 remote func _remote_start(passSeed):
-#	seed(passSeed)
+	seed(passSeed)
 	seed(1)
 	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
 	print("seed"+str(passSeed))
-#	print("seeded seed"+str(seed()))
+	print("seeded seed"+str(seed()))

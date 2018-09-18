@@ -28,14 +28,17 @@ func attack(point):
 		attackAction(point)
 		currentCooldown = cooldown
 
+func pickUp():
+	return("res://Scenes/weapons/swordIce.tscn")
+
 func attackAction(point):
 	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
 	$sound.play()
 	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
 	get_parent().get_parent().camShake(shakeValue,shakeDur)
-	attackSpriteRef.look_at(point)
 	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
-	attackSpriteRef.position = (point-self.global_position).normalized()*23
+	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
+	attackSpriteRef.look_at(point)
 	var proj = projScene.instance()
 	var angle = point - $".."/muzzle.global_position
 	proj.setup(angle.normalized(),point)

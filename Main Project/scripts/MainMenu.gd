@@ -5,9 +5,8 @@ extends MarginContainer
 # var b = "textvar"
 
 func _ready():
-	var music = get_node("/root/Globals/audio")
-	music.stream = load("res://music/Menu Music.wav")
-	music.play(0)
+	Globals.music.stream = load("res://music/Menu Music.wav")
+	Globals.music.play(0)
 	pass
 
 #func _process(delta):

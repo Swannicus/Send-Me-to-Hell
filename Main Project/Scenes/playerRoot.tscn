@@ -19,7 +19,7 @@ radius = 6.90637
 custom_solver_bias = 0.0
 radius = 32.3464
 
-[node name="Control" type="KinematicBody2D" index="0" groups=[
+[node name="Control" type="KinematicBody2D" groups=[
 "player",
 ]]
 

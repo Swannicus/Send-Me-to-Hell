@@ -28,6 +28,9 @@ func attack(point):
 		rpc("remote_attack",get_parent().get_parent().player_id,point)
 		currentCooldown = cooldown
 
+func pickUp():
+	return("res://Scenes/weapons/crossbow.tscn")
+
 func remote_attack(id,target):
 	var bolt = boltscene.instance()
 	var angle = target - $Sprite/muzzle.global_position

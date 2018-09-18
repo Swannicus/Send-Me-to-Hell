@@ -123,18 +123,8 @@ func controls_loop():
 	pickUpBool = false
 	if grab:
 		for i in overLappingAreas:
-			for g in i.get_groups():
-				match g:
-					"axe":
-						grabWeapon(i,g)
-					"sword":
-						grabWeapon(i,g)
-					"crossbow":
-						grabWeapon(i,g)
-					"swordIce":
-						grabWeapon(i,g)
-					"crossbowLightning":
-						grabWeapon(i,g)
+			if i.has_method("pickUp"):
+				grabWeapon(i,i.pickUp())
 	rpc_unreliable("syncP",movedir,lookdir,player_id,swapBool,pickUpBool,get_global_mouse_position(),global_position,health)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
@@ -152,7 +142,7 @@ func grabWeapon(i,g):
 	lastDropped.global_position = self.global_position
 	get_parent().add_child(lastDropped)
 	pickUpBool = true
-	weapon0 = load("res://Scenes/weapons/"+g+".tscn")
+	weapon0 = load(g)
 	.remove_child($WeaponParent)
 	.add_child(weapon0.instance())
 	$WeaponParent/pickUpRadius.queue_free()
