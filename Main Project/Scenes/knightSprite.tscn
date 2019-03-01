@@ -78,14 +78,14 @@ tracks/0/keys = {
 "values": [ 34, 35, 36, 37 ]
 }
 
-[node name="Sprite" type="Sprite" index="0"]
+[node name="Sprite" type="Sprite"]
 
 texture = ExtResource( 1 )
 vframes = 13
 hframes = 4
 frame = 41
 region_rect = Rect2( 311.25, 43.5, 0, 0 )
-_sections_unfolded = [ "Animation", "Region" ]
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
 
 [node name="anim" type="AnimationPlayer" parent="." index="0"]
 

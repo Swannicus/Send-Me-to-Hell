@@ -14,6 +14,8 @@ func _ready():
 	knockback = 750
 	shakeValue = 20
 	shakeDur = 5
+	ammoCost = 1
+	ammoType = 4
 	attackSpriteLoad = load("res://Scenes/weapons/attacksprite.tscn")
 
 func _process(delta):
@@ -31,16 +33,13 @@ func attack(point):
 func pickUp():
 	return("res://Scenes/weapons/swordIce.tscn")
 
-func attackAction(point):
-	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
-	$sound.play()
-	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
-	get_parent().get_parent().camShake(shakeValue,shakeDur)
-	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
-	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
-	attackSpriteRef.look_at(point)
+func extraAttack(point):
 	var proj = projScene.instance()
-	var angle = point - $".."/muzzle.global_position
+	var angle = point - $muzzle.global_position
+	if get_parent().get_parent().ammo4 <= ammoCost:
+		return
+	get_parent().get_parent().ammo4 -= ammoCost
+#	get_parent().get_parent().hud.get_node("blue").set_value(get_parent().get_parent().ammo4)
 	proj.setup(angle.normalized(),point)
-	proj.global_position = $".."/muzzle.global_position
+	proj.global_position = $muzzle.global_position
 	get_parent().get_parent().get_parent().add_child(proj)

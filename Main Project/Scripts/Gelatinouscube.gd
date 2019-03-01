@@ -16,7 +16,7 @@ func _ready():
 #	$anim.play("default")
 	movedir = dir.rand()
 	lookdir.x = movedir.x
-	animswitch2("walk")
+	animswitch2("idle")
 	health = 2
 	damager = $Area2D
 

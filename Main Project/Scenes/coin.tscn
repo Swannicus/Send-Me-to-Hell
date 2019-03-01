@@ -33,8 +33,8 @@ tracks/0/keys = {
 }
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
-"gold",
 "pickup",
+"gold",
 ]]
 
 input_pickable = false
@@ -63,8 +63,8 @@ _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="." index="1" groups=[
-"gold",
 "pickup",
+"gold",
 ]]
 
 input_pickable = true

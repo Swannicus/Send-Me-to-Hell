@@ -1,9 +1,8 @@
 extends Node2D
-var reagent = 1
+export var reagent = 1
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+	$Sprite.set_frame(reagent+3)
 	pass
 
 #func _process(delta):

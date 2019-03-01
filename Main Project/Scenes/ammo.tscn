@@ -13,9 +13,9 @@ radius = 4.47858
 custom_solver_bias = 0.0
 radius = 12.9059
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
-"ammo",
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "pickup",
+"ammo",
 ]]
 
 input_pickable = false
@@ -38,6 +38,7 @@ angular_velocity = 0.0
 angular_damp = 128.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Collision", "Linear" ]
+reagent = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

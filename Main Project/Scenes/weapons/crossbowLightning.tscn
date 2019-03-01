@@ -27,7 +27,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="WeaponParent" type="Node2D" index="0"]
+[node name="WeaponParent" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -72,7 +72,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="pickUpRadius" type="Area2D" parent="." index="1" groups=[
+[node name="pickUpRadius" type="Area2D" parent="weapon" index="2" groups=[
 "weapon",
 "crossbowLightning",
 ]]
@@ -85,7 +85,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pickUpRadius" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon/pickUpRadius" index="0"]
 
 position = Vector2( 23.0721, 0.482188 )
 scale = Vector2( 1.09889, 0.926516 )

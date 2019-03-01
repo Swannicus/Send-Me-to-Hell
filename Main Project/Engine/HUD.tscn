@@ -1,129 +1,25 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Engine/gameOver.gd" type="Script" id=1]
-[ext_resource path="res://scripts/pauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/HUDpieces/Health1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/HUDpieces/Health2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/HUDpieces/Health3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/HUDpieces/Gold1.png" type="Texture" id=4]
+[ext_resource path="res://Engine/gameOver.gd" type="Script" id=5]
+[ext_resource path="res://scripts/pauseMenu.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/HUDpieces/purple1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/HUDpieces/purple2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/HUDpieces/purple3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/HUDpieces/sulfur1.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/HUDpieces/sulfur2.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/HUDpieces/sulfur3.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/HUDpieces/green1.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/HUDpieces/green2.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/HUDpieces/green3.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/HUDpieces/blue1.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/HUDpieces/blue2.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/HUDpieces/blue3.png" type="Texture" id=18]
 
-[sub_resource type="ImageTexture" id=1]
-
-flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
-size = Vector2( 0, 0 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-bg_color = Color( 1, 0, 0, 1 )
-draw_center = true
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-border_color = Color( 0.8, 0.8, 0.8, 1 )
-border_blend = false
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-
-[sub_resource type="StyleBoxFlat" id=3]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-bg_color = Color( 0.140625, 0, 0, 1 )
-draw_center = true
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-border_color = Color( 0.8, 0.8, 0.8, 1 )
-border_blend = false
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-
-[sub_resource type="StyleBoxFlat" id=4]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-bg_color = Color( 1, 0.890625, 0, 1 )
-draw_center = true
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-border_color = Color( 0.8, 0.8, 0.8, 1 )
-border_blend = false
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-
-[sub_resource type="StyleBoxFlat" id=5]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-bg_color = Color( 1, 0.25, 0.900391, 1 )
-draw_center = true
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-border_color = Color( 0.8, 0.8, 0.8, 1 )
-border_blend = false
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-corner_detail = 8
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-shadow_color = Color( 0, 0, 0, 0.6 )
-shadow_size = 0
-anti_aliasing = true
-anti_aliasing_size = 1
-
-[node name="HUD" type="CanvasLayer" index="0"]
+[node name="HUD" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -131,82 +27,22 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Healthbar" type="TextureProgress" parent="." index="0"]
+[node name="healthBar" type="TextureProgress" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 23.0
+margin_top = 9.0
+margin_right = 164.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-texture_under = null
-texture_over = null
-texture_progress = SubResource( 1 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Textures" ]
-
-[node name="Goldbar" type="TextureProgress" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-texture_under = null
-texture_over = null
-texture_progress = null
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-
-[node name="Temphealthbar" type="ProgressBar" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 29.0
-margin_top = 14.0
-margin_right = 111.0
-margin_bottom = 28.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 min_value = 0.0
 max_value = 20.0
 step = 1.0
@@ -214,17 +50,24 @@ page = 0.0
 value = 20.0
 exp_edit = false
 rounded = true
-percent_visible = false
-_sections_unfolded = [ "Margin", "Percent", "custom_styles" ]
+texture_under = ExtResource( 1 )
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="number" type="RichTextLabel" parent="Temphealthbar" index="0"]
+[node name="number" type="RichTextLabel" parent="healthBar" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 82.0
-margin_bottom = 14.0
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 116.0
+margin_bottom = 17.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -248,25 +91,22 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="tempgoldbar" type="ProgressBar" parent="." index="3"]
+[node name="goldBar" type="TextureProgress" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 29.0
+margin_left = 23.0
 margin_top = 29.0
-margin_right = 111.0
-margin_bottom = 43.0
+margin_right = 164.0
+margin_bottom = 47.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 4 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+size_flags_vertical = 1
 min_value = 0.0
 max_value = 20.0
 step = 1.0
@@ -274,17 +114,24 @@ page = 0.0
 value = 0.0
 exp_edit = false
 rounded = true
-percent_visible = false
-_sections_unfolded = [ "Percent", "custom_styles" ]
+texture_under = ExtResource( 1 )
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 4 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Percent", "Textures", "custom_styles" ]
 
-[node name="number" type="RichTextLabel" parent="tempgoldbar" index="0"]
+[node name="number" type="RichTextLabel" parent="goldBar" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 82.0
-margin_bottom = 14.0
+margin_left = 33.0
+margin_top = 3.0
+margin_right = 115.0
+margin_bottom = 17.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -308,131 +155,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="tempammo" type="ProgressBar" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 30.0
-margin_top = 45.0
-margin_right = 41.0
-margin_bottom = 59.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-min_value = 0.0
-max_value = 250.0
-step = 1.0
-page = 0.0
-value = 100.0
-exp_edit = false
-rounded = true
-percent_visible = false
-_sections_unfolded = [ "Grow Direction", "Percent", "custom_styles" ]
-
-[node name="tempammo2" type="ProgressBar" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 44.0
-margin_top = 45.0
-margin_right = 55.0
-margin_bottom = 59.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-min_value = 0.0
-max_value = 250.0
-step = 1.0
-page = 0.0
-value = 100.0
-exp_edit = false
-rounded = true
-percent_visible = false
-_sections_unfolded = [ "Grow Direction", "Percent", "custom_styles" ]
-
-[node name="tempammo3" type="ProgressBar" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 58.0
-margin_top = 45.0
-margin_right = 69.0
-margin_bottom = 59.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-min_value = 0.0
-max_value = 250.0
-step = 1.0
-page = 0.0
-value = 100.0
-exp_edit = false
-rounded = true
-percent_visible = false
-_sections_unfolded = [ "Grow Direction", "Percent", "custom_styles" ]
-
-[node name="tempammo4" type="ProgressBar" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 72.0
-margin_top = 45.0
-margin_right = 83.0
-margin_bottom = 59.0
-grow_horizontal = 0
-grow_vertical = 0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-min_value = 0.0
-max_value = 250.0
-step = 1.0
-page = 0.0
-value = 100.0
-exp_edit = false
-rounded = true
-percent_visible = false
-_sections_unfolded = [ "Grow Direction", "Percent", "custom_styles" ]
-
-[node name="gameOverScreen" type="VSplitContainer" parent="." index="8"]
+[node name="gameOverScreen" type="VSplitContainer" parent="." index="2"]
 
 editor/display_folded = true
 visible = false
@@ -506,7 +229,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="Retry" type="Button" parent="gameOverScreen/Container" index="0"]
 
@@ -560,7 +283,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="pauseMenu" type="Container" parent="." index="9"]
+[node name="pauseMenu" type="Container" parent="." index="3"]
 
 pause_mode = 2
 visible = false
@@ -578,7 +301,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="pauseMenu" index="0"]
@@ -692,13 +415,141 @@ text = "Quit"
 flat = false
 align = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="10"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="purple" type="TextureProgress" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 24.0
+margin_top = 49.0
+margin_right = 51.0
+margin_bottom = 85.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="yellow" type="TextureProgress" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 54.0
+margin_top = 49.0
+margin_right = 93.0
+margin_bottom = 85.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 11 )
+texture_progress = ExtResource( 12 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="green" type="TextureProgress" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 96.0
+margin_top = 49.0
+margin_right = 141.0
+margin_bottom = 85.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 13 )
+texture_over = ExtResource( 14 )
+texture_progress = ExtResource( 15 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="blue" type="TextureProgress" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 143.0
+margin_top = 49.0
+margin_right = 164.0
+margin_bottom = 82.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 16 )
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 18 )
+fill_mode = 3
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Rect", "Textures" ]
 
 [connection signal="pressed" from="gameOverScreen/Container/Retry" to="gameOverScreen/Container" method="_on_Retry_pressed"]
 

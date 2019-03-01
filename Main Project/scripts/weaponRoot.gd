@@ -8,6 +8,7 @@ var shakeValue = 20
 var shakeDur = 5
 var ammoType = 0
 var ammoCost = 0
+onready var sound = $sound
 
 func _ready():
 	pass
@@ -27,7 +28,7 @@ func attack(point):
 
 func attackAction(point):
 	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
-	$sound.play()
+	sound.play()
 	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
 	get_parent().get_parent().camShake(shakeValue,shakeDur)
 	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)

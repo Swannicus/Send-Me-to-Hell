@@ -1,0 +1,50 @@
+To Do List:
+-Make multiplayer not desync instantly
+-Options menu
+-Bezier Lightning gun
+-Fix room connections
+-Fix gelatinous cube damage
+-Goblin enemy
+-Proper level ups
+-Hell Pearl
+
+AGDG Demo 2
+Controls:
+Movement - WASD
+Swap Weapons - Q
+Pick up Weapons - E
+Attack - Left click
+Menu - Escape
+
+Changelog:
+-new hud
+-ammo actually works
+-ice sword requires mercury (blue ammo)
+-code optimization
+-code spaghettization
+-I made it to a fucking demo day
+
+func _on_pickuparea_area_entered(area):
+	var overlaps = $pickuparea.get_overlapping_areas()
+	for a in overlaps:
+		if area.is_in_group("ammo"):
+			#increase ammo
+			#play pick up noise
+			$ammonoise.play()
+			match area.reagent:
+				1: ammo1 += 8
+				2: ammo2 += 8
+				3: ammo3 += 8
+				4: ammo4 += 8
+			$HUD/purple.set_value(ammo1)
+			$HUD/yellow.set_value(ammo2)
+			$HUD/green.set_value(ammo3)
+			$HUD/blue.set_value(ammo4)
+			area.get_parent().queue_free()
+		if area.is_in_group("chest"):
+			area.get_parent().open()
+		if area.is_in_group("gold"):
+			$coinnoise.play()
+			gold += 1
+			$HUD/goldBar.set_value(gold)
+			area.get_parent().queue_free()

@@ -135,7 +135,7 @@ func _on_startButton_pressed():
 	randomize()
 	var currentSeed = randi()
 	seed(currentSeed)
-	seed(1)
+#	seed(1)
 	print("seed"+str(currentSeed))
 	print("seeded seed"+str(seed(currentSeed)))
 	rpc("_remote_start",currentSeed)
@@ -145,7 +145,7 @@ func _on_startButton_pressed():
 
 remote func _remote_start(passSeed):
 	seed(passSeed)
-	seed(1)
+#	seed(1)
 	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
 	print("seed"+str(passSeed))
 	print("seeded seed"+str(seed()))

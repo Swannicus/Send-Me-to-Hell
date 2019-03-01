@@ -29,9 +29,9 @@ var cornerGrid = []
 
 func _ready():
 	var music = get_node("/root/Globals/audio")
-	Walls = $Walls
-	Floor = $Floor
-	Corners = $Walls/Corners
+	Walls = $Nav/Walls
+	Floor = $Nav/Floor
+	Corners = $Nav/Walls/Corners
 	slime = load("res://Scenes/Gelatinouscube.tscn")
 	gob = load("res://Scenes/Gelatinouscube.tscn")
 	music.stream = load("res://music/Seb Song.wav")
@@ -195,5 +195,5 @@ func spawn_player(id):
 		player.set_network_master(id)
 		player.player_id = id
 		player.controlBoolean = true
-	$Walls.add_child(player)
+	Walls.add_child(player)
 	player.set_position(Vector2(16,16))
