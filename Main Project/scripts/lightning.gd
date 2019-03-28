@@ -10,7 +10,8 @@ func _ready():
 	curve.add_point(Vector2(1,1))
 	pass
 
-func createLightning(sp,ep,c=Color(0.2, 1.0, .7, .8)):
+func createLightning(sp,ep,c=color):
+	color = c
 	curve.clear_points()
 	curve.add_point(sp)
 	curve.add_point(ep)

@@ -10,11 +10,11 @@ var damager
 export var damage = 1
 const ammoscene = preload("res://Scenes/ammo.tscn")
 const coinscene = preload("res://Scenes/coin.tscn")
-var stun = 0
 
 func _ready():
+	random.setSeed(get_name())
 #	$anim.play("default")
-	movedir = dir.rand()
+	movedir = Vector2(random.randRangeInt(-1,1),random.randRangeInt(-1,1))
 	lookdir.x = movedir.x
 	animswitch2("idle")
 	health = 2
@@ -38,13 +38,13 @@ func takedamage(damaget,knockbackt,source):
 		var i = randi()%4
 		get_parent().add_child(drop)
 		drop.global_position = self.global_position
-		drop.settype(randi()%4+4)
+		drop.settype(random.randRangeInt(4,7))
 		while i > 0:
 			i -= 1
 			coindrop = coinscene.instance()
 			get_parent().add_child(coindrop)
 			coindrop.global_position = self.global_position
-			coindrop.apply_impulse(Vector2(0,0),Vector2(randf()*401-200,randf()*401-200))
+			coindrop.apply_impulse(Vector2(0,0),Vector2(random.randFloat()*401-200,random.randFloat()*401-200))
 		$soundDeath.play(0)
 		set_physics_process(false)
 		set_process(false)
@@ -63,7 +63,7 @@ func direction_loop():
 	if movetimer > 0:
 		movetimer -= 1
 	if movetimer == 0 || is_on_wall():
-		movedir = dir.rand()
+		movedir = Vector2(random.randRangeFloat(-1,1),random.randRangeFloat(-1,1))
 		lookdir.x = movedir.x
 		movetimer = movetimer_length
 		animswitch2("walkleft")

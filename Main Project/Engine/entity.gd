@@ -2,6 +2,8 @@ extends KinematicBody2D
 var spritedir = "down"
 var dead = false
 var health = 1
+var stun = 0
+var random = preload("res://Engine/randomLib.gd").new()
 	
 func spritedir_loop(lookdir):
 	match lookdir:

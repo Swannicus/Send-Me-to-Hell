@@ -1,5 +1,5 @@
 #extends "res://Engine/entity.gd"
-extends Node2D
+extends KinematicBody2D
 var player_id = 0
 var weapon0
 var weapon1

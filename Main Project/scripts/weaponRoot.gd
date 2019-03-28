@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 var cooldown = 1
 var currentCooldown = 0
 var weaponID = 0
@@ -34,9 +34,9 @@ func attackAction(point):
 	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
 	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
 	attackSpriteRef.look_at(point)
+	
 
 func lookLoop(mousePos=get_global_mouse_position()):
-#	var mousePos = get_global_mouse_position()
 	$"..".look_at(mousePos)
 	if mousePos.x-self.global_position.x < 0 :
 		if self.scale != Vector2(1,-1):
