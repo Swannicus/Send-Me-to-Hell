@@ -71,6 +71,17 @@ func randArray(array):
         if x < cumulative_weight:
             return t[1]
  
+func randDir():
+	var d = randRangeInt(1,4)
+	match d:
+		1:
+			return Vector2(-1,0)
+		2:
+			return Vector2(1,0)
+		3:
+			return Vector2(0,1)
+		4:
+			return Vector2(0,-1)
  
 func setSeed(input):
     var new_seed = -1
