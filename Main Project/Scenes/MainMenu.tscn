@@ -157,7 +157,7 @@ text = "Changelog:
 -code optimization
 -code spaghettization
 -I made it to a fucking demo day
--You can connect in multiplayer and it doesn't desync so hard
+-You can connect in multiplayer but there are numerous bugs, including instantly desynchronizing enemies
 "
 scroll_active = false
 

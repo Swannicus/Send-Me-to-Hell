@@ -4,15 +4,21 @@ var roomArray = []
 var tileSet = {}
 var random = preload("res://Engine/randomLib.gd").new()
 var monsterList = [["Cube",0.7,"res://Scenes/Gelatinouscube.tscn",100],["Goblin",0,"res://Scenes/Goblin.tscn",200]]
+var Walls
+var Floor
+var Corners
+var cornerGrid = []
 
-class monsterBlock:
-	static func sort(a,b):
-		if a[1] > b[1]:
-			return true
-		return false
-
+class room:
+	var roomTiles= {}
+	var origin= Vector2(0,0)
+	var points= 0
+	var special= 0
 
 func _ready():
+	Walls = $Nav/Walls
+	Floor = $Nav/Floor
+	Corners = $Nav/Walls/Corners
 	generateDungeon(5)
 	for i in tileSet:
 		_placeTile(i)
@@ -26,11 +32,13 @@ func _spawnMonsters(room,monsterlist,points):
 		monsterList.sort_custom(monsterBlock,"sort")
 		for monster in monsterList:
 			if random.randFloat() < monster.chance and points > monster.points:
-				spawn(monster)
+				spawn(monster,room.randomTile)
 				points -= monster.points
 
-func spawn(monster):
-	load("res://Scenes/Gelatinouscube.tscn").instance()
+func spawn(monster,tile):
+	var gelatinousCube = load("res://Scenes/Gelatinouscube.tscn").instance()
+	gelatinousCube.global_position = Floor.map_to_world(tile)
+	Walls.add_child(gelatinousCube)
 
 func generateLevel(rooms,method,distance=15):
 	tileSet = {}
