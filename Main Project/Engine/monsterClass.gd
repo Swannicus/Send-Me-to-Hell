@@ -1,21 +1,11 @@
 extends Node
 
-class monsterBlock:
-	var path = "FILEPATH"
-	var points = 10
-	var chance = 1
-	static func sort(a,b):
-		if a[1] > b[1]:
-			return true
-		return false
-
-class gelatinousCube extends monsterBlock:
-#	path = "res://Scenes/Gelatinouscube.tscn"
-#	monsterBlock.path = "res://Scenes/Gelatinouscube.tscn"
-	func _init():
-		path = "jellycubepath"
-	var nothing = "nothing"
-
 func _ready():
-	print(gelatinousCube.path)
-	pass
+	var set = {}
+	var set2 = {}
+	set.add(Vector2(0,0))
+	set.add(Vector2(0,1))
+	set2.add(Vector2(0,1))
+	set2.add(Vector2(0,2))
+	set.union(set2)
+	print(str(set2))

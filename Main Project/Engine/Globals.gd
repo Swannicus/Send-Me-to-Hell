@@ -39,3 +39,29 @@ func wallArraySetter():
 	wallArray[13] = 9
 	wallArray[14] = 15
 	wallArray[15] = 12
+
+class monsterBlock:
+	var path = "FILEPATH"
+	var points = 10
+	var chance = 1
+	static func sort(a,b):
+		if a[1] > b[1]:
+			return true
+		return false
+
+class gelatinousCube extends monsterBlock:
+	func _init():
+		path = "res://Scenes/Gelatinouscube.tscn"
+		chance = 5
+		
+
+class skeletonBasic extends monsterBlock:
+	func _init():
+		path = "res://Scenes/skeletonBasic.tscn"
+		chance = 10
+		points = 15
+
+class goblin extends monsterBlock:
+	func _init():
+		path = "res://Scenes/goblin.tscn"
+

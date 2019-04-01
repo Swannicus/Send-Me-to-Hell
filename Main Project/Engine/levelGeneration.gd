@@ -3,7 +3,7 @@ extends Node2D
 var roomArray = []
 var tileSet = {}
 var random = preload("res://Engine/randomLib.gd").new()
-var monsterList = [["Cube",0.7,"res://Scenes/Gelatinouscube.tscn",100],["Goblin",0,"res://Scenes/Goblin.tscn",200]]
+var monsterList = []
 var Walls
 var Floor
 var Corners
@@ -14,6 +14,9 @@ class room:
 	var origin= Vector2(0,0)
 	var points= 0
 	var special= 0
+	func randomTile():
+		roomTiles
+
 
 func _ready():
 	Walls = $Nav/Walls
@@ -28,11 +31,17 @@ func _placeTile(tile):
 	pass
 
 func _spawnMonsters(room,monsterlist,points):
+	var totalChance = 0
+	var roll = 0
+	for monster in monsterList:
+		totalChance += monster.chance
 	while points > 0:
-		monsterList.sort_custom(monsterBlock,"sort")
+		roll = random.randRangeInt(0,totalChance)
 		for monster in monsterList:
-			if random.randFloat() < monster.chance and points > monster.points:
-				spawn(monster,room.randomTile)
+			if roll > monster.chance:
+				roll -= monster.chance
+			else:
+				spawn(monster,room.randomTile())
 				points -= monster.points
 
 func spawn(monster,tile):
@@ -49,6 +58,10 @@ func generateLevel(rooms,method,distance=15):
 		roomArray.append(i,distance*i)
 		i +=1
 	return
+
+func dungeonMonsters():
+	monsterList.append(Globals.gelatinousCube.new())
+	monsterList.append(Globals.goblin.new())
 
 func generateDungeon(rooms):
 	var i = rooms
