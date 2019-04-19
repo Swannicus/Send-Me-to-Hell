@@ -138,8 +138,6 @@ func controls_loop():
 	rpc_unreliable("syncP",movedir,lookdir,player_id,swapBool,pickUpBool,get_global_mouse_position(),global_position,health)
 	$Camera2D.current = true
 	$WeaponParent/weapon.lookLoop()
-	
-
 
 func animswitch(animation):
 	var newanim = str(animation)

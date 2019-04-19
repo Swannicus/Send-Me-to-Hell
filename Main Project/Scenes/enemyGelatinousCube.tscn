@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/enemyGelatinousCube.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GelatinousCube.png" type="Texture" id=2]
@@ -192,12 +192,14 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12.6252, 12.0632 )
 
+[sub_resource type="CircleShape2D" id=9]
+radius = 88.118
+
 [node name="RigidBody2D" type="RigidBody2D"]
 mode = 2
 linear_damp = 1.19
 angular_damp = 128.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Linear" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -217,12 +219,17 @@ anims/idle = SubResource( 5 )
 anims/walkleft = SubResource( 6 )
 anims/walkright = SubResource( 7 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="damageBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damageBox"]
 shape = SubResource( 8 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 bus = "SFX"
+
+[node name="detectionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectionRadius"]
+shape = SubResource( 9 )
 

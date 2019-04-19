@@ -27,7 +27,7 @@ remote func _on_Retry_Button_button_down(sent=false):
 	if not sent:
 		rpc_unreliable("_on_Retry_Button_button_down",true)
 	get_tree().paused = false
-	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+	get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
 	pass # replace with function body
 
 remote func _on_mainMenuButton_button_down(sent=false):

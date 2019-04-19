@@ -24,20 +24,20 @@ func _ready():
 func wallArraySetter():
 	wallArray.resize(16)
 	wallArray[0] = -1
-	wallArray[1] = 1
-	wallArray[2] = 3
-	wallArray[3] = 0
-	wallArray[4] = 18
-	wallArray[5] = 2
-	wallArray[6] = 17
-	wallArray[7] = 8
-	wallArray[8] = 5
-	wallArray[9] = 16
-	wallArray[10] = 4
-	wallArray[11] = 7
-	wallArray[12] = 6
-	wallArray[13] = 9
-	wallArray[14] = 15
+	wallArray[1] = 4
+	wallArray[2] = 2
+	wallArray[3] = 3
+	wallArray[4] = 6
+	wallArray[5] = 5
+	wallArray[6] = 11
+	wallArray[7] = 10
+	wallArray[8] = 0
+	wallArray[9] = 9
+	wallArray[10] = 1
+	wallArray[11] = 8
+	wallArray[12] = 7
+	wallArray[13] = 15
+	wallArray[14] = 14
 	wallArray[15] = 12
 
 class monsterBlock:

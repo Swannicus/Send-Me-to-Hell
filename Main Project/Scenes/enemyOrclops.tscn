@@ -1,20 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://scripts/enemyRoot.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/GelatinousCube.png" type="Texture" id=2]
+[ext_resource path="res://scripts/enemyOrclops.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/orclops.png" type="Texture" id=2]
 [ext_resource path="res://sound/384647__morganpurkis__sludge-footstep-3.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
 [sub_resource type="Animation" id=2]
-
 resource_name = "attack"
 length = 0.6
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -41,7 +36,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "damaged"
 length = 0.8
 loop = true
@@ -72,10 +66,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
 resource_name = "death"
 length = 0.5
-loop = false
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -103,11 +95,9 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-
 resource_name = "idle"
 length = 0.1
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
@@ -146,10 +136,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
-length = 1.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -176,10 +163,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-
-length = 1.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -206,103 +190,52 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=8]
-
-custom_solver_bias = 0.0
 extents = Vector2( 12.6252, 12.0632 )
 
 [sub_resource type="CircleShape2D" id=9]
+radius = 200.0
 
-custom_solver_bias = 0.0
-radius = 201.467
+[sub_resource type="CircleShape2D" id=10]
+radius = 25.0
 
-[node name="RigidBody2D" type="RigidBody2D" index="0"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
+[node name="RigidBody2D" type="RigidBody2D"]
 mode = 2
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
 linear_damp = 1.19
-angular_velocity = 0.0
 angular_damp = 128.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Linear" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-flip_h = true
 vframes = 8
 hframes = 4
-frame = 3
-_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="anim" type="AnimationPlayer" parent="Sprite" index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="anim" type="AnimationPlayer" parent="Sprite"]
 anims/attack = SubResource( 2 )
 anims/damaged = SubResource( 3 )
 anims/death = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/walkleft = SubResource( 6 )
 anims/walkright = SubResource( 7 )
-blend_times = [  ]
 
-[node name="Area2D" type="Area2D" parent="." index="2"]
+[node name="Area2D" type="Area2D" parent="."]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 8 )
 
-[node name="sound" type="AudioStreamPlayer2D" parent="." index="3"]
-
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
 bus = "SFX"
-area_mask = 1
 
-[node name="detectionRadius" type="Area2D" parent="." index="4"]
+[node name="detectionRadius" type="Area2D" parent="."]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detectionRadius" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectionRadius"]
 shape = SubResource( 9 )
 
+[node name="weaponRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weaponRange"]
+shape = SubResource( 10 )
 

@@ -2,13 +2,10 @@ extends "res://scripts/weaponMelee.gd"
 
 const projScene = preload("res://Scenes/weapons/iceCrystal.tscn")
 
-var attackSpriteLoad
-var attackspriteref
-
 func _ready():
 	set_physics_process(true)
 	set_process(true)
-	cooldown = 1
+	cooldown = 0
 	weaponID = 3
 	damage = 2
 	knockback = 750
@@ -16,13 +13,8 @@ func _ready():
 	shakeDur = 5
 	ammoCost = 1
 	ammoType = 4
+	AIRange = 50
 	attackSpriteLoad = load("res://Scenes/weapons/attacksprite.tscn")
-
-func _process(delta):
-	._process(delta)
-
-func _physics_process(delta):
-	._physics_process(delta)
 
 func attack(point):
 	#not called here

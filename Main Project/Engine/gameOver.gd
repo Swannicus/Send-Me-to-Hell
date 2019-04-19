@@ -16,7 +16,7 @@ func _ready():
 
 
 func _on_Retry_pressed():
-	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+	get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
 	pass # replace with function body
 
 

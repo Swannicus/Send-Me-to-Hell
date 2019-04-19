@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Engine/dungeon1_mapgen.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tiles/d1ts.tres" type="TileSet" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Scenes/weapons/axe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/weapons/swordIce.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/weapons/crossbowLightning.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/ammo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/enemyOrclops.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/ammo.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,7 +50,10 @@ position = Vector2( 58.149, 54.1351 )
 [node name="WeaponParent4" parent="Nav/Walls" instance=ExtResource( 7 )]
 position = Vector2( 95.7518, 71.5078 )
 
-[node name="RigidBody2D" parent="." instance=ExtResource( 8 )]
+[node name="RigidBody2D2" parent="Nav/Walls" instance=ExtResource( 8 )]
+position = Vector2( -26.4444, 12.8926 )
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( 120.002, 99.6681 )
 reagent = 4
 

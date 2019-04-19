@@ -1,8 +1,5 @@
 extends "res://scripts/weaponMelee.gd"
 
-var attackSpriteLoad
-var attackspriteref
-
 func _ready():
 	set_physics_process(true)
 	set_process(true)

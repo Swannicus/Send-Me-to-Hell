@@ -42,6 +42,7 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 1, 0, 0, 0, 0, 0 )
 cell_y_sort = true
 format = 1
+tile_data = PoolIntArray( 524280, 18, 0, 589815, 5, 0 )
 
 [node name="WeaponParent2" parent="Nav/Walls" instance=ExtResource( 6 )]
 position = Vector2( 58.149, 54.1351 )

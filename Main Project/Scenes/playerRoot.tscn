@@ -32,14 +32,12 @@ zoom = Vector2( 0.5, 0.5 )
 [node name="Shadow" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="pickuparea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickuparea"]
-position = Vector2( 0, 2 )
 shape = SubResource( 2 )
 
 [node name="ammonoise" type="AudioStreamPlayer" parent="."]

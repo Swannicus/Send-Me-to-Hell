@@ -139,12 +139,12 @@ func _on_startButton_pressed():
 	print("seed"+str(currentSeed))
 	print("seeded seed"+str(seed(currentSeed)))
 	rpc("_remote_start",currentSeed)
-	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+	get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
 	pass # replace with function body
 
 remote func _remote_start(passSeed):
 	seed(passSeed)
 #	seed(1)
-	get_tree().change_scene("res://Engine/dungeon1_mapgen.tscn")
+	get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
 	print("seed"+str(passSeed))
 #	print("seeded seed"+str(seed()))

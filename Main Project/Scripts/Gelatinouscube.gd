@@ -33,9 +33,8 @@ func takedamage(damaget,knockbackt,source):
 		$CollisionShape2D.disabled = true
 		_Death()
 		var drop = ammoscene.instance()
-		var type = randi()%4+4
 		var coindrop
-		var i = randi()%4
+		var i = random.randRangeInt(0,4)
 		get_parent().add_child(drop)
 		drop.global_position = self.global_position
 		drop.settype(random.randRangeInt(4,7))

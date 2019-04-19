@@ -8,16 +8,21 @@ var shakeValue = 20
 var shakeDur = 5
 var ammoType = 0
 var ammoCost = 0
+var AIRange = 55
 onready var sound = $sound
+onready var sprite = $Sprite
+var attackSpriteLoad
+var attackspriteref
 
 func _ready():
 	pass
 
 func _physics_process(delta):
-	if currentCooldown > 0:
-		currentCooldown -= delta
+	return
 
 func _process(delta):
+	if currentCooldown > 0:
+		currentCooldown -= delta
 	return
 
 func attack(point):
