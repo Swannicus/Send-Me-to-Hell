@@ -198,9 +198,13 @@ radius = 200.0
 [sub_resource type="CircleShape2D" id=10]
 radius = 25.0
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="RigidBody2D" type="RigidBody2D" groups=[
+"enemy",
+]]
+collision_layer = 4
+collision_mask = 3
 mode = 2
-linear_damp = 1.19
+linear_damp = 30.0
 angular_damp = 128.0
 script = ExtResource( 1 )
 

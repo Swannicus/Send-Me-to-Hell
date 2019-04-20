@@ -1,5 +1,7 @@
 extends "res://scripts/enemyRoot.gd"
 onready var damager = $damageBox
+var knockback = 5
+var damageTimer = 0.3
 
 func _init():
 	points = 10
@@ -10,15 +12,17 @@ func _ready():
 	random.setSeed(randi())
 	health = 3
 	target = Vector2(0,0)
-	speed = 1
+	speed = 20
 	damage = 3
-	damageCooldown = []
+	damageCooldown = {}
 	#Get a footstep noise
 	sound.stream = load("res://sound/384647__morganpurkis__sludge-footstep-3.wav")
 	set_nav(get_parent().get_parent())
 	pass
 
-func process(delta):
+func _process(delta):
+	for a in damageCooldown:
+		damageCooldown[a] -= delta
 	if stun > 0:
 		stun -= 1
 		return
@@ -46,6 +50,7 @@ func pathfind_loop(delta):
 
 func movement_loop(delta):
 	apply_impulse(Vector2(0,0),speed*target)
+	_anim("walkleft")
 
 func update_path():
 	path = nav.get_simple_path(get_global_position(),goal,true)
@@ -68,5 +73,11 @@ func attack_loop():
 		return
 	for body in overlappingbodies:
 		if body.is_in_group("player"):
-			body.takedamage(damage)
+			if damageCooldown.has(body):
+				if damageCooldown[body] <= 0:
+					body.takedamage(damage,knockback,global_position)
+					damageCooldown[body] = damageTimer
+			else:
+				damageCooldown[body] = damageTimer
+				body.takedamage(damage,knockback,global_position)
 	return

@@ -93,19 +93,22 @@ func takedamage(damaget,knockbackt,source):
 	if health <= 0:
 		_Death()
 		return
-	_anim("damaged")
+	_anim("damaged",true)
 
-func _anim(animation):
+func _anim(animation,interrupt=false):
 	var newanim = str(animation)
-	if $Sprite/anim.current_animation != newanim:
+	if interrupt:
 		$Sprite/anim.play(newanim)
+	else:
+		if $Sprite/anim.current_animation != newanim:
+			$Sprite/anim.queue(newanim)
 
 func _Death():
 	if dead == false:
-		_anim("death")
+		_anim("death",true)
 		if is_in_group("enemy"):
 			remove_from_group("enemy")
-			$CollisionShape2D.disabled = true
+			set_collision_mask_bit(2,false)
 			add_to_group("corpse")
 			var drop = ammoscene.instance()
 			var coindrop

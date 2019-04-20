@@ -5,7 +5,7 @@ const projScene = preload("res://Scenes/weapons/iceCrystal.tscn")
 func _ready():
 	set_physics_process(true)
 	set_process(true)
-	cooldown = 0
+	cooldown = 0.26
 	weaponID = 3
 	damage = 2
 	knockback = 750

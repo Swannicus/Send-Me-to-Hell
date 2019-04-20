@@ -9,7 +9,7 @@ func _ready():
 	random.setSeed(randi())
 	health = 4
 	target = Vector2(0,0)
-	speed = 5
+	speed = 30
 	damage = 3
 	damageCooldown = []
 	focusFloat = 0.3

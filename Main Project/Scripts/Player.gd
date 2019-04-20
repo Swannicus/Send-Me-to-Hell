@@ -29,6 +29,7 @@ var sprite
 var health
 var healthmax = 20
 onready var area = $pickuparea
+onready var hurtNoise = $hurtNoise
 #var weapon = load("res://scripts/weapons.gd")
 
 func _ready():
@@ -97,8 +98,13 @@ func HUD_loop():
 		$HUD/goldBar/number.bbcode_text = "[center]"+str(level)+"[/center]"
 	return
 
-func takedamage(damage):
-	health = health-damage
+func takedamage(damaget,knockbackt,source):
+	health = health-damaget
+	var directionkb = global_position - source
+	move_and_collide(knockbackt*directionkb.normalized())
+	if health > 0:
+		hurtNoise.play(0)
+		animswitch("damaged")
 
 func controls_loop():
 	var LEFT	= Input.is_action_pressed("ui_left")

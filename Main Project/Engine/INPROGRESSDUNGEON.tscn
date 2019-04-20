@@ -30,6 +30,7 @@ format = 1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_y_sort = true
+collision_mask = 5
 format = 1
 
 [node name="WeaponParent3" parent="Nav/Walls" instance=ExtResource( 3 )]
@@ -40,6 +41,7 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 1, 0, 0, 0, 0, 0 )
 cell_y_sort = true
+collision_mask = 5
 format = 1
 
 [node name="WeaponParent2" parent="Nav/Walls" instance=ExtResource( 4 )]
