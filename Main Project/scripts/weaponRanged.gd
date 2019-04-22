@@ -17,10 +17,10 @@ func attack(point):
 	var angle = point - muzzle.global_position
 	if currentCooldown <= 0:
 		$Sound.play(0)
-		proj.setup(angle.normalized(),point)
+		proj.setup(angle.normalized(),point,get_parent().get_parent().get("team"))
 		proj.global_position = muzzle.global_position
 		get_parent().get_parent().get_parent().add_child(proj)
-		rpc("remote_attack",get_parent().get_parent().player_id,point)
+		rpc("remote_attack",get_parent().get_parent().get("player_id"),point)
 		currentCooldown = cooldown
 
 func remote_attack(id,target):

@@ -10,11 +10,11 @@ radius = 4.47858
 radius = 12.9059
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
-"ammo",
 "pickup",
+"ammo",
 ]]
-collision_layer = 16
-collision_mask = 17
+collision_layer = 8
+collision_mask = 9
 mode = 2
 gravity_scale = 0.0
 linear_damp = 7.0

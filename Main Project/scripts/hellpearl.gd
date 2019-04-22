@@ -1,13 +1,5 @@
-extends StaticBody2D
+extends "res://scripts/destructible.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func onDeath():
+	for monster in Globals.monstersInLevelArray:
+		monster.global_position = global_position+Vector2(random.randRangeFloat(-60,60),random.randRangeFloat(-60,60))

@@ -21,7 +21,7 @@ func attackAction(point):
 		swingState = true
 	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
 #	get_parent().get_parent().camShake(shakeValue,shakeDur)
-	attackSpriteRef.damage(damage,knockback,(point-global_position).normalized()*23)
+	attackSpriteRef.damage(damage,knockback,(point-global_position).normalized()*23,get_parent().get_parent().team)
 	attackSpriteRef.global_position = global_position+(point-global_position).normalized()*23
 	attackSpriteRef.look_at(point)
 	extraAttack(point)

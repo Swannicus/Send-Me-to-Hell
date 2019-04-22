@@ -15,6 +15,41 @@ var E = 4
 var SW = 4
 var S = 8
 var SE = 8
+var monstersInLevelArray =[]
+
+
+enum {PLAYERS,MONSTERS,DESTRUCTIBLES}
+
+class ammo:
+	var random = load("res://Engine/randomLib.gd").new()
+	var ammoScene = load("res://Scenes/ammo.tscn")
+	var ammoType
+	var Walls
+	func _init(wallParam,seedParam):
+		random.setSeed(seedParam)
+		Walls = wallParam
+	func drop(locationParam,typeParam=0):
+		var ammoDrop = ammoScene.instance()
+		Walls.add_child(ammoDrop)
+		ammoDrop.global_position = locationParam
+		if typeParam == 0:
+			ammoDrop.settype(random.randRangeInt(4,7))
+		else:
+			 ammoDrop.settype(typeParam)
+
+class coin:
+	var random = preload("res://Engine/randomLib.gd").new()
+	var coinScene = preload("res://Scenes/coin.tscn")
+	var Walls
+	func _init(wallParam,seedParam):
+		Walls = wallParam
+		random.setSeed(seedParam)
+	func drop(locationParam):
+		var coinDrop = coinScene.instance()
+		Walls.add_child(coinDrop)
+		coinDrop.global_position = locationParam
+		coinDrop.apply_central_impulse(Vector2(random.randRangeInt(-200,200),random.randRangeInt(-200,200)))
+
 func _ready():
 	music = $audio
 	music.set_stream(load("res://music/Menu Music.wav"))

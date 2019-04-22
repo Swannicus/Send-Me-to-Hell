@@ -36,7 +36,7 @@ func attackAction(point):
 	sound.play()
 	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
 	get_parent().get_parent().camShake(shakeValue,shakeDur)
-	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23)
+	attackSpriteRef.damage(damage,knockback,(point-self.global_position).normalized()*23,get_parent().team)
 	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
 	attackSpriteRef.look_at(point)
 	
@@ -57,5 +57,14 @@ remote func rlookLoop(id,point):
 		if self.scale != Vector2(1,-1):
 			self.apply_scale(Vector2(1,-1))
 	if point.x-self.global_position.x > 0 :
+		if self.scale != Vector2(1,1):
+			self.apply_scale(Vector2(1,-1))
+
+func monsterLookLoop(direction):
+	$"..".look_at(direction)
+	if direction.x-self.global_position.x < 0 :
+		if self.scale != Vector2(1,-1):
+			self.apply_scale(Vector2(1,-1))
+	if direction.x-self.global_position.x > 0 :
 		if self.scale != Vector2(1,1):
 			self.apply_scale(Vector2(1,-1))

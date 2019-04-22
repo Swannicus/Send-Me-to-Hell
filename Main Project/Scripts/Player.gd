@@ -28,8 +28,10 @@ var level = 1
 var sprite
 var health
 var healthmax = 20
+var team = Globals.PLAYERS
 onready var area = $pickuparea
 onready var hurtNoise = $hurtNoise
+onready var vacuum = $Vacuum
 #var weapon = load("res://scripts/weapons.gd")
 
 func _ready():
@@ -66,12 +68,12 @@ func _physics_process(delta):
 	#	animswitch("idle")
 
 func overlap_loop():
-	var overlappingbodies = $Vacuum.get_overlapping_bodies()
+	var overlappingbodies = vacuum.get_overlapping_bodies()
 	if not overlappingbodies:
 		return
 	for body in overlappingbodies:
 		if body.is_in_group("pickup"):
-			body.apply_impulse(Vector2(0,0),(self.global_position-body.global_position))
+			body.apply_central_impulse((global_position-body.global_position))
 
 
 func HUD_loop():
@@ -101,7 +103,7 @@ func HUD_loop():
 func takedamage(damaget,knockbackt,source):
 	health = health-damaget
 	var directionkb = global_position - source
-	move_and_collide(knockbackt*directionkb.normalized())
+	move_and_collide(0.03*knockbackt*directionkb.normalized())
 	if health > 0:
 		hurtNoise.play(0)
 		animswitch("damaged")

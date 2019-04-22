@@ -12,6 +12,5 @@ func _ready():
 
 func settype(type):
 	var sprite = $Sprite
-	print(str(type)+"type")
 	sprite.set_frame(type)
 	reagent = type-3

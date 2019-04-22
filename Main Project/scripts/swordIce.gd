@@ -32,6 +32,6 @@ func extraAttack(point):
 		return
 	get_parent().get_parent().ammo4 -= ammoCost
 #	get_parent().get_parent().hud.get_node("blue").set_value(get_parent().get_parent().ammo4)
-	proj.setup(angle.normalized(),point)
+	proj.setup(angle.normalized(),point,get_parent().get_parent().team)
 	proj.global_position = $muzzle.global_position
 	get_parent().get_parent().get_parent().add_child(proj)

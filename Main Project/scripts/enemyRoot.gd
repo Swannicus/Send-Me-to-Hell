@@ -24,13 +24,14 @@ var dead = false
 onready var sound = $sound
 onready var detector = $detectionRadius
 onready var anim = $Sprite/anim
-onready var weaponRange = $weaponRange
-var weaponNode
-const ammoscene = preload("res://Scenes/ammo.tscn")
-const coinscene = preload("res://Scenes/coin.tscn")
+var ammoDrop
+var coinDrop
+var team = Globals.MONSTERS
 
 func _ready():
 	random.setSeed(randi())
+	coinDrop = Globals.coin.new(get_parent(),random.randInt())
+	ammoDrop = Globals.ammo.new(get_parent(),random.randInt())
 	sound.stream = load("res://sound/384647__morganpurkis__sludge-footstep-3.wav")
 	set_nav(get_parent().get_parent())
 	pass
@@ -107,21 +108,13 @@ func _Death():
 	if dead == false:
 		_anim("death",true)
 		if is_in_group("enemy"):
-			remove_from_group("enemy")
-			set_collision_mask_bit(2,false)
-			add_to_group("corpse")
-			var drop = ammoscene.instance()
-			var coindrop
-			var i = random.randRangeInt(bountyMinimum,bountyMaximum)
-			get_parent().add_child(drop)
-			drop.global_position = global_position
-			drop.settype(random.randRangeInt(4,7))
-			while i > 0:
-				i -= 1
-				coindrop = coinscene.instance()
-				get_parent().add_child(coindrop)
-				coindrop.global_position = global_position
-				coindrop.apply_impulse(Vector2(0,0),Vector2(random.randFloat()*401-200,random.randFloat()*401-200))
+			set_collision_mask_bit(1,false)
+			set_collision_layer_bit(1,false)
+			set_collision_layer_bit(4,true)
+			team = null
+			ammoDrop.drop(global_position)
+			for i in random.randRangeInt(bountyMinimum,bountyMaximum):
+				coinDrop.drop(global_position)
 			#sound.stream = load("DEATHSOUND")
 			sound.play(0)
 			set_physics_process(false)

@@ -6,37 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.53603, 11.8083 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "broken"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite2:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 7, 8, 7, 8, 9, 16, 16 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 12, 14, 14 ]
-}
-
 [sub_resource type="Animation" id=3]
-resource_name = "damage"
+resource_name = "damaged"
 length = 0.2
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -60,6 +32,33 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 8, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 7, 8, 9, 16, 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 14, 14 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -105,16 +104,17 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -21 )
 vframes = 8
 hframes = 4
-frame = 16
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 4
-frame = 14
+frame = 12
 
 [node name="anim" type="AnimationPlayer" parent="Sprite"]
-anims/broken = SubResource( 2 )
-anims/damage = SubResource( 3 )
+anims/damaged = SubResource( 3 )
+anims/death = SubResource( 2 )
 anims/idle = SubResource( 4 )
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
 

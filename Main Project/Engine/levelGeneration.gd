@@ -4,11 +4,13 @@ var roomArray = []
 var tileArray = []
 var random = preload("res://Engine/randomLib.gd").new()
 var monsterList = []
+var monsterInLevelArray = []
 var Walls
 var Floor
 var walkableWalls
 var Corners
 var cornerGrid = []
+enum {NORMAL_ROOM,HELLPEARL_ROOM,TREASURE_ROOM}
 
 class room:
 	var tiles= []
@@ -42,8 +44,9 @@ class room:
 	
 	func spawn(type,tile):
 		var monster = load(type.scenePath).instance()
-		monster.global_position = Floor.map_to_world(tile)
+		monster.global_position = Floor.map_to_world(tile)+Vector2(16,16)
 		Walls.add_child(monster)
+		Globals.monstersInLevelArray.append(monster)
 	
 	func _init(origin_param,points_param,monsterList_param,wallRef,floorRef,special_param = 0):
 		origin = origin_param
@@ -60,8 +63,6 @@ func _ready():
 	Corners = $Nav/Walls/Corners
 	walkableWalls = $Nav/walkableWalls
 	dungeonMonsters()
-	print(str(monsterList[0].points))
-	print(str(monsterList[1].points))
 	generateDungeon(5)
 	pass # Replace with function body.
 
@@ -190,7 +191,7 @@ func generateDungeon(rooms):
 		if tileArray.has(tile) == false:
 			tileArray.append(tile)
 	for i in rooms-1:
-		roomArray.append(roomArray[-1]+Vector2(random.randRangeInt(5,10),random.randRangeInt(-5,5)))
+		roomArray.append(roomArray[-1]+Vector2(random.randRangeInt(7,15),random.randRangeInt(-10,10)))
 		tempTileArray = _generateDungeonRoom(roomArray[-1])
 		for tile in tempTileArray:
 			if tileArray.has(tile) == false:
@@ -201,18 +202,32 @@ func generateDungeon(rooms):
 				tileArray.append(tile)
 	for i in tileArray:
 		_placeTile(i)
+	_generateDungeonRoom(roomArray[-1],HELLPEARL_ROOM)
 	initializePlayers()
 	return roomArray[-1]
 
-func _generateDungeonRoom(origin):
-	var thisRoom = room.new(origin,100,monsterList,Walls,Floor)
+func _generateDungeonRoom(origin,method=NORMAL_ROOM):
+	var thisRoom
 	var tempTileArray = []
-	for i in 5:
-		tempTileArray = _walker(origin,10,1)
-		for tile in tempTileArray:
-			if thisRoom.tiles.has(tile) == false:
-				thisRoom.tiles.append(tile)
-	thisRoom.spawnMonsters()
+	match method:
+		NORMAL_ROOM:
+			thisRoom = room.new(origin,100,monsterList,Walls,Floor)
+			for i in 7:
+				tempTileArray = _walker(origin,15,0.9)
+				for tile in tempTileArray:
+					if thisRoom.tiles.has(tile) == false:
+						thisRoom.tiles.append(tile)
+			thisRoom.spawnMonsters()
+		HELLPEARL_ROOM:
+			thisRoom = room.new(origin,0,monsterList,Walls,Floor)
+			for i in 9:
+				tempTileArray = _walker(origin,20,0.8)
+				for tile in tempTileArray:
+					if thisRoom.tiles.has(tile) == false:
+						thisRoom.tiles.append(tile)
+			var hellpearl = load("res://Scenes/hellpearl.tscn").instance()
+			hellpearl.global_position = Floor.map_to_world(roomArray[-1])+Vector2(16,16)
+			Walls.add_child(hellpearl)
 	return thisRoom.tiles
 
 func _walker(origin,distance,turnChance):
