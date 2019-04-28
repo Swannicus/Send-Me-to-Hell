@@ -16,8 +16,8 @@ var SW = 4
 var S = 8
 var SE = 8
 var monstersInLevelArray =[]
-
-
+var livingMonsters = 0
+var hellpearlBroken = false
 enum {PLAYERS,MONSTERS,DESTRUCTIBLES}
 
 class ammo:
@@ -56,6 +56,11 @@ func _ready():
 	music.play(0)
 	wallArraySetter()
 
+func _process(delta):
+	print("monsters"+str(livingMonsters))
+	if livingMonsters <= 0 and hellpearlBroken:
+		get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
+
 func wallArraySetter():
 	wallArray.resize(16)
 	wallArray[0] = -1
@@ -74,29 +79,3 @@ func wallArraySetter():
 	wallArray[13] = 15
 	wallArray[14] = 14
 	wallArray[15] = 12
-
-class monsterBlock:
-	var path = "FILEPATH"
-	var points = 10
-	var chance = 1
-	static func sort(a,b):
-		if a[1] > b[1]:
-			return true
-		return false
-
-class gelatinousCube extends monsterBlock:
-	func _init():
-		path = "res://Scenes/Gelatinouscube.tscn"
-		chance = 5
-		
-
-class skeletonBasic extends monsterBlock:
-	func _init():
-		path = "res://Scenes/skeletonBasic.tscn"
-		chance = 10
-		points = 15
-
-class goblin extends monsterBlock:
-	func _init():
-		path = "res://Scenes/goblin.tscn"
-

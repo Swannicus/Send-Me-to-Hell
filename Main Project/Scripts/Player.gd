@@ -40,8 +40,8 @@ func _ready():
 	add_child(sprite)
 	sprite.global_position = global_position
 	sprite.position.y -= 6
-	weapon0 = load("res://Scenes/weapons/crossbow.tscn")
-	weapon1 = load("res://Scenes/weapons/sword.tscn")
+#	weapon0 = load("res://Scenes/weapons/crossbow.tscn")
+#	weapon1 = load("res://Scenes/weapons/sword.tscn")
 	add_child(weapon0.instance())
 	$WeaponParent/weapon/pickUpRadius.queue_free()
 	hud = load("res://Engine/HUD.tscn")

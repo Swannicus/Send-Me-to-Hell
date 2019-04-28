@@ -66,6 +66,11 @@ func pathfind_loop(delta):
 
 func movement_loop(delta):
 	apply_central_impulse(speed*target)
+	if target.x > 0:
+		_anim("walkright")
+	else:
+		_anim("walkleft")
+	
 
 func update_path():
 	path = nav.get_simple_path(Vector2(0,0),global_position-goal,true)
@@ -119,4 +124,5 @@ func _Death():
 			sound.play(0)
 			set_physics_process(false)
 			set_process(false)
+			Globals.livingMonsters -= 1
 		dead = true

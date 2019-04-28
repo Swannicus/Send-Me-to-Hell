@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="pickUpRadius" type="Area2D" groups=[
+"crossbow",
+"weapon",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 23.0721, 0.482188 )
+scale = Vector2( 1.09889, 0.926516 )
+shape = SubResource( 1 )
+

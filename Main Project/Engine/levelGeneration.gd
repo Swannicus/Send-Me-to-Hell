@@ -4,7 +4,6 @@ var roomArray = []
 var tileArray = []
 var random = preload("res://Engine/randomLib.gd").new()
 var monsterList = []
-var monsterInLevelArray = []
 var Walls
 var Floor
 var walkableWalls
@@ -47,6 +46,7 @@ class room:
 		monster.global_position = Floor.map_to_world(tile)+Vector2(16,16)
 		Walls.add_child(monster)
 		Globals.monstersInLevelArray.append(monster)
+		Globals.livingMonsters += 1
 	
 	func _init(origin_param,points_param,monsterList_param,wallRef,floorRef,special_param = 0):
 		origin = origin_param
@@ -270,11 +270,14 @@ func initializePlayers():
 	for i in Globals.playersdict.keys():
 		spawn_player(i)
 
-func spawn_player(id):
+func spawn_player(id,weapon0P="sword",weapon1P="crossbow",healthP=20,ammo1P=15,ammo2P=0,ammo3P=0,ammo4P=0):
 	var player = load("res://Scenes/playerRoot.tscn").instance()
 	print ("Spawn player "+str(id)+" "+str(get_tree().get_network_unique_id()))
 	player.setCharacter("knight")
 	player.set_name(str(id))
+	player.weapon0 = load("res://Scenes/weapons/"+weapon0P+".tscn")
+	player.weapon1 = load("res://Scenes/weapons/"+weapon1P+".tscn")
+	player.health = healthP; player.ammo1 = ammo1P; player.ammo2 = ammo2P; player.ammo3 = ammo3P; player.ammo4 = ammo4P
 	if id == get_tree().get_network_unique_id():
 		player.set_network_master(id)
 		player.player_id = id

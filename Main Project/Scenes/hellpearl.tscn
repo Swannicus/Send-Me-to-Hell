@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.53603, 11.8083 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "damaged"
 length = 0.2
 tracks/0/type = "value"
@@ -34,8 +34,7 @@ tracks/1/keys = {
 "values": [ 0, 8, 3 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "death"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite2:frame")
 tracks/0/interp = 1
@@ -112,8 +111,8 @@ hframes = 4
 frame = 12
 
 [node name="anim" type="AnimationPlayer" parent="Sprite"]
-anims/damaged = SubResource( 3 )
-anims/death = SubResource( 2 )
+anims/damaged = SubResource( 2 )
+anims/death = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]

@@ -221,9 +221,9 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-flip_h = true
 vframes = 8
 hframes = 4
+frame = 2
 
 [node name="anim" type="AnimationPlayer" parent="Sprite"]
 anims/attack = SubResource( 2 )

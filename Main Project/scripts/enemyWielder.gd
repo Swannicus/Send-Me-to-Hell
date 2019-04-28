@@ -27,3 +27,25 @@ func attack_loop():
 		if body.get("team") == Globals.PLAYERS:
 			weaponNode.get_node("weapon").attack(body.global_position)
 	return
+
+func _Death():
+	if dead == false:
+		_anim("death",true)
+		if is_in_group("enemy"):
+			set_collision_mask_bit(1,false)
+			set_collision_layer_bit(1,false)
+			set_collision_layer_bit(4,true)
+			team = null
+			ammoDrop.drop(global_position)
+			for i in random.randRangeInt(bountyMinimum,bountyMaximum):
+				coinDrop.drop(global_position)
+			#sound.stream = load("DEATHSOUND")
+			sound.play(0)
+			remove_child(weaponNode)
+			get_parent().add_child(weaponNode)
+			weaponNode.global_position = global_position
+			weaponNode.get_node("weapon").add_child(load("res://Scenes/weapons/pickUpRadius.tscn").instance())
+			set_physics_process(false)
+			set_process(false)
+			Globals.livingMonsters -= 1
+		dead = true

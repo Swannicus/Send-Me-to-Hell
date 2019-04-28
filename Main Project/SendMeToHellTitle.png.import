@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/goblin.png-634e2deee18e7c80adc9eacd81c1011b.stex"
+path="res://.import/SendMeToHellTitle.png-2d13031d11e343d2c29e02ab9d779f3d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/goblin.png"
-dest_files=[ "res://.import/goblin.png-634e2deee18e7c80adc9eacd81c1011b.stex" ]
+source_file="res://SendMeToHellTitle.png"
+dest_files=[ "res://.import/SendMeToHellTitle.png-2d13031d11e343d2c29e02ab9d779f3d.stex" ]
 
 [params]
 
