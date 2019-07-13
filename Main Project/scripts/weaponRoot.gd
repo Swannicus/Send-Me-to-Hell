@@ -1,6 +1,7 @@
 extends Node2D
-var cooldown = 1
+var cooldown = 0.9
 var currentCooldown = 0
+var cooldown2 = 1.5
 var weaponID = 0
 var damage = 1
 var knockback = 500
@@ -11,9 +12,15 @@ var ammoCost = 0
 var AIRange = 55
 onready var sound = $sound
 onready var sprite = $Sprite
-var attackSpriteLoad
-var attackspriteref
+var attackSpriteLoad = load("res://Scenes/weapons/attacksprite.tscn")
+var random = preload("res://Engine/randomLib.gd").new()
+var attackSpriteRef
+var circleArray = []
+var t
+var attackCharging = false
+var charge = 0
 
+	
 func _ready():
 	pass
 
@@ -23,16 +30,36 @@ func _physics_process(delta):
 func _process(delta):
 	if currentCooldown > 0:
 		currentCooldown -= delta
+	if attackCharging:
+		charge += delta
 	return
 
-func attack(point):
+func attackdown(point):
 	#not called here
 	if currentCooldown <= 0:
 		attackAction(point)
 		currentCooldown = cooldown
 
+func attackup(point):
+	return
+
+func attack2up(point):
+		#not called here
+	attackCharging = false
+	print("cooldown"+str(currentCooldown)+"+"+"charge"+str(charge))
+	if currentCooldown <= 0 and charge >= 0.5:
+		attackAction2(point)
+		currentCooldown = cooldown2
+	charge = 0
+	return
+
+func attack2down(point):
+	attackCharging = true
+	print("Charging")
+	return
+
 func attackAction(point):
-	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
+	attackSpriteRef = attackSpriteLoad.instance()
 	sound.play()
 	get_parent().get_parent().get_parent().add_child(attackSpriteRef)
 	get_parent().get_parent().camShake(shakeValue,shakeDur)
@@ -40,6 +67,8 @@ func attackAction(point):
 	attackSpriteRef.global_position = self.global_position+(point-self.global_position).normalized()*23
 	attackSpriteRef.look_at(point)
 	
+func attackAction2(point):
+	return
 
 func lookLoop(mousePos=get_global_mouse_position()):
 	$"..".look_at(mousePos)

@@ -8,7 +8,7 @@ func _init():
 
 func _ready():
 	random.setSeed(randi())
-	health = 4
+	health = 3
 	target = Vector2(0,0)
 	speed = 30
 	damage = 3

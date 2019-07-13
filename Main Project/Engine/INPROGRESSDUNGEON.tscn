@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Engine/levelGeneration.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tiles/dungeonTileset.tres" type="TileSet" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://Scenes/weapons/swordIce.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/weapons/crossbowLightning.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/weapons/axe.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/ammo.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/weapons/cannon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/ammo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/weapons/orbPoison.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -53,7 +55,57 @@ position = Vector2( 95.7518, 71.5078 )
 [node name="WeaponParent" parent="Nav/Walls" instance=ExtResource( 6 )]
 position = Vector2( 136.511, 55.1057 )
 
-[node name="RigidBody2D" parent="." instance=ExtResource( 7 )]
+[node name="WeaponParent5" parent="Nav/Walls" instance=ExtResource( 7 )]
+position = Vector2( -7.7234, 24.2408 )
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 8 )]
 position = Vector2( 120.002, 99.6681 )
 reagent = 4
+
+[node name="RigidBody2D2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D11" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="RigidBody2D12" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0.0347748, 0.183067 )
+reagent = 4
+
+[node name="WeaponParent" parent="." instance=ExtResource( 9 )]
+position = Vector2( -6.73794, 40.4877 )
 

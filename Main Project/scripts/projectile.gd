@@ -10,6 +10,8 @@ var angle = Vector2()
 var moving = false
 var decaytime = 0
 var point
+var lifeSpan = 1
+var random = preload("res://Engine/randomLib.gd").new()
 onready var trail = $trail
 onready var sprite = $Sprite
 var team
@@ -20,13 +22,12 @@ func setup(direction,pointSet,teamParam,spd=boltspeed,dam=damage,kb=knockback):
 
 func _ready():
 	set_process(false)
-	self.look_at(point)
 	trail.remove_point(0)
 	return
 
 func _process(delta):
 	decaytime += delta
-	if decaytime >= 1:
+	if decaytime >= lifeSpan:
 		call_deferred("free")
 		#self.queue_free()
 

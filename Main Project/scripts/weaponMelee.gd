@@ -1,15 +1,8 @@
 extends "res://scripts/weaponRoot.gd"
 var swingState = false
 
-
-func attack(point):
-	#not called here
-	if currentCooldown <= 0:
-		attackAction(point)
-		currentCooldown = cooldown
-
 func attackAction(point):
-	var attackSpriteRef = load("res://Scenes/weapons/attacksprite.tscn").instance()
+	attackSpriteRef = attackSpriteLoad.instance()
 	sound.play()
 	if swingState:
 		#$Sprite.flip_v = true

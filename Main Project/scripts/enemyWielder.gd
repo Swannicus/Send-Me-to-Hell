@@ -25,7 +25,7 @@ func attack_loop():
 		return
 	for body in overlappingBodies:
 		if body.get("team") == Globals.PLAYERS:
-			weaponNode.get_node("weapon").attack(body.global_position)
+			weaponNode.get_node("weapon").attackdown(body.global_position)
 	return
 
 func _Death():

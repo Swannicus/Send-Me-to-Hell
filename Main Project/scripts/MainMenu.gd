@@ -30,6 +30,6 @@ func _on_start_button_up():
 
 func sceneTransition(scenePath):
 	var fader = $fader/anim
-	fader
+	#fader
 	get_tree().change_scene(scenePath)
 	pass

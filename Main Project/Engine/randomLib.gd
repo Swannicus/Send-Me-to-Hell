@@ -83,6 +83,11 @@ func randDir():
 		4:
 			return Vector2(0,-1)
  
+func randVect2(low1,high1,low2,high2):
+	var vectFirst = randRangeFloat(low1, high1)
+	var vectSecond = randRangeFloat(low2, high2)
+	return Vector2(vectFirst,vectSecond)
+
 func setSeed(input):
     var new_seed = -1
    

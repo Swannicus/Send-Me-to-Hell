@@ -1,4 +1,4 @@
-extends "res://scripts/weaponMelee.gd"
+extends "res://scripts/sword.gd"
 
 const projScene = preload("res://Scenes/weapons/iceCrystal.tscn")
 
@@ -15,12 +15,6 @@ func _ready():
 	ammoType = 4
 	AIRange = 50
 	attackSpriteLoad = load("res://Scenes/weapons/attacksprite.tscn")
-
-func attack(point):
-	#not called here
-	if currentCooldown <= 0:
-		attackAction(point)
-		currentCooldown = cooldown
 
 func pickUp():
 	return("res://Scenes/weapons/swordIce.tscn")

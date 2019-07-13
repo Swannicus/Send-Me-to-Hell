@@ -62,6 +62,7 @@ func _ready():
 	Floor = $Nav/Floor
 	Corners = $Nav/Walls/Corners
 	walkableWalls = $Nav/walkableWalls
+	Globals.monstersInLevelArray = []
 	dungeonMonsters()
 	generateDungeon(5)
 	pass # Replace with function body.

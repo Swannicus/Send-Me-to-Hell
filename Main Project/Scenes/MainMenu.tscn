@@ -12,19 +12,19 @@ region = Rect2( 1, 1, 136, 81 )
 atlas = ExtResource( 2 )
 region = Rect2( 153, 16, 112, 48 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 290, 16, 112, 48 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 290, 99, 112, 48 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 427, 99, 112, 48 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 427, 16, 112, 48 )
 
@@ -75,21 +75,21 @@ margin_bottom = 48.0
 focus_mode = 0
 mouse_filter = 1
 texture_normal = SubResource( 2 )
-texture_pressed = SubResource( 5 )
+texture_pressed = SubResource( 3 )
 stretch_mode = 3
 
 [node name="options" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
 margin_right = 136.0
 margin_bottom = 116.0
-texture_normal = SubResource( 3 )
-texture_pressed = SubResource( 6 )
+texture_normal = SubResource( 4 )
+texture_pressed = SubResource( 5 )
 
 [node name="exit" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 136.0
 margin_right = 136.0
 margin_bottom = 184.0
-texture_normal = SubResource( 4 )
+texture_normal = SubResource( 6 )
 texture_pressed = SubResource( 7 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]

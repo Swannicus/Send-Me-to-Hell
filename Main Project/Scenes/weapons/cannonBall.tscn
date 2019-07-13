@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://cannonBall.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/rangedweapons.png" type="Texture" id=2]
+[ext_resource path="res://sound/60 Warfare, Chieftain, Firing Armor.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/trail.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.5
+
+[node name="Bolt" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0.463427, 0.499074 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 10, 11, 11 )
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="trail" parent="." instance=ExtResource( 4 )]
+show_behind_parent = true
+points = PoolVector2Array( -0.0568504, -0.0285511 )
+width = 4.0
+default_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+texture_mode = 1065353216
+begin_cap_mode = 2
+script = null
+

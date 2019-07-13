@@ -41,7 +41,7 @@ anims/idle = SubResource( 1 )
 [node name="muzzle" type="Position2D" parent="weapon/Sprite"]
 position = Vector2( 7.835, -1.13917 )
 
-[node name="Sound" type="AudioStreamPlayer2D" parent="weapon"]
+[node name="sound" type="AudioStreamPlayer2D" parent="weapon"]
 stream = ExtResource( 3 )
 
 [node name="pickUpRadius" parent="weapon" instance=ExtResource( 4 )]

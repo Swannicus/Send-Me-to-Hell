@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/weapons/axe.gd" type="Script" id=1]
+[ext_resource path="res://axe.gd" type="Script" id=1]
 [ext_resource path="res://sound/394423__inspectorj__bamboo-swing-c8.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/weapons.png" type="Texture" id=3]
 

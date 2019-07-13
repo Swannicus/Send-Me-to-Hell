@@ -1,6 +1,4 @@
 extends "res://scripts/weaponRanged.gd"
-const boltscene = preload("res://Scenes/weapons/Bolt.tscn")
-
 
 func _ready():
 	cooldown = 1.5

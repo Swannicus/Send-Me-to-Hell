@@ -57,7 +57,7 @@ func _ready():
 	wallArraySetter()
 
 func _process(delta):
-	print("monsters"+str(livingMonsters))
+	#print("monsters"+str(livingMonsters))
 	if livingMonsters <= 0 and hellpearlBroken:
 		get_tree().change_scene("res://Engine/INPROGRESSDUNGEON.tscn")
 

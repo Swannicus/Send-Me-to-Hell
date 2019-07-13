@@ -109,13 +109,16 @@ func takedamage(damaget,knockbackt,source):
 		animswitch("damaged")
 
 func controls_loop():
-	var LEFT	= Input.is_action_pressed("ui_left")
-	var RIGHT	= Input.is_action_pressed("ui_right")
-	var UP		= Input.is_action_pressed("ui_up")
-	var DOWN	= Input.is_action_pressed("ui_down")
-	var attack	= Input.is_action_just_pressed("ui_attack")
-	var swap	= Input.is_action_just_pressed("ui_swap")
-	var grab	= Input.is_action_just_pressed("ui_grab")
+	var LEFT		= Input.is_action_pressed("ui_left")
+	var RIGHT		= Input.is_action_pressed("ui_right")
+	var UP			= Input.is_action_pressed("ui_up")
+	var DOWN		= Input.is_action_pressed("ui_down")
+	var attackdown	= Input.is_action_just_pressed("ui_attack")
+	var attack2down	= Input.is_action_just_pressed("ui_attack2")
+	var attackup	= Input.is_action_just_released("ui_attack")
+	var attack2up	= Input.is_action_just_released("ui_attack2")
+	var swap		= Input.is_action_just_pressed("ui_swap")
+	var grab		= Input.is_action_just_pressed("ui_grab")
 	var overLappingAreas = area.get_overlapping_areas()
 	mousepos = get_local_mouse_position()
 	movedir.x = -int(LEFT) + int(RIGHT)
@@ -125,9 +128,15 @@ func controls_loop():
 	else:
 		lookdir.x = -1
 		animswitch("idleright")
-	if attack:
-		$WeaponParent/weapon.attack(get_global_mouse_position())
-		rpc("syncAttack",get_global_mouse_position())
+	if attackdown:
+		$WeaponParent/weapon.attackdown(get_global_mouse_position())
+		#rpc("syncAttack",get_global_mouse_position()) FIX ME
+	if attack2down:
+		$WeaponParent/weapon.attack2down(get_global_mouse_position())
+	if attackup:
+		$WeaponParent/weapon.attackup(get_global_mouse_position())
+	if attack2up:
+		$WeaponParent/weapon.attack2up(get_global_mouse_position())
 	if swap:
 		.remove_child($WeaponParent)
 		.add_child(weapon1.instance())

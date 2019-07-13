@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/orbPoison.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/magicweapons.png" type="Texture" id=2]
+[ext_resource path="res://sound/Laser_shoot 1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/weapons/pickUpRadius.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.35
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="WeaponParent" type="Node2D"]
+
+[node name="weapon" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="weapon"]
+position = Vector2( 19.5, 2 )
+rotation = 1.49012e-008
+texture = ExtResource( 2 )
+offset = Vector2( 9, -1.5 )
+flip_h = true
+vframes = 8
+hframes = 4
+frame = 4
+
+[node name="anim" type="AnimationPlayer" parent="weapon/Sprite"]
+anims/attack = SubResource( 1 )
+anims/idle = SubResource( 2 )
+
+[node name="muzzle" type="Position2D" parent="weapon/Sprite"]
+position = Vector2( 11.0016, -2.06277 )
+
+[node name="rayCast" type="RayCast2D" parent="weapon/Sprite/muzzle"]
+enabled = true
+
+[node name="sound" type="AudioStreamPlayer2D" parent="weapon"]
+stream = ExtResource( 3 )
+
+[node name="pickUpRadius" parent="weapon" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 7.45808, -0.198879 )
+
